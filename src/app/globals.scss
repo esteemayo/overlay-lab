@@ -1,0 +1,98 @@
+:root {
+  --navy: #0f172a;
+  --dark-navy: #020c1b;
+  --navy-shadow: rgba(2, 12, 27, 0.7);
+  --dark-slate: #495670;
+  --slate: #8892b0;
+  --light-slate: #a8b2d1;
+  --lightest-slate: #ccd6f6;
+  --white: #e6f1ff;
+  --pink: #f57dff;
+  --blue: #57cbff;
+  --overlay: #11224090;
+  --fz-xxs: 1.2rem;
+  --fz-xs: 1.3rem;
+  --fz-sm: 1.4rem;
+  --fz-md: 1.6rem;
+  --fz-lg: 1.8rem;
+  --fz-xl: 2rem;
+  --fz-xxl: 2.2rem;
+  --fz-heading: 3.5rem;
+  --nav-height: 7rem;
+  --border-radius: 4px;
+  --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+  --link-transition:
+    transform 0.35s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 0.75s ease;
+}
+
+::selection {
+  background-color: var(--light-slate);
+  color: var(--dark-slate);
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  min-height: 100vh;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--fz-md);
+  background-color: var(--navy);
+  color: var(--light-slate);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+  overflow-x: hidden;
+
+  // position: absolute;
+  // inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  z-index: 0;
+}
+
+a {
+  text-decoration: none;
+  text-decoration-skip-ink: auto;
+  color: var(--light-slate);
+  transition: var(--transition);
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+input,
+textarea,
+select {
+  font-size: var(--fz-md);
+}
+
+.main-container {
+  width: 100%;
+  max-width: 160rem;
+  min-height: 100vh;
+  padding: 0 15rem;
+  margin: 0 auto;
+
+  @media (max-width: 67.5em) {
+    padding: 0 10rem;
+  }
+}

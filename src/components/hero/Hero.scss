@@ -1,0 +1,87 @@
+@use '../../styles/mixins' as *;
+
+.hero {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: calc(100vh - var(--nav-height));
+
+  &__container {
+    width: 115rem;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__heading {
+    text-transform: initial;
+    text-rendering: optimizeLegibility;
+    font-weight: 700;
+    font-size: var(--fz-heading);
+    margin-bottom: 4rem;
+    line-height: 1.1;
+
+    @include text-heading();
+  }
+
+  &__wrapper {
+    width: 60%;
+    text-align: center;
+
+    &--desc {
+      font-weight: 500;
+      font-size: 100%;
+
+      a {
+        &:link,
+        &:visited {
+          font-style: italic;
+          backface-visibility: hidden;
+        }
+
+        &:hover {
+          @include text-heading();
+        }
+
+        @include animated-underline();
+      }
+    }
+
+    &--subdesc {
+      font-size: var(--fz-sm);
+      color: var(--slate);
+    }
+  }
+
+  &__btn {
+    margin-top: 4rem;
+    display: inline-block;
+    border: none;
+    text-transform: capitalize;
+    font-weight: 500;
+    padding: 2rem 3rem;
+    background-image: linear-gradient(
+      to bottom right,
+      var(--pink),
+      var(--blue)
+    );
+    color: var(--white);
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: var(--transition);
+    transition-delay: 0.2s;
+
+    &:hover {
+      background-image: linear-gradient(
+        to bottom left,
+        var(--pink),
+        var(--blue)
+      );
+      transform: translateY(-0.7rem);
+    }
+  }
+}

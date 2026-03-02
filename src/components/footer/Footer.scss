@@ -1,0 +1,19 @@
+.footer {
+  display: flex;
+  justify-content: center;
+
+  &__container {
+    width: 100rem;
+    padding: 3.5rem 5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: var(--fz-xs);
+    color: var(--slate);
+  }
+}

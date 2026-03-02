@@ -1,0 +1,49 @@
+@mixin text-heading($clr1: var(--pink), $clr2: var(--blue)) {
+  background-image: linear-gradient(to bottom right, $clr1, $clr2);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@mixin animated-underline(
+  $color: var(--pink),
+  $height: 1px,
+  $duration1: 0.35s,
+  $duration2: 0.75s,
+  $origin: left
+) {
+  &:link,
+  &:visited {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+  }
+
+  &::after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: $height;
+    background-color: $color;
+    transform: scaleX(0);
+    transform-origin: $origin;
+    opacity: 0;
+    transition:
+      transform $duration1 cubic-bezier(0.645, 0.045, 0.355, 1),
+      opacity $duration2 ease;
+  }
+
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(100%);
+    opacity: 1;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+}
