@@ -1,3 +1,4 @@
+import ModalTrigger from '../modal/ModalTrigger';
 import './Hero.scss';
 
 const Hero = () => {
@@ -24,9 +25,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <button type='button' className='hero__btn'>
-          Simulate transfer
-        </button>
+        <ModalTrigger>Simulate transfer</ModalTrigger>
       </div>
     </header>
   );
