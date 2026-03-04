@@ -1,0 +1,30 @@
+.select {
+  display: inline-block;
+  width: 100%;
+  outline: none;
+  font-weight: 600;
+  font-size: var(--fz-md);
+  padding: 1rem;
+  background-color: var(--light-navy);
+  color: var(--lightest-slate);
+  border: 2px solid var(--slate);
+  border-radius: var(--border-radius);
+
+  option {
+    font-weight: 500;
+    font-size: var(--fz-sm);
+    color: var(--light-slate);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: 2px solid var(--lightest-navy);
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    opacity: 0.75;
+    user-select: none;
+    pointer-events: none;
+  }
+}

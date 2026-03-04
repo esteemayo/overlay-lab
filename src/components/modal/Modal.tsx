@@ -1,11 +1,9 @@
 'use client';
 
-import { ModalProps } from '@/types/modal.type';
 import ModalProvider from '@/context/modal-context';
-
 import './Modal.scss';
 
-const Modal = ({ children }: ModalProps) => {
+const Modal = ({ children }: { children: React.ReactNode }) => {
   return <ModalProvider>{children}</ModalProvider>;
 };
 

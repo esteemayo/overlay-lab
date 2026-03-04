@@ -1,0 +1,18 @@
+.success-screen {
+  &__wrapper {
+    text-align: center;
+    padding: 2rem 0;
+
+    h3 {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      // font-size: var(--fz-sm);
+    }
+  }
+}

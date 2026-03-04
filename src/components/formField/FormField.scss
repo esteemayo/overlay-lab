@@ -1,0 +1,25 @@
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+
+  &__label {
+    width: max-content;
+    display: inline-block;
+    text-transform: initial;
+    text-rendering: optimizeLegibility;
+    font-weight: 500;
+    font-size: var(--fz-sm);
+    color: inherit;
+    cursor: pointer;
+  }
+
+  &__error {
+    font-size: var(--fz-xxs);
+    color: #d32f2f;
+  }
+}
