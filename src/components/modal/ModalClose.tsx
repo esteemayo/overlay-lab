@@ -1,14 +1,31 @@
 'use client';
 
-import { useModalContext } from '@/hooks/useModalContext';
+import React from 'react';
 
-const ModalClose = ({ children }: { children: React.ReactNode }) => {
+import { useModalContext } from '@/hooks/useModalContext';
+import { ModalCloseProps } from '@/types/modal.close.type';
+
+const ModalClose = ({ asChild = false, children }: ModalCloseProps) => {
   const { triggerRef, setIsOpen } = useModalContext();
 
   const handleClose = () => {
     setIsOpen(false);
-    triggerRef.current?.focus();
+
+    setTimeout(() => {
+      triggerRef.current?.focus();
+    }, 0);
   };
+
+  if (asChild && React.isValidElement(children)) {
+    return React.cloneElement(
+      children as React.ReactElement<
+        React.ButtonHTMLAttributes<HTMLButtonElement>
+      >,
+      {
+        onClick: handleClose,
+      },
+    );
+  }
 
   return (
     <button

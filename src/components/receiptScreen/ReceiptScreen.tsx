@@ -1,12 +1,17 @@
-import { FormState } from '../transferForm/TransferForm';
+import ModalClose from '../modal/ModalClose';
+import { ReceiptScreenProps } from '@/types/receipt.screen.type';
+
 import './ReceiptScreen.scss';
 
-const ReceiptScreen = ({ data }: { data: FormState | null }) => {
+const ReceiptScreen = ({ data, transactionId }: ReceiptScreenProps) => {
   return (
-    <div className='receipt-screen'>
+    <div className='receipt-screen fade-in'>
       <div className='receipt-screen__wrapper'>
         <p>
-          <strong>Amount:</strong> ₦ {Number(data?.amount).toLocaleString()}
+          <strong>Transaction ID:</strong> {transactionId}
+        </p>
+        <p>
+          <strong>Amount:</strong> ₦{Number(data?.amount).toLocaleString()}
         </p>
 
         <p>
@@ -17,6 +22,12 @@ const ReceiptScreen = ({ data }: { data: FormState | null }) => {
           <strong>Status:</strong> Successful
         </p>
       </div>
+
+      <ModalClose asChild>
+        <button type='button' className=''>
+          Done
+        </button>
+      </ModalClose>
     </div>
   );
 };

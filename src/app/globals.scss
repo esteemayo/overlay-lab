@@ -1,3 +1,5 @@
+@use '../styles/animation' as *;
+
 :root {
   --navy: #0f172a;
   --dark-navy: #020c1b;
@@ -97,4 +99,8 @@ select {
   @media (max-width: 67.5em) {
     padding: 0 10rem;
   }
+}
+
+.fade-in {
+  animation: fadeIn 0.35s ease;
 }

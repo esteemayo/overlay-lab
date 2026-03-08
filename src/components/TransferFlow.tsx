@@ -13,25 +13,28 @@ import TransferSuccess from './successScreen/SuccessScreen';
 
 import Xmark from '@/icons/Xmark';
 import { ReceiptDataType, StatusType } from '@/types/index.type';
+import { useTransferContext } from '@/hooks/useTransferContext';
 
 const TransferFlow = () => {
-  const [status, setStatus] = useState<StatusType>('idle');
-  const [receiptData, setReceiptData] = useState<ReceiptDataType | null>(null);
+  const { data, dispatch, status, transactionId, handleSuccess } =
+    useTransferContext();
+  // const [status, setStatus] = useState<StatusType>('idle');
+  // const [receiptData, setReceiptData] = useState<ReceiptDataType | null>(null);
 
   useEffect(() => {
     if (status === 'success') {
       const timer = setTimeout(() => {
-        setStatus('receipt');
+        dispatch({ type: 'TRANSFER_RECEIPT' });
       }, 1200);
 
       return () => clearTimeout(timer);
     }
-  }, [status]);
+  }, [dispatch, status]);
 
-  const handleSuccess = (data: ReceiptDataType) => {
-    setReceiptData(data);
-    setStatus('success');
-  };
+  // const handleSuccess = (data: ReceiptDataType) => {
+  //   setReceiptData(data);
+  //   setStatus('success');
+  // };
 
   return (
     <>
@@ -50,15 +53,11 @@ const TransferFlow = () => {
 
       <ModalBody>
         {status === 'idle' || status === 'loading' ? (
-          <TransferForm
-            status={status}
-            setStatus={setStatus}
-            onSuccess={handleSuccess}
-          />
+          <TransferForm status={status} onSuccess={handleSuccess!} />
         ) : status === 'success' ? (
           <TransferSuccess />
         ) : (
-          <ReceiptScreen data={receiptData} />
+          <ReceiptScreen data={data} transactionId={transactionId} />
         )}
       </ModalBody>
     </>

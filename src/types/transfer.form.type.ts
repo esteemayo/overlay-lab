@@ -1,8 +1,9 @@
-import { FormState } from '@/components/transferForm/TransferForm';
-import { StatusType } from './index.type';
+import {
+  TransferData,
+  TransferStatus,
+} from '@/context/transferContext/transferTypes';
 
 export interface TransferFormProps {
-  status: StatusType;
-  setStatus: React.Dispatch<React.SetStateAction<StatusType>>;
-  onSuccess(data: FormState): void;
+  status: TransferStatus;
+  onSuccess(data: TransferData): void;
 }

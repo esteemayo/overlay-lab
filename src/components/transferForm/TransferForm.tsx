@@ -8,8 +8,10 @@ import FormField from '../formField/FormField';
 import Select from '../select/Select';
 import Textarea from '../textarea/Textarea';
 
-import { FormState } from '@/types/index.type';
 import { TransferFormProps } from '@/types/transfer.form.type';
+import { FormState } from '@/types/index.type';
+import { useTransferContext } from '@/hooks/useTransferContext';
+import { formatCurrency } from '@/utils/format.currency.util';
 
 import './TransferForm.scss';
 
@@ -22,9 +24,12 @@ const INITIAL_STATE = {
   description: '',
 };
 
-const TransferForm = ({ status, setStatus, onSuccess }: TransferFormProps) => {
+const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
+  const { dispatch } = useTransferContext();
   const [errors, setErrors] = useState<FormError>({});
+  const [amountRaw, setAmountRaw] = useState('');
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleChange = ({
     target: input,
@@ -36,10 +41,28 @@ const TransferForm = ({ status, setStatus, onSuccess }: TransferFormProps) => {
     setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
+  const handleAmountChange = ({
+    target: input,
+  }: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = input;
+    const digitOnly = value.replace(/\D/g, '');
+
+    setAmountRaw(digitOnly);
+    setErrors((prev) => ({ ...prev, amount: '' }));
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   const validate = (): FormError => {
     const newErrors: FormError = {};
 
-    if (!form.amount || Number(form.amount) <= 0) {
+    if (!amountRaw || Number(amountRaw) <= 0) {
       newErrors.amount = 'Enter a valid amount';
     }
 
@@ -62,12 +85,21 @@ const TransferForm = ({ status, setStatus, onSuccess }: TransferFormProps) => {
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    setStatus('loading');
+    dispatch({ type: 'TRANSFER_START' });
+
+    const payload = {
+      ...form,
+      amount: Number(amountRaw) / 100,
+    };
 
     await new Promise((res) => setTimeout(res, 1200));
-    onSuccess(form);
-    console.log('Transfer simulated:', form);
+
+    console.log('Transfer simulated:', payload);
+
+    onSuccess(payload);
   };
+
+  const displayValue = isFocused ? amountRaw : formatCurrency(amountRaw);
 
   return (
     <form onSubmit={handleSubmit} id='transfer-form' className='transfer-form'>
@@ -75,10 +107,13 @@ const TransferForm = ({ status, setStatus, onSuccess }: TransferFormProps) => {
         <Input
           id='amount'
           name='amount'
-          type='number'
-          value={form.amount}
-          placeholder='₦ 0.00'
-          onChange={handleChange}
+          inputMode='numeric'
+          autoComplete='off'
+          value={displayValue}
+          onChange={handleAmountChange}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          placeholder='₦0.00'
         />
       </FormField>
 
