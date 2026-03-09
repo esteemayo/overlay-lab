@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
-import SharedLayout from '@/components/SharedLayout';
+import SharedLayout from '@/components/layout/SharedLayout';
 import './globals.scss';
 
 const poppins = Poppins({

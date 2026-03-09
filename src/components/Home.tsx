@@ -1,7 +1,7 @@
-import Modal from './modal/Modal';
-import Docs from './docs/Docs';
-import TransferFlow from './TransferFlow';
+import Docs from './sections/docs/Docs';
 import Hero from './hero/Hero';
+import TransferFlow from './TransferFlow';
+import Modal from './modal/Modal';
 import ModalContent from './modal/ModalContent';
 
 const Home = () => {

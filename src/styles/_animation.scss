@@ -9,3 +9,19 @@
     transform: translateY(0);
   }
 }
+
+@keyframes gradientMove {
+  from {
+    background-position: 0%;
+  }
+
+  to {
+    background-position: 300%;
+  }
+}
+
+@keyframes rotateBorder {
+  to {
+    transform: rotate(360deg);
+  }
+}

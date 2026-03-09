@@ -8,10 +8,10 @@ import FormField from '../formField/FormField';
 import Select from '../select/Select';
 import Textarea from '../textarea/Textarea';
 
-import { TransferFormProps } from '@/types/transfer.form.type';
-import { FormState } from '@/types/index.type';
-import { useTransferContext } from '@/hooks/useTransferContext';
 import { formatCurrency } from '@/utils/format.currency.util';
+import { FormState } from '@/types/index.type';
+import { TransferFormProps } from '@/types/transfer.form.type';
+import { useTransfer } from '@/hooks/useTransfer';
 
 import './TransferForm.scss';
 
@@ -25,7 +25,8 @@ const INITIAL_STATE = {
 };
 
 const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
-  const { dispatch } = useTransferContext();
+  const { dispatch } = useTransfer();
+
   const [errors, setErrors] = useState<FormError>({});
   const [amountRaw, setAmountRaw] = useState('');
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
@@ -77,8 +78,8 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     return newErrors;
   };
 
-  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = async (e?: React.SubmitEvent<HTMLFormElement>) => {
+    e?.preventDefault();
 
     const validationErrors = validate();
     setErrors(validationErrors);
@@ -97,6 +98,14 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     console.log('Transfer simulated:', payload);
 
     onSuccess(payload);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    e.preventDefault();
+
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      handleSubmit();
+    }
   };
 
   const displayValue = isFocused ? amountRaw : formatCurrency(amountRaw);
@@ -154,6 +163,7 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
           value={form.description}
           placeholder='Payment for...'
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
         />
       </FormField>
 

@@ -11,6 +11,7 @@
   --light-slate: #a8b2d1;
   --lightest-slate: #ccd6f6;
   --white: #e6f1ff;
+  --red: #d32f2f;
   --pink: #f57dff;
   --blue: #57cbff;
   --overlay: #11224090;
@@ -48,6 +49,7 @@ html {
   min-height: 100vh;
   font-size: 62.5%;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
@@ -60,12 +62,11 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
 
-  // position: absolute;
-  // inset: 0;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 4rem 4rem;
+  position: relative;
   z-index: 0;
 }
 
@@ -103,4 +104,8 @@ select {
 
 .fade-in {
   animation: fadeIn 0.35s ease;
+}
+
+.no-interaction {
+  overflow: hidden;
 }

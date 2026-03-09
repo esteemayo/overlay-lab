@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import ModalClose from './modal/ModalClose';
 import ModalBody from './modal/ModalBody';
@@ -12,14 +12,11 @@ import TransferForm from './transferForm/TransferForm';
 import TransferSuccess from './successScreen/SuccessScreen';
 
 import Xmark from '@/icons/Xmark';
-import { ReceiptDataType, StatusType } from '@/types/index.type';
-import { useTransferContext } from '@/hooks/useTransferContext';
+import { useTransfer } from '@/hooks/useTransfer';
 
 const TransferFlow = () => {
   const { data, dispatch, status, transactionId, handleSuccess } =
-    useTransferContext();
-  // const [status, setStatus] = useState<StatusType>('idle');
-  // const [receiptData, setReceiptData] = useState<ReceiptDataType | null>(null);
+    useTransfer();
 
   useEffect(() => {
     if (status === 'success') {
@@ -30,11 +27,6 @@ const TransferFlow = () => {
       return () => clearTimeout(timer);
     }
   }, [dispatch, status]);
-
-  // const handleSuccess = (data: ReceiptDataType) => {
-  //   setReceiptData(data);
-  //   setStatus('success');
-  // };
 
   return (
     <>
