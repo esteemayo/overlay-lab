@@ -3,6 +3,7 @@
 import { createPortal } from 'react-dom';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
+import { useOverlay } from '@/hooks/useOverlay';
 import { usePortal } from '@/hooks/usePortal';
 import { useModalContext } from '@/hooks/useModalContext';
 
@@ -37,87 +38,7 @@ const ModalContent = ({ children }: { children: React.ReactNode }) => {
     modalRef.current?.style.setProperty('--y', `${y}px`);
   };
 
-  useEffect(() => {
-    const handleEscKey = (e: KeyboardEvent) => {
-      if (!isOpen) return;
-
-      if (e.key === 'Escape' || e.code === 'Escape') {
-        onClose();
-      }
-    };
-
-    document.addEventListener('keydown', handleEscKey);
-    return () => document.removeEventListener('keydown', handleEscKey);
-  }, [isOpen, onClose]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const originalPaddingRight = document.body.style.paddingRight;
-    const supportsScrollbarGutter = CSS.supports('scrollbar-gutter', 'stable');
-
-    if (!supportsScrollbarGutter) {
-      const scrollbarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-
-      if (scrollbarWidth > 0) {
-        document.body.style.paddingRight = `${scrollbarWidth}px`;
-      }
-    }
-
-    document.body.classList.add('no-interaction');
-
-    return () => {
-      document.body.classList.remove('no-interaction');
-      document.body.style.paddingRight = originalPaddingRight;
-    };
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const container = containerRef.current as HTMLElement;
-    if (!container) return;
-
-    const getFocusable = () => {
-      return Array.from(
-        container.querySelectorAll<HTMLElement>(
-          `a, button, input, textarea, select, [tabIndex]:not([tabIndex="1"])`,
-        ),
-      ).filter((el) => !el.hasAttribute('disabled'));
-    };
-
-    const focusableElements = getFocusable();
-    if (focusableElements.length < 0) return;
-
-    const first = focusableElements[0];
-    const last = focusableElements.at(-1);
-
-    if (!first || !last) return;
-
-    first.focus();
-
-    const trapFocus = (e: KeyboardEvent) => {
-      if (e.key !== 'Tab') return;
-
-      const currentFocus = document.activeElement as HTMLElement;
-
-      if (e.shiftKey) {
-        if (currentFocus === first || !container.contains(currentFocus)) {
-          e.preventDefault();
-          last.focus();
-        }
-      } else {
-        if (currentFocus === last || !container.contains(currentFocus)) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    document.addEventListener('keydown', trapFocus);
-    return () => document.removeEventListener('keydown', trapFocus);
-  }, [isOpen]);
+  useOverlay(containerRef, { isOpen, onClose });
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => {

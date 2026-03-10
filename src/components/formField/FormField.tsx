@@ -1,4 +1,4 @@
-import { FormFieldProps } from '@/types/form.field.type';
+import { FormFieldProps } from '@/types/formField';
 import './FormField.scss';
 
 const FormField = ({ id, label, error, children }: FormFieldProps) => {

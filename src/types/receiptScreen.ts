@@ -1,4 +1,4 @@
-import { ReceiptDataType } from './index.type';
+import { ReceiptDataType } from '.';
 
 export interface ReceiptScreenProps {
   data: ReceiptDataType | null;

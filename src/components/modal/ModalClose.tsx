@@ -2,8 +2,8 @@
 
 import React from 'react';
 
+import { ModalCloseProps } from '@/types/modalClose';
 import { useModalContext } from '@/hooks/useModalContext';
-import { ModalCloseProps } from '@/types/modal.close.type';
 
 const ModalClose = ({ asChild = false, children }: ModalCloseProps) => {
   const { triggerRef, setIsOpen } = useModalContext();

@@ -30,27 +30,6 @@
     justify-content: space-between;
   }
 
-  &__logo {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    a {
-      &:link,
-      &:visited {
-        text-transform: initial;
-        background-image: linear-gradient(
-          to bottom right,
-          var(--pink),
-          var(--blue)
-        );
-        color: transparent;
-        -webkit-background-clip: text;
-        background-clip: text;
-      }
-    }
-  }
-
   &__list {
     list-style: none;
 

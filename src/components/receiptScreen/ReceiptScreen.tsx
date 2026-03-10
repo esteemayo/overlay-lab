@@ -1,5 +1,5 @@
 import ModalClose from '../modal/ModalClose';
-import { ReceiptScreenProps } from '@/types/receipt.screen.type';
+import { ReceiptScreenProps } from '@/types/receiptScreen';
 
 import './ReceiptScreen.scss';
 

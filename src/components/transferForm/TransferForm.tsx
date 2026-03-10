@@ -8,10 +8,11 @@ import FormField from '../formField/FormField';
 import Select from '../select/Select';
 import Textarea from '../textarea/Textarea';
 
-import { formatCurrency } from '@/utils/format.currency.util';
-import { FormState } from '@/types/index.type';
-import { TransferFormProps } from '@/types/transfer.form.type';
 import { useTransfer } from '@/hooks/useTransfer';
+import { formatCurrency } from '@/utils/formatCurrency';
+
+import { FormState } from '@/types';
+import { TransferFormProps } from '@/types/transferForm';
 
 import './TransferForm.scss';
 
@@ -163,7 +164,7 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
           value={form.description}
           placeholder='Payment for...'
           onChange={handleChange}
-          onKeyDown={handleKeyDown}
+          // onKeyDown={handleKeyDown}
         />
       </FormField>
 

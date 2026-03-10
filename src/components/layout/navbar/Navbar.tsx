@@ -1,13 +1,11 @@
-import Link from 'next/link';
+import Logo from '@/components/ui/logo/Logo';
 import './Navbar.scss';
 
 const Navbar = () => {
   return (
     <nav className='navbar'>
       <div className='navbar__container'>
-        <div className='navbar__logo'>
-          <Link href='/'>OverlayLab</Link>
-        </div>
+        <Logo />
 
         <ul className='navbar__list'>
           <li className='navbar__list--item'>

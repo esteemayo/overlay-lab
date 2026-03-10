@@ -1,4 +1,4 @@
-import { generateTransactionId } from '@/utils/generate.transaction.id.util';
+import { generateTransactionId } from '@/utils/generateTransactionId';
 import {
   TransferAction,
   TransferState,

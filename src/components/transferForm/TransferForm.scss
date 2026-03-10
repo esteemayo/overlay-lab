@@ -27,7 +27,14 @@
           background-color: #e04545;
         }
 
-        &:focus,
+        &:focus {
+          outline: none;
+        }
+
+        &:focus-visible::before {
+          opacity: 0;
+        }
+
         &:focus-visible {
           outline: 2px solid var(--red);
           outline-offset: 3px;
