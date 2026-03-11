@@ -4,10 +4,18 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className='footer'>
-      <div className='footer__container'>
-        <p className='footer__text'>
-          &copy; {year} Emmanuel Adebayo. All rights reserved.
+    <footer className='footer' role='contentinfo' aria-label='Footer'>
+      <div
+        className='footer__container'
+        role='group'
+        aria-label='Footer content'
+      >
+        <p className='footer__text' role='paragraph'>
+          &copy; {year}{' '}
+          <a href='#' target='_blank' rel='noopener noreferrer'>
+            Emmanuel Adebayo.
+          </a>{' '}
+          All rights reserved.
         </p>
       </div>
     </footer>

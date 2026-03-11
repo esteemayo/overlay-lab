@@ -3,16 +3,20 @@ import './Navbar.scss';
 
 const Navbar = () => {
   return (
-    <nav className='navbar'>
-      <div className='navbar__container'>
+    <nav className='navbar' role='navigation' aria-label='Main navigation'>
+      <div
+        className='navbar__container'
+        role='group'
+        aria-label='Navigation items'
+      >
         <Logo />
 
-        <ul className='navbar__list'>
-          <li className='navbar__list--item'>
+        <ul className='navbar__list' role='menubar'>
+          <li className='navbar__list--item' role='menuitem'>
             <a href='#docs'>Docs</a>
           </li>
 
-          <li className='navbar__list--item'>
+          <li className='navbar__list--item' role='menuitem'>
             <a
               href='https://github.com/esteemayo/overlay-lab.git'
               target='_blank'

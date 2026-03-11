@@ -1,3 +1,5 @@
+@use '../../../styles/animation';
+
 .logo {
   display: flex;
   align-items: center;
@@ -41,8 +43,9 @@
         #6366f1
       );
       background-size: 300% 300%;
-      animation: gradientMove 5s linear infinite;
+      border-radius: inherit;
       opacity: 0;
+      animation: gradientMove 5s linear infinite;
 
       -webkit-mask:
         linear-gradient(#000 0 0) content-box,

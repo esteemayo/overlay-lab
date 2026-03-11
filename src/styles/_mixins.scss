@@ -1,5 +1,5 @@
 @mixin text-heading($clr1: var(--pink), $clr2: var(--blue)) {
-  background-image: linear-gradient(to bottom right, $clr1, $clr2);
+  background-image: linear-gradient(90deg, $clr1, $clr2);
   color: transparent;
   -webkit-background-clip: text;
   background-clip: text;
