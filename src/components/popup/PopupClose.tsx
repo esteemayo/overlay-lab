@@ -2,11 +2,11 @@
 
 import React from 'react';
 
-import { ModalCloseProps } from '@/types/modalClose';
-import { useModalContext } from '@/hooks/useModalContext';
+import { usePopup } from '@/hooks/usePopup';
+import { PopupCloseProps } from '@/types/popupClose';
 
-const ModalClose = ({ asChild = false, children }: ModalCloseProps) => {
-  const { triggerRef, setIsOpen } = useModalContext();
+const PopupClose = ({ asChild = false, children }: PopupCloseProps) => {
+  const { triggerRef, setIsOpen } = usePopup();
 
   const handleClose = () => {
     setIsOpen(false);
@@ -31,12 +31,12 @@ const ModalClose = ({ asChild = false, children }: ModalCloseProps) => {
     <button
       type='button'
       onClick={handleClose}
-      className='modal__close'
-      aria-label='Close modal'
+      className='popup__close'
+      aria-label='Close popup'
     >
       {children}
     </button>
   );
 };
 
-export default ModalClose;
+export default PopupClose;

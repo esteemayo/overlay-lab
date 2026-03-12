@@ -1,4 +1,4 @@
-import ModalClose from '../modal/ModalClose';
+import ModalClose from '../popup/PopupClose';
 import { ReceiptScreenProps } from '@/types/receiptScreen';
 
 import './ReceiptScreen.scss';

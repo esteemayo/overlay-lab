@@ -1,11 +1,11 @@
 'use client';
 
 import { createContext, useRef, useState } from 'react';
-import { ModalContextType } from '@/types/modal.context.type';
+import { PopupContextType } from '@/types/popupContextType';
 
-export const ModalContext = createContext<ModalContextType | null>(null);
+export const PopupContext = createContext<PopupContextType | null>(null);
 
-const ModalProvider = ({ children }: { children: React.ReactNode }) => {
+const PopupProvider = ({ children }: { children: React.ReactNode }) => {
   const triggerRef = useRef<HTMLButtonElement | null>(null);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -13,7 +13,7 @@ const ModalProvider = ({ children }: { children: React.ReactNode }) => {
   const [descriptionId, setDescriptionId] = useState<string | undefined>();
 
   return (
-    <ModalContext.Provider
+    <PopupContext.Provider
       value={{
         isOpen,
         setIsOpen,
@@ -25,8 +25,8 @@ const ModalProvider = ({ children }: { children: React.ReactNode }) => {
       }}
     >
       {children}
-    </ModalContext.Provider>
+    </PopupContext.Provider>
   );
 };
 
-export default ModalProvider;
+export default PopupProvider;

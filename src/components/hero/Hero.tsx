@@ -1,4 +1,4 @@
-import ModalTrigger from '../modal/ModalTrigger';
+import Popup from '../popup';
 import './Hero.scss';
 
 const Hero = () => {
@@ -25,7 +25,7 @@ const Hero = () => {
           </p>
         </div>
 
-        <ModalTrigger>Simulate transfer</ModalTrigger>
+        <Popup.Trigger>Simulate transfer</Popup.Trigger>
       </div>
     </header>
   );

@@ -1,19 +1,18 @@
 import Docs from './sections/docs/Docs';
-import Hero from './hero/Hero';
+import Popup from './popup';
 import TransferFlow from './TransferFlow';
-import Modal from './modal/Modal';
-import ModalContent from './modal/ModalContent';
+import Hero from './hero/Hero';
 
 const Home = () => {
   return (
     <div>
-      <Modal>
+      <Popup>
         <Hero />
 
-        <ModalContent>
+        <Popup.Content>
           <TransferFlow />
-        </ModalContent>
-      </Modal>
+        </Popup.Content>
+      </Popup>
 
       <Docs />
     </div>

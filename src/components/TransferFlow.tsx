@@ -2,10 +2,10 @@
 
 import { useEffect } from 'react';
 
-import ModalClose from './modal/ModalClose';
-import ModalBody from './modal/ModalBody';
-import ModalHeader from './modal/ModalHeader';
-import ModalTitle from './modal/ModalTitle';
+import ModalClose from './popup/PopupClose';
+import ModalBody from './popup/PopupBody';
+import ModalHeader from './popup/PopupHeader';
+import ModalTitle from './popup/PopupTitle';
 
 import ReceiptScreen from './receiptScreen/ReceiptScreen';
 import TransferForm from './transferForm/TransferForm';

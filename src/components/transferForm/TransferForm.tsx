@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import ModalClose from '../modal/ModalClose';
+import ModalClose from '../popup/PopupClose';
 import Input from '../input/Input';
 import FormField from '../formField/FormField';
 import Select from '../select/Select';

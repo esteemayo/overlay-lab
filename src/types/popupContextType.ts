@@ -1,6 +1,4 @@
-import React from 'react';
-
-export type ModalContextType = {
+export type PopupContextType = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   titleId?: string;

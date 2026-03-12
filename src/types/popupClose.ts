@@ -1,4 +1,4 @@
-export interface ModalCloseProps {
+export interface PopupCloseProps {
   children: React.ReactNode;
   asChild?: boolean;
 }
