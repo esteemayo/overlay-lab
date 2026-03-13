@@ -2,14 +2,17 @@
 
 import React from 'react';
 
+import { usePopupInstance } from './Popup';
+
 import { usePopup } from '@/hooks/usePopup';
 import { PopupCloseProps } from '@/types/popupClose';
 
 const PopupClose = ({ asChild = false, children }: PopupCloseProps) => {
-  const { triggerRef, setIsOpen } = usePopup();
+  const popupId = usePopupInstance();
+  const { triggerRef, closePopup } = usePopup();
 
   const handleClose = () => {
-    setIsOpen(false);
+    closePopup(popupId);
 
     setTimeout(() => {
       triggerRef.current?.focus();

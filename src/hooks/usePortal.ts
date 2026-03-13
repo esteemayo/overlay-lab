@@ -6,12 +6,7 @@ export const usePortal = (id: string) => {
   const [portalId, setPortalId] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    const raf = requestAnimationFrame(() => {
-      const el = document.getElementById(id);
-      setPortalId(el);
-    });
-
-    return () => cancelAnimationFrame(raf);
+    setPortalId(document.getElementById(id));
   }, [id]);
 
   return {

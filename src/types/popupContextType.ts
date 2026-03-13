@@ -1,9 +1,15 @@
+export type PopupStackItem = {
+  id: string;
+};
+
 export type PopupContextType = {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  stack: PopupStackItem[];
+  openPopup(id: string): void;
+  closePopup(id: string): void;
+  isTopPopup(id: string): boolean;
   titleId?: string;
-  setTitleId(id: string): void;
   descriptionId?: string;
+  setTitleId(id: string): void;
   setDescriptionId(id: string): void;
   triggerRef: React.RefObject<HTMLButtonElement | null>;
 };

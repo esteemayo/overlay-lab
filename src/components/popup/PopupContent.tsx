@@ -8,21 +8,28 @@ import PopupOverlay from './PopupOverlay';
 import { usePopup } from '@/hooks/usePopup';
 import { useOverlay } from '@/hooks/useOverlay';
 
+import { usePopupInstance } from './Popup';
 import { PopupContentProps } from '@/types/popupContentType';
 
 const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
-  const { isOpen, titleId, descriptionId, setIsOpen } = usePopup();
+  const popupId = usePopupInstance();
+  const { stack, closePopup, isTopPopup, titleId, descriptionId } = usePopup();
 
-  const modalRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<number | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   const [isPresent, setIsPresent] = useState(false);
   const [state, setState] = useState<'open' | 'closed'>('closed');
 
+  const isOpen = stack.some((item) => item.id === popupId);
+
+  const index = stack.findIndex((item) => item.id === popupId);
+  const zIndex = 5000 + index * 10;
+
   const onClose = useCallback(() => {
-    setIsOpen(false);
-  }, [setIsOpen]);
+    closePopup(popupId);
+  }, [closePopup, popupId]);
 
   const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
     if (e.target === e.currentTarget) {
@@ -38,18 +45,21 @@ const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
     }
 
     frameRef.current = requestAnimationFrame(() => {
-      const rect = modalRef.current?.getBoundingClientRect();
+      const rect = wrapperRef.current?.getBoundingClientRect();
       if (!rect) return;
 
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      modalRef.current?.style.setProperty('--x', `${x}px`);
-      modalRef.current?.style.setProperty('--y', `${y}px`);
+      wrapperRef.current?.style.setProperty('--x', `${x}px`);
+      wrapperRef.current?.style.setProperty('--y', `${y}px`);
     });
   };
 
-  useOverlay(containerRef, { isOpen, onClose });
+  useOverlay(containerRef, {
+    isOpen: isOpen && isTopPopup(popupId),
+    onClose,
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -71,11 +81,23 @@ const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
     }
   }, [isOpen]);
 
+  useEffect(() => {
+    if (!isOpen && wrapperRef.current) {
+      wrapperRef.current.style.removeProperty('--x');
+      wrapperRef.current.style.removeProperty('--y');
+    }
+  }, [isOpen]);
+
   if (!isPresent) return null;
 
   return (
     <PopupRoot>
-      <div className={`popup popup--${variant}`} data-state={state}>
+      <div
+        className='popup'
+        data-variant={variant}
+        data-state={state}
+        style={{ zIndex }}
+      >
         <PopupOverlay isOpen={isOpen} onClose={handleClose}>
           <div
             ref={containerRef}
@@ -86,7 +108,7 @@ const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
             aria-describedby={descriptionId}
           >
             <div
-              ref={modalRef}
+              ref={wrapperRef}
               onMouseMove={handleMouseMove}
               className='popup__wrapper'
             >

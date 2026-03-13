@@ -2,10 +2,7 @@
 
 import { useEffect } from 'react';
 
-import ModalClose from './popup/PopupClose';
-import ModalBody from './popup/PopupBody';
-import ModalHeader from './popup/PopupHeader';
-import ModalTitle from './popup/PopupTitle';
+import Popup from './popup';
 
 import ReceiptScreen from './receiptScreen/ReceiptScreen';
 import TransferForm from './transferForm/TransferForm';
@@ -30,20 +27,22 @@ const TransferFlow = () => {
 
   return (
     <>
-      <ModalHeader>
-        <ModalTitle>
-          {status === 'idle' && 'Simulate Transfer'}
+      <Popup.Header>
+        <Popup.Title>
+          {status === 'idle' && 'Transfer Money'}
           {status === 'loading' && 'Processing Transfer'}
           {status === 'success' && 'Transfer Successful'}
           {status === 'receipt' && 'Transfer Receipt'}
-        </ModalTitle>
+        </Popup.Title>
 
-        <ModalClose>
+        <Popup.Close>
           <Xmark />
-        </ModalClose>
-      </ModalHeader>
+        </Popup.Close>
+      </Popup.Header>
 
-      <ModalBody>
+      <Popup.Description>Enter transfer details.</Popup.Description>
+
+      <Popup.Body>
         {status === 'idle' || status === 'loading' ? (
           <TransferForm status={status} onSuccess={handleSuccess!} />
         ) : status === 'success' ? (
@@ -51,7 +50,7 @@ const TransferFlow = () => {
         ) : (
           <ReceiptScreen data={data} transactionId={transactionId} />
         )}
-      </ModalBody>
+      </Popup.Body>
     </>
   );
 };

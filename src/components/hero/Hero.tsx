@@ -9,7 +9,7 @@ const Hero = () => {
 
         <div className='hero__wrapper'>
           <p className='hero__wrapper--desc'>
-            Accessible, production grade modal architecture built with{' '}
+            Accessible, production grade popup architecture built with{' '}
             <a href='#' target='_blank'>
               React
             </a>{' '}

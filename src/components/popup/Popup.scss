@@ -18,7 +18,7 @@
     }
   }
 
-  &--modal {
+  &[data-variant='modal'] {
     .popup__overlay {
       align-items: center;
       justify-content: center;
@@ -118,7 +118,7 @@
     }
   }
 
-  &--drawer-right {
+  &[data-variant='drawer-right'] {
     .popup__overlay {
       align-items: stretch;
       justify-content: flex-end;
@@ -147,7 +147,7 @@
     }
   }
 
-  &--drawer-left {
+  &[data-variant='drawer-left'] {
     .popup__overlay {
       align-items: stretch;
       justify-content: flex-start;
@@ -189,23 +189,9 @@
   }
 
   &__container {
-    position: relative;
-    transition: var(--transition);
-
-    &.visible {
-      transform: translateY(0);
-      visibility: visible;
-      opacity: 1;
-      z-index: 1000;
-    }
-
-    &.hidden {
-      transform: translateY(100%);
-      visibility: hidden;
-      opacity: 0;
-      z-index: -1;
-      pointer-events: none;
-    }
+    transition:
+      transform 300ms ease,
+      opacity 300ms ease;
   }
 
   &__wrapper {

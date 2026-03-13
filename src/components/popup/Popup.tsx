@@ -1,5 +1,7 @@
 'use client';
 
+import { createContext, useContext, useId } from 'react';
+
 import PopupFooter from './PopupFooter';
 import PopupBody from './PopupBody';
 import PopupContent from './PopupContent';
@@ -8,8 +10,6 @@ import PopupTrigger from './PopupTrigger';
 import PopupTitle from './PopupTitle';
 import PopupDescription from './PopupDescription';
 import PopupHeader from './PopupHeader';
-
-import PopupProvider from '@/context/PopupContext';
 
 import './Popup.scss';
 
@@ -28,8 +28,26 @@ type PopupCompound = React.FC<PopupProps> & {
   Header: typeof PopupHeader;
 };
 
+const PopupInstanceContext = createContext<string | null>(null);
+
+export const usePopupInstance = () => {
+  const ctx = useContext(PopupInstanceContext);
+
+  if (!ctx) {
+    throw new Error('Popup components must be used inside Popup');
+  }
+
+  return ctx;
+};
+
 const Popup: PopupCompound = ({ children }) => {
-  return <PopupProvider>{children}</PopupProvider>;
+  const id = useId();
+
+  return (
+    <PopupInstanceContext.Provider value={id}>
+      {children}
+    </PopupInstanceContext.Provider>
+  );
 };
 
 Popup.Footer = PopupFooter;
