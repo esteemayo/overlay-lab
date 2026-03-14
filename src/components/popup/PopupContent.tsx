@@ -13,7 +13,8 @@ import { PopupContentProps } from '@/types/popupContentType';
 
 const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
   const popupId = usePopupInstance();
-  const { stack, closePopup, isTopPopup, titleId, descriptionId } = usePopup();
+  const { stack, closePopup, isTopPopup, isPopupOpen, titleId, descriptionId } =
+    usePopup();
 
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const frameRef = useRef<number | null>(null);
@@ -22,7 +23,7 @@ const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
   const [isPresent, setIsPresent] = useState(false);
   const [state, setState] = useState<'open' | 'closed'>('closed');
 
-  const isOpen = stack.some((item) => item.id === popupId);
+  const isOpen = isPopupOpen(popupId);
 
   const index = stack.findIndex((item) => item.id === popupId);
   const zIndex = 5000 + index * 10;
@@ -57,7 +58,7 @@ const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
   };
 
   useOverlay(containerRef, {
-    isOpen: isOpen && isTopPopup(popupId),
+    isOpen: isPresent,
     onClose,
   });
 

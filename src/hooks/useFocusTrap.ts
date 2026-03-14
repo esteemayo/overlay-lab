@@ -7,34 +7,35 @@ export const useFocusTrap = <T extends HTMLElement | HTMLDivElement>(
   isActive: boolean,
 ) => {
   useLayoutEffect(() => {
-    if (!isActive) return;
-
     const container = containerRef.current as HTMLElement | null;
-    if (!container) return;
+    console.log(container);
+
+    if (!isActive || !container) return;
 
     const getFocusable = () => {
       return Array.from(
         container.querySelectorAll<HTMLElement>(
-          ` a,
-            button,
-            input,
-            textarea,
-            select,
-            [tabIndex]:not([tabIndex="1"])
-          `,
+          'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])',
         ),
-      ).filter((el) => !el.hasAttribute('disabled'));
+      ).filter(
+        (el) =>
+          !el.hasAttribute('disabled') &&
+          el.tabIndex !== -1 &&
+          el.offsetParent !== null,
+      );
     };
 
     const focusableElements = getFocusable();
     if (focusableElements.length === 0) return;
 
     const first = focusableElements[0];
-    const last = focusableElements.at(-1);
+    const last = focusableElements[focusableElements.length - 1];
 
     if (!first || !last) return;
 
-    first.focus();
+    if (!container.contains(document.activeElement)) {
+      first.focus();
+    }
 
     const trapFocus = (e: KeyboardEvent) => {
       if (e.key !== 'Tab') return;
@@ -56,5 +57,5 @@ export const useFocusTrap = <T extends HTMLElement | HTMLDivElement>(
 
     document.addEventListener('keydown', trapFocus);
     return () => document.removeEventListener('keydown', trapFocus);
-  }, [containerRef, isActive]);
+  }, [containerRef.current, isActive]);
 };

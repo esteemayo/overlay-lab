@@ -6,6 +6,9 @@ import { useEscapeKey } from './useEscapeKey';
 import { useFocusTrap } from './useFocusTrap';
 import { useScrollLock } from './useScrollLock';
 
+import { usePopup } from './usePopup';
+import { usePopupInstance } from '@/components/popup/Popup';
+
 interface UseOverlayOptions {
   isOpen: boolean;
   restoreFocus?: boolean;
@@ -16,6 +19,9 @@ export const useOverlay = <T extends HTMLElement | HTMLDivElement>(
   ref: RefObject<T | null>,
   { isOpen, onClose, restoreFocus = true }: UseOverlayOptions,
 ) => {
+  const { isTopPopup } = usePopup();
+  const popupId = usePopupInstance();
+
   const triggerRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -24,7 +30,10 @@ export const useOverlay = <T extends HTMLElement | HTMLDivElement>(
     }
   }, [isOpen]);
 
-  useEscapeKey(onClose, { enabled: isOpen });
+  useEscapeKey({
+    isEnabled: isOpen && isTopPopup(popupId),
+    onEscape: onClose,
+  });
   useScrollLock(isOpen);
   useFocusTrap(ref, isOpen);
 

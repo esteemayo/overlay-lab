@@ -7,6 +7,7 @@ export type PopupContextType = {
   openPopup(id: string): void;
   closePopup(id: string): void;
   isTopPopup(id: string): boolean;
+  isPopupOpen(id: string): boolean;
   titleId?: string;
   descriptionId?: string;
   setTitleId(id: string): void;

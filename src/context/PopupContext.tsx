@@ -25,6 +25,8 @@ const PopupProvider = ({ children }: { children: React.ReactNode }) => {
     return stack[stack.length - 1].id === id;
   };
 
+  const isPopupOpen = (id: string) => stack.some((item) => item.id === id);
+
   return (
     <PopupContext.Provider
       value={{
@@ -32,6 +34,7 @@ const PopupProvider = ({ children }: { children: React.ReactNode }) => {
         openPopup,
         closePopup,
         isTopPopup,
+        isPopupOpen,
         titleId,
         descriptionId,
         setTitleId,

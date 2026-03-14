@@ -2,24 +2,21 @@
 
 import { useEffect, useRef } from 'react';
 
-type UseEscapeKeyOptions = {
-  enabled?: boolean;
+type UseEscapeKeyProps = {
+  onEscape(): void;
+  isEnabled?: boolean;
 };
 
-export const useEscapeKey = (
-  handler: () => void,
-  options: UseEscapeKeyOptions = {},
-) => {
-  const handlerRef = useRef(handler);
-  const { enabled = true } = options;
+export const useEscapeKey = ({ isEnabled, onEscape }: UseEscapeKeyProps) => {
+  const handlerRef = useRef(onEscape);
 
   useEffect(() => {
-    handlerRef.current = handler;
-  }, [handler]);
+    handlerRef.current = onEscape;
+  }, [onEscape]);
 
   useEffect(() => {
     const handleEscKey = (e: KeyboardEvent) => {
-      if (!enabled) return;
+      if (!isEnabled) return;
 
       if (e.key === 'Escape' || e.code === 'Escape') {
         e.preventDefault();
@@ -29,5 +26,5 @@ export const useEscapeKey = (
 
     document.addEventListener('keydown', handleEscKey);
     return () => document.removeEventListener('keydown', handleEscKey);
-  }, [enabled, handler]);
+  }, [isEnabled, onEscape]);
 };
