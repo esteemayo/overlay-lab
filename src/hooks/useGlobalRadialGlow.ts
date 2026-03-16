@@ -4,35 +4,31 @@ import { useEffect } from 'react';
 
 export const useGlobalRadialGlow = () => {
   useEffect(() => {
-    const el = document.documentElement;
-    // console.log(el);
+    const el = document.body;
 
     if ('ontouchstart' in window) return;
 
-    let frame: number | null;
+    let frame: number | null = null;
 
     const handleMove = (e: MouseEvent) => {
-      // if (!frame) return;
+      if (frame) return;
 
       const x = e.clientX;
       const y = e.clientY;
 
-      console.log(x);
-      console.log(y);
+      frame = requestAnimationFrame(() => {
+        el.style.setProperty('--cursor-x', `${x}px`);
+        el.style.setProperty('--cursor-y', `${y}px`);
 
-      // frame = requestAnimationFrame(() => {
-
-      //   frame = null;
-      // });
-      el.style.setProperty('--xAxis', `${x}px`);
-      el.style.setProperty('--yAxis', `${y}px`);
+        frame = null;
+      });
     };
 
     window.addEventListener('mousemove', handleMove);
 
     return () => {
       window.removeEventListener('mousemove', handleMove);
-      // if (frame) cancelAnimationFrame(frame);
+      if (frame) cancelAnimationFrame(frame);
     };
   }, []);
 };

@@ -3,14 +3,13 @@
 import Footer from './footer/Footer';
 import Navbar from './navbar/Navbar';
 
-import { useGlobalRadialGlow } from '@/hooks/useGlobalRadialGlow';
+import CursorGlow from '../ui/cursorGlow/CursorGlow';
 import { TransferProvider } from '@/context/transferContext/transferContext';
 
 const SharedLayout = ({ children }: { children: React.ReactNode }) => {
-  useGlobalRadialGlow();
-
   return (
     <TransferProvider>
+      <CursorGlow />
       <Navbar />
       <main className='main-container'>{children}</main>
       <Footer />

@@ -1,4 +1,5 @@
 @use '../../../styles/animation';
+@use '../../../styles/mixins' as *;
 
 .footer {
   display: flex;
@@ -25,6 +26,11 @@
         border-radius: var(--border-radius);
         position: relative;
         transition: var(--transition);
+      }
+      @include animated-underline($bottom: 3px);
+
+      &:hover {
+        @include text-heading();
       }
 
       &:focus,

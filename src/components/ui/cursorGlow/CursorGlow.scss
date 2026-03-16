@@ -1,0 +1,36 @@
+.cursor-glow {
+  --cursor-x: 50%;
+  --cursor-y: 50%;
+  --glow-opacity: 0;
+
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2000;
+
+  opacity: var(--glow-opacity);
+
+  background-image:
+    radial-gradient(
+      80rem circle at var(--cursor-x) var(--cursor-y),
+      rgba(59, 130, 246, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      60rem circle at var(--cursor-x) var(--cursor-y),
+      rgba(59, 130, 246, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      40rem circle at var(--cursor-x) var(--cursor-y),
+      rgba(59, 130, 246, 0.1),
+      transparent 40%
+    ),
+    radial-gradient(
+      20rem circle at var(--cursor-x) var(--cursor-y),
+      rgba(59, 130, 246, 0.15),
+      transparent 30%
+    );
+
+  transition: opacity 0.3s ease;
+}

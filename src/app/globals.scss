@@ -55,9 +55,6 @@ html {
 }
 
 body {
-  --xAxis: 50%;
-  --yAxis: 50%;
-
   font-size: var(--fz-md);
   background-color: var(--navy);
   color: var(--light-slate);
@@ -71,26 +68,6 @@ body {
   background-size: 4rem 4rem;
   position: relative;
   z-index: 0;
-
-  &::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-
-    background-image:
-      radial-gradient(
-        50rem circle at var(--xAxis) var(--yAxis),
-        rgba(59, 130, 246, 0.15),
-        transparent 40%
-      ),
-      radial-gradient(
-        60rem circle at var(--xAxis) var(--yAxis),
-        rgba(59, 130, 246, 0.98),
-        transparent 40%
-      );
-  }
 }
 
 a {

@@ -47,7 +47,7 @@
           @include text-heading();
         }
 
-        @include animated-underline();
+        @include animated-underline($bottom: 3px);
       }
     }
 

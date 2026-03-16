@@ -6,6 +6,7 @@
 }
 
 @mixin animated-underline(
+  $bottom: 0,
   $color: var(--pink),
   $height: 1px,
   $duration1: 0.35s,
@@ -24,7 +25,7 @@
     display: inline-block;
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: $bottom;
     width: 100%;
     height: $height;
     background-color: $color;

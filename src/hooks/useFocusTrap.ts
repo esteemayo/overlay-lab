@@ -7,10 +7,11 @@ export const useFocusTrap = <T extends HTMLElement | HTMLDivElement>(
   isActive: boolean,
 ) => {
   useLayoutEffect(() => {
-    const container = containerRef.current as HTMLElement | null;
-    console.log(container);
+    if (!isActive) return;
 
-    if (!isActive || !container) return;
+    const container = containerRef.current as HTMLElement | null;
+
+    if (!container) return;
 
     const getFocusable = () => {
       return Array.from(
