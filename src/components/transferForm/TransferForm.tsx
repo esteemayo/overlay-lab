@@ -7,6 +7,7 @@ import Input from '../input/Input';
 import FormField from '../formField/FormField';
 import Select from '../select/Select';
 import Textarea from '../textarea/Textarea';
+import ConfirmTransferModal from '../confirmTransferModal/ConfirmTransferModal';
 
 import { useTransfer } from '@/hooks/useTransfer';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -30,8 +31,9 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
   const [errors, setErrors] = useState<FormError>({});
   const [amountRaw, setAmountRaw] = useState('');
-  const [form, setForm] = useState<FormState>(INITIAL_STATE);
+  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
+  const [form, setForm] = useState<FormState>(INITIAL_STATE);
 
   const handleChange = ({
     target: input,
@@ -87,6 +89,23 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
     if (Object.keys(validationErrors).length > 0) return;
 
+    setIsConfirmOpen(true);
+
+    // dispatch({ type: 'TRANSFER_START' });
+
+    // const payload = {
+    //   ...form,
+    //   amount: Number(amountRaw) / 100,
+    // };
+
+    // await new Promise((res) => setTimeout(res, 1200));
+
+    // console.log('Transfer simulated:', payload);
+
+    // onSuccess(payload);
+  };
+
+  const handleConfirm = async () => {
     dispatch({ type: 'TRANSFER_START' });
 
     const payload = {
@@ -96,9 +115,8 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
     await new Promise((res) => setTimeout(res, 1200));
 
-    console.log('Transfer simulated:', payload);
-
-    onSuccess(payload);
+    console.log('Transfer executed', payload);
+    setIsConfirmOpen(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -112,74 +130,87 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
   const displayValue = isFocused ? amountRaw : formatCurrency(amountRaw);
 
   return (
-    <form onSubmit={handleSubmit} id='transfer-form' className='transfer-form'>
-      <FormField id='amount' label='Amount' error={errors.amount}>
-        <Input
-          id='amount'
-          name='amount'
-          inputMode='numeric'
-          autoComplete='off'
-          value={displayValue}
-          onChange={handleAmountChange}
-          onBlur={handleBlur}
-          onFocus={handleFocus}
-          placeholder='₦0.00'
-        />
-      </FormField>
-
-      <FormField
-        id='accountNumber'
-        label='Account Number'
-        error={errors.accountNumber}
+    <>
+      <form
+        onSubmit={handleSubmit}
+        id='transfer-form'
+        className='transfer-form'
       >
-        <Input
+        <FormField id='amount' label='Amount' error={errors.amount}>
+          <Input
+            id='amount'
+            name='amount'
+            inputMode='numeric'
+            autoComplete='off'
+            value={displayValue}
+            onChange={handleAmountChange}
+            onBlur={handleBlur}
+            onFocus={handleFocus}
+            placeholder='₦0.00'
+          />
+        </FormField>
+
+        <FormField
           id='accountNumber'
-          name='accountNumber'
-          type='number'
-          value={form.accountNumber}
-          placeholder='0123456789'
-          maxLength={10}
-          onChange={handleChange}
-        />
-      </FormField>
-
-      <FormField id='bank' label='Bank' error={errors.bank}>
-        <Select id='name' name='bank' value={form.bank} onChange={handleChange}>
-          <option value=''>Select Bank</option>
-          <option value='gtb'>GTBank</option>
-          <option value='access'>Access Bank</option>
-          <option value='uba'>UBA</option>
-        </Select>
-      </FormField>
-
-      <FormField
-        id='description'
-        label='Description (Optional)'
-        error={errors.description}
-      >
-        <Textarea
-          id='description'
-          name='description'
-          rows={3}
-          value={form.description}
-          placeholder='Payment for...'
-          onChange={handleChange}
-          // onKeyDown={handleKeyDown}
-        />
-      </FormField>
-
-      <div className='transfer-form__actions'>
-        <ModalClose>Cancel</ModalClose>
-
-        <button
-          type='submit'
-          form='transfer-form'
-          className='transfer-form__actions--btn'
+          label='Account Number'
+          error={errors.accountNumber}
         >
-          {status === 'loading' ? 'Processing...' : 'Confirm transfer'}
-        </button>
-      </div>
-    </form>
+          <Input
+            id='accountNumber'
+            name='accountNumber'
+            type='number'
+            value={form.accountNumber}
+            placeholder='0123456789'
+            maxLength={10}
+            onChange={handleChange}
+          />
+        </FormField>
+
+        <FormField id='bank' label='Bank' error={errors.bank}>
+          <Select
+            id='name'
+            name='bank'
+            value={form.bank}
+            onChange={handleChange}
+          >
+            <option value=''>Select Bank</option>
+            <option value='gtb'>GTBank</option>
+            <option value='access'>Access Bank</option>
+            <option value='uba'>UBA</option>
+          </Select>
+        </FormField>
+
+        <FormField
+          id='description'
+          label='Description (Optional)'
+          error={errors.description}
+        >
+          <Textarea
+            id='description'
+            name='description'
+            rows={3}
+            value={form.description}
+            placeholder='Payment for...'
+            onChange={handleChange}
+            // onKeyDown={handleKeyDown}
+          />
+        </FormField>
+
+        <div className='transfer-form__actions'>
+          <ModalClose>Cancel</ModalClose>
+
+          <button
+            type='submit'
+            form='transfer-form'
+            className='transfer-form__actions--btn'
+          >
+            {status === 'loading' ? 'Processing...' : 'Confirm transfer'}
+          </button>
+        </div>
+      </form>
+
+      <ConfirmTransferModal onConfirm={handleConfirm} />
+    </>
   );
 };
 
