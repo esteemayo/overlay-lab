@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 
-import ModalClose from '../popup/PopupClose';
+import Button from '../button/Button';
+import Popup from '../popup';
+import Textarea from '../textarea/Textarea';
 import Input from '../input/Input';
 import FormField from '../formField/FormField';
 import Select from '../select/Select';
-import Textarea from '../textarea/Textarea';
-import ConfirmTransferModal from '../confirmTransferModal/ConfirmTransferModal';
+import ConfirmTransferModal from '../ConfirmTransferModal';
 
 import { useTransfer } from '@/hooks/useTransfer';
 import { formatCurrency } from '@/utils/formatCurrency';
@@ -31,7 +32,6 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
   const [errors, setErrors] = useState<FormError>({});
   const [amountRaw, setAmountRaw] = useState('');
-  const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
 
@@ -89,8 +89,6 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
     if (Object.keys(validationErrors).length > 0) return;
 
-    setIsConfirmOpen(true);
-
     // dispatch({ type: 'TRANSFER_START' });
 
     // const payload = {
@@ -116,7 +114,6 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     await new Promise((res) => setTimeout(res, 1200));
 
     console.log('Transfer executed', payload);
-    setIsConfirmOpen(false);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -196,20 +193,30 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
           />
         </FormField>
 
-        <div className='transfer-form__actions'>
-          <ModalClose>Cancel</ModalClose>
+        <Popup>
+          <div className='transfer-form__actions'>
+            <Popup.Close asChild>
+              <Button label='Cancel' variant='cancel' />
+            </Popup.Close>
 
-          <button
-            type='submit'
-            form='transfer-form'
-            className='transfer-form__actions--btn'
-          >
-            {status === 'loading' ? 'Processing...' : 'Confirm transfer'}
-          </button>
-        </div>
+            {/* <Button
+              type='submit'
+              label={
+                status === 'loading' ? 'Processing...' : 'Confirm transfer'
+              }
+              variant='submit'
+            /> */}
+
+            <Popup.Trigger asChild>
+              <Button type='submit' label='Confirm transfer' variant='submit' />
+            </Popup.Trigger>
+          </div>
+
+          <Popup.Content>
+            <ConfirmTransferModal data={form} onConfirm={handleConfirm} />
+          </Popup.Content>
+        </Popup>
       </form>
-
-      <ConfirmTransferModal onConfirm={handleConfirm} />
     </>
   );
 };

@@ -15,15 +15,15 @@ const TransferFlow = () => {
   const { data, dispatch, status, transactionId, handleSuccess } =
     useTransfer();
 
-  useEffect(() => {
-    if (status === 'success') {
-      const timer = setTimeout(() => {
-        dispatch({ type: 'TRANSFER_RECEIPT' });
-      }, 1200);
+  // useEffect(() => {
+  //   if (status === 'success') {
+  //     const timer = setTimeout(() => {
+  //       dispatch({ type: 'TRANSFER_RECEIPT' });
+  //     }, 1200);
 
-      return () => clearTimeout(timer);
-    }
-  }, [dispatch, status]);
+  //     return () => clearTimeout(timer);
+  //   }
+  // }, [dispatch, status]);
 
   return (
     <>

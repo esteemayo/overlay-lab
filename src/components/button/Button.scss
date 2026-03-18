@@ -1,0 +1,48 @@
+@use '../../styles/mixins' as *;
+
+.button {
+  &.hero {
+    margin-top: 4rem;
+    @include button($y: -0.7rem);
+  }
+
+  &.submit {
+    @include button($fontSize: var(--fz-sm), $y: 0px);
+  }
+
+  &.cancel {
+    background-color: var(--red);
+
+    &:hover {
+      background-color: #e04545;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible::before {
+      opacity: 0;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+    }
+  }
+
+  &.cancel,
+  &.submit {
+    display: inline-block;
+    text-transform: capitalize;
+    padding: 0.5rem 1rem;
+    width: max-content;
+    font-weight: 500;
+    font-size: var(--fz-sm);
+    color: var(--white);
+    border: 2px solid transparent;
+    border-radius: 10rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+}

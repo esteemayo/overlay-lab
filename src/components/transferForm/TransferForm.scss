@@ -6,44 +6,5 @@
     align-items: center;
     justify-content: flex-end;
     gap: 1.25rem;
-
-    button {
-      display: inline-block;
-      text-transform: capitalize;
-      padding: 0.5rem 1rem;
-      width: max-content;
-      font-weight: 500;
-      font-size: var(--fz-sm);
-      color: var(--white);
-      border: 2px solid transparent;
-      border-radius: 10rem;
-      cursor: pointer;
-      transition: var(--transition);
-
-      &:first-child {
-        background-color: var(--red);
-
-        &:hover {
-          background-color: #e04545;
-        }
-
-        &:focus {
-          outline: none;
-        }
-
-        &:focus-visible::before {
-          opacity: 0;
-        }
-
-        &:focus-visible {
-          outline: 2px solid var(--red);
-          outline-offset: 3px;
-        }
-      }
-    }
-
-    &--btn {
-      @include button($fontSize: var(--fz-sm), $y: 0px);
-    }
   }
 }

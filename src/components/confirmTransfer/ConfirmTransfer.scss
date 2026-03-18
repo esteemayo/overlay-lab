@@ -1,0 +1,35 @@
+.confirm-transfer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  &__summary {
+    display: grid;
+    gap: 0.5rem;
+    line-height: 1.3;
+
+    font-size: var(--fz-sm);
+
+    span {
+      text-transform: capitalize;
+      color: var(--lightest-slate);
+    }
+
+    strong {
+      color: var(--slate);
+
+      &.bank {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
+
+    margin-top: 1.5rem;
+  }
+}
