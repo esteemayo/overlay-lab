@@ -6,6 +6,7 @@ import { ConfirmTransferModalProps } from '@/types/confirmTransferModalType';
 
 const ConfirmTransferModal = ({
   data,
+  status,
   onConfirm,
 }: ConfirmTransferModalProps) => {
   return (
@@ -22,7 +23,7 @@ const ConfirmTransferModal = ({
       </Popup.Description>
 
       <Popup.Body>
-        <ConfirmTransfer data={data} onConfirm={onConfirm} />
+        <ConfirmTransfer data={data} status={status} onConfirm={onConfirm} />
       </Popup.Body>
     </Popup.Content>
   );

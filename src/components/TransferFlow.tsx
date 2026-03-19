@@ -3,27 +3,31 @@
 import { useEffect } from 'react';
 
 import Popup from './popup';
+import Xmark from '@/icons/Xmark';
 
 import ReceiptScreen from './receiptScreen/ReceiptScreen';
 import TransferForm from './transferForm/TransferForm';
 import TransferSuccess from './successScreen/SuccessScreen';
 
-import Xmark from '@/icons/Xmark';
 import { useTransfer } from '@/hooks/useTransfer';
 
 const TransferFlow = () => {
   const { data, dispatch, status, transactionId, handleSuccess } =
     useTransfer();
 
-  // useEffect(() => {
-  //   if (status === 'success') {
-  //     const timer = setTimeout(() => {
-  //       dispatch({ type: 'TRANSFER_RECEIPT' });
-  //     }, 1200);
+  useEffect(() => {
+    if (status === 'success') {
+      const timer = setTimeout(() => {
+        dispatch({ type: 'TRANSFER_RECEIPT' });
+      }, 1200);
 
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [dispatch, status]);
+      return () => clearTimeout(timer);
+    }
+  }, [dispatch, status]);
+
+  useEffect(() => {
+    dispatch({ type: 'TRANSFER_RESET' });
+  }, [dispatch]);
 
   return (
     <>
@@ -40,7 +44,10 @@ const TransferFlow = () => {
         </Popup.Close>
       </Popup.Header>
 
-      <Popup.Description>Enter transfer details.</Popup.Description>
+      <Popup.Description>
+        {(status === 'idle' || status === 'loading') &&
+          'Enter transfer details.'}
+      </Popup.Description>
 
       <Popup.Body>
         {status === 'idle' || status === 'loading' ? (

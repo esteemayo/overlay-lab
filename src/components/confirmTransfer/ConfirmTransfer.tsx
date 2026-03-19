@@ -1,10 +1,12 @@
 import Popup from '../popup';
 import Button from '../button/Button';
 
+import { formatCurrency } from '@/utils/formatCurrency';
 import { ConfirmTransferProps } from '@/types/confirmTransferType';
+
 import './ConfirmTransfer.scss';
 
-const ConfirmTransfer = ({ data, onConfirm }: ConfirmTransferProps) => {
+const ConfirmTransfer = ({ data, status, onConfirm }: ConfirmTransferProps) => {
   return (
     <div className='confirm-transfer'>
       <div className='confirm-transfer__summary'>
@@ -19,7 +21,7 @@ const ConfirmTransfer = ({ data, onConfirm }: ConfirmTransferProps) => {
 
       <div className='confirm-transfer__summary'>
         <span>Amount</span>
-        <strong>{data.amount}</strong>
+        <strong>{formatCurrency(data.amount)}</strong>
       </div>
 
       {data.description && (
@@ -34,7 +36,11 @@ const ConfirmTransfer = ({ data, onConfirm }: ConfirmTransferProps) => {
           <Button label='Cancel' variant='cancel' />
         </Popup.Close>
 
-        <Button label='Send money' variant='submit' onClick={onConfirm} />
+        <Button
+          label={status === 'loading' ? 'Processing...' : 'Send money'}
+          variant='submit'
+          onClick={onConfirm}
+        />
       </div>
     </div>
   );

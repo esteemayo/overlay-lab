@@ -1,2 +1,32 @@
 .receipt-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    font-size: var(--fz-sm);
+    line-height: 1.3;
+
+    p {
+      color: var(--lightest-slate);
+
+      &.bank {
+        text-transform: capitalize;
+      }
+
+      strong {
+        color: var(--slate);
+      }
+    }
+  }
+
+  &__action {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
 }

@@ -32,8 +32,8 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
   const [errors, setErrors] = useState<FormError>({});
   const [amountRaw, setAmountRaw] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleChange = ({
     target: input,
@@ -88,19 +88,6 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length > 0) return;
-
-    // dispatch({ type: 'TRANSFER_START' });
-
-    // const payload = {
-    //   ...form,
-    //   amount: Number(amountRaw) / 100,
-    // };
-
-    // await new Promise((res) => setTimeout(res, 1200));
-
-    // console.log('Transfer simulated:', payload);
-
-    // onSuccess(payload);
   };
 
   const handleConfirm = async () => {
@@ -114,6 +101,8 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     await new Promise((res) => setTimeout(res, 1200));
 
     console.log('Transfer executed', payload);
+
+    onSuccess(payload);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
@@ -124,6 +113,7 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     }
   };
 
+  const data = { ...form, amount: amountRaw };
   const displayValue = isFocused ? amountRaw : formatCurrency(amountRaw);
 
   return (
@@ -199,21 +189,17 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
               <Button label='Cancel' variant='cancel' />
             </Popup.Close>
 
-            {/* <Button
-              type='submit'
-              label={
-                status === 'loading' ? 'Processing...' : 'Confirm transfer'
-              }
-              variant='submit'
-            /> */}
-
             <Popup.Trigger asChild>
               <Button type='submit' label='Confirm transfer' variant='submit' />
             </Popup.Trigger>
           </div>
 
           <Popup.Content>
-            <ConfirmTransferModal data={form} onConfirm={handleConfirm} />
+            <ConfirmTransferModal
+              data={data}
+              status={status}
+              onConfirm={handleConfirm}
+            />
           </Popup.Content>
         </Popup>
       </form>
