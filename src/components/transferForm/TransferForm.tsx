@@ -106,9 +106,8 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    e.preventDefault();
-
     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+      e.preventDefault();
       handleSubmit();
     }
   };
@@ -179,7 +178,7 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
             value={form.description}
             placeholder='Payment for...'
             onChange={handleChange}
-            // onKeyDown={handleKeyDown}
+            onKeyDown={handleKeyDown}
           />
         </FormField>
 

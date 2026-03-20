@@ -1,4 +1,5 @@
 @use '../../../styles/animation';
+@use '../../../styles/responsive' as bp;
 
 .navbar {
   display: flex;
@@ -38,6 +39,10 @@
     display: flex;
     align-items: center;
     gap: 1.5rem;
+
+    @include bp.md {
+      display: none;
+    }
 
     &--item {
       font-weight: 500;

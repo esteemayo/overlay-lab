@@ -1,4 +1,7 @@
 import Logo from '@/components/ui/logo/Logo';
+import Popup from '@/components/popup';
+import MenuButton from '@/components/ui/menuButton/MenuButton';
+
 import './Navbar.scss';
 
 const Navbar = () => {
@@ -26,6 +29,10 @@ const Navbar = () => {
             </a>
           </li>
         </ul>
+
+        <Popup.Trigger asChild>
+          <MenuButton />
+        </Popup.Trigger>
       </div>
     </nav>
   );

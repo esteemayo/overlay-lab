@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 
 import Popup from './popup';
-import Xmark from '@/icons/Xmark';
+import Xmark from '@/components/icons/Xmark';
 
 import ReceiptScreen from './receiptScreen/ReceiptScreen';
 import TransferForm from './transferForm/TransferForm';

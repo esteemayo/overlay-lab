@@ -1,7 +1,7 @@
 @use '../../styles/mixins' as *;
 
 .button {
-  &.hero {
+  &.main {
     margin-top: 4rem;
     @include button($y: -0.7rem);
   }

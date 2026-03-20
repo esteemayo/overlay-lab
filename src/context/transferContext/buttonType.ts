@@ -1,6 +1,6 @@
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   label: string;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-  variant: 'cancel' | 'hero' | 'submit';
+  variant: 'cancel' | 'main' | 'submit';
   onClick?(): void;
 }

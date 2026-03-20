@@ -1,4 +1,6 @@
 import Popup from '../popup';
+import Button from '../button/Button';
+
 import './Hero.scss';
 
 const Hero = () => {
@@ -25,7 +27,9 @@ const Hero = () => {
           </p>
         </div>
 
-        <Popup.Trigger>Simulate transfer</Popup.Trigger>
+        <Popup.Trigger asChild>
+          <Button label='Simulate transfer' variant='main' />
+        </Popup.Trigger>
       </div>
     </header>
   );

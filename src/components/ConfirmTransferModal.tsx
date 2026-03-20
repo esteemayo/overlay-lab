@@ -1,4 +1,4 @@
-import ArrowLeft from '@/icons/ArrowLeft';
+import ArrowLeft from '@/components/icons/ArrowLeft';
 import Popup from './popup';
 import ConfirmTransfer from './confirmTransfer/ConfirmTransfer';
 
