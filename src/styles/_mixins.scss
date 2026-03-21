@@ -52,8 +52,6 @@
 @mixin button($fontSize: var(--fz-md), $y: 0px) {
   display: inline-block;
   border: none;
-  display: inline-block;
-  border: none;
   text-transform: capitalize;
   font-weight: 500;
   font-size: $fontSize;
