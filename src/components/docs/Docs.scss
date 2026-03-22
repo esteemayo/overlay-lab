@@ -1,5 +1,15 @@
+@use '../../styles/animation';
+
 .docs {
   &-layout {
+    display: flex;
+    justify-content: center;
+    padding: 12rem 0 10rem;
+    background-color: var(--navy);
+  }
+
+  &-container {
+    width: 110rem;
     display: flex;
   }
 
@@ -10,7 +20,6 @@
     position: sticky;
     top: 0;
     height: 100vh;
-    background-color: var(--light-navy);
     background-color: var(--navy);
     border: 1px solid #1e293b;
     border-radius: 1rem;
@@ -31,6 +40,8 @@
         list-style: none;
 
         li {
+          width: 100%;
+
           &:not(:last-of-type) {
             margin-bottom: 2rem;
           }
@@ -38,6 +49,26 @@
           a {
             &:link,
             &:visited {
+              width: 100%;
+              display: block;
+              color: currentColor;
+              transition: var(--transition);
+            }
+
+            &.active {
+              font-weight: 600;
+              background-image: linear-gradient(
+                360deg,
+                var(--pink),
+                var(--blue)
+              );
+              color: transparent;
+              -webkit-background-clip: text;
+              background-clip: text;
+            }
+
+            &:hover {
+              font-weight: 700;
             }
           }
         }
@@ -68,9 +99,38 @@
     p,
     pre,
     span {
-      font-size: var(--fz-sm);
+      font-size: 100%;
       color: var(--slate);
       line-height: 1.3;
+
+      &:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        position: relative;
+        font-size: 100%;
+        padding-left: 3rem;
+        color: var(--slate);
+        line-height: 1.3;
+
+        &:not(:last-of-type) {
+          margin-bottom: 2rem;
+        }
+
+        &::before {
+          content: '▹';
+          position: absolute;
+          left: 0;
+          font-size: 100%;
+          color: var(--pink);
+          line-height: 1.2;
+        }
+      }
     }
   }
 
@@ -85,6 +145,74 @@
       font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
       line-height: 1.1;
       margin-bottom: 1rem;
+    }
+
+    &__tabs {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      margin-bottom: 1rem;
+
+      &--btn {
+        display: inline-block;
+        font-size: var(--fz-xs);
+        padding: 0.5rem 1rem;
+        background-color: transparent;
+        color: var(--white);
+        border: 1px solid #334155;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+
+        &.active {
+          background-color: #1e293b;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          padding: 2px;
+
+          background-image: linear-gradient(
+            90deg,
+            #6366f1,
+            #8b5cf6,
+            #ec4899,
+            #f59e0b,
+            #6366f1
+          );
+          background-size: 300% 300%;
+          border-radius: inherit;
+          opacity: 0;
+          animation: gradientMove 5s linear infinite;
+
+          -webkit-mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          mask:
+            linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          pointer-events: none;
+        }
+
+        &:focus,
+        &:focus-visible {
+          outline: none;
+        }
+
+        &:focus-visible {
+          border: 1px solid transparent;
+        }
+
+        &:focus-visible::before {
+          opacity: 1;
+        }
+      }
     }
 
     &__preview {

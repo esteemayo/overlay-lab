@@ -6,8 +6,10 @@ import './Docs.scss';
 const DocsLayout = () => {
   return (
     <div className='docs-layout'>
-      <DocsSidebar />
-      <DocsContent />
+      <div className='docs-container'>
+        <DocsSidebar />
+        <DocsContent />
+      </div>
     </div>
   );
 };
