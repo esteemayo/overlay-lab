@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# OverlayLab
 
-## Getting Started
+A headless, composable popup system built with React and Next.js for creating accessible overlays such as modals, drawers, and responsive sidebars.
 
-First, run the development server:
+This project explores how to design a scalable overlay architecture using a stack-based state modal, compound components, and custom hooks for behavior and accessibility.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- Stack-based popup management (supports multiple overlays)
+- Headless architecture (fully customizable UI)
+- Compound component API
+- Portal-based rendering
+- Overlay interactions (outside click, escape key)
+- Scroll locking
+- Focus trapping and keyboard navigation
+- Multiple variants (modal, drawer, sidebar)
+
+---
+
+## Demo Overview
+
+The system is demonstrated through a transfer flow:
+
+- Open modal from trigger
+- Fill transfer form
+- Confirm transfer (nested popup)
+- View success and receipt states
+
+It also includes a responsive sidebar built using the same popup architecture.
+
+---
+
+## Why This Exists
+
+Traditional modal implementations often rely on simple boolean state and tightly coupled UI, which makes them difficult to scale as applications grow.
+
+These approaches typically lack support for:
+
+- Multiple simultaneous overlays
+- Consistent accessibility behavior
+- Reusable and Composable structure
+
+OverlayLab was built to address these limitations by introducing a stack-based architecture that enables predictable and scalable overlay management.
+
+---
+
+## Architecture
+
+OverlayLab is built around a global stack and isolated popup instances.
+
+- A global provider manages active popups
+- Each popup creates its own context boundary
+- Overlays are rendered using portals
+
+For a detailed breakdown, see:
+
+→ [`ARCHITECTURE.md`](./docs/ARCHITECTURE.md)
+
+---
+
+## Usage
+
+```tsx
+<Popup>
+  <Popup.Trigger>Open</Popup.Trigger>
+
+  <Popup.Content variant='modal'>
+    <Popup.Header>
+      <Popup.Title>Title</Popup.Title>
+      <Popup.Close />
+    </Popup.Header>
+
+    <Popup.Body>Content</Popup.Body>
+  </Popup.Content>
+</Popup>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variants
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The system supports multiple overlay patterns:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Modal (centered dialog)
+- Drawer (left / right)
+- Sidebar (responsive for smaller screens)
 
-## Learn More
+Each variant shares the same underlying logic but differs in layout and animation.
 
-To learn more about Next.js, take a look at the following resources:
+## Behavior
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+OverlayLab includes built-in behavior for consistent UX:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Clicking outside the popup closes it
+- Pressing Escape closes the topmost popup
+- Background scrolling is disabled when a popup is open
+- Only the topmost popup is interactive
 
-## Deploy on Vercel
+## Accessibility
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Accessibility is handled through custom hooks:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Focus is trapped within the popup
+- Tab and Shift+Tab cycle through elements
+- ARIA roles and attributes are applied to dialogs
+- Keyboard interactions are fully supported
+
+## Key Concepts
+
+- Stack-based state for managing multiple popups
+- Compound components for clean API design
+- Context isolation per popup instance
+- Headless architecture for flexibility
+- Custom hooks for behavior (overlay, focus, scroll lock)
+
+## Built With
+
+- React
+- Next.js (App Router)
+- TypeScript
+- SCSS
+
+## License
+
+MIT

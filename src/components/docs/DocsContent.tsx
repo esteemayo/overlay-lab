@@ -162,8 +162,8 @@ Trigger / Content / Close`}
         <pre style={{ marginBottom: 20 }}>
           {`useOverlay(containerRef, {
   isOpen,
-  onClose
- })`}
+  onClose,
+});`}
         </pre>
 
         <p>
@@ -201,7 +201,49 @@ Trigger / Content / Close`}
         </pre>
       </DocsSection>
 
-      <DocsSection id='keyboard' title='Keyboard'>
+      <DocsSection id='keyboard' title='Keyboard Interactions'>
+        <p>
+          The system provides built-in keyboard support to ensure accessibility
+          and predictable interaction across all popup variants.
+        </p>
+
+        <h3>Focus Trap</h3>
+
+        <p>
+          When a popup is active, focus is contained within the overlay,
+          preventing interaction with elements outside of it.
+        </p>
+
+        <p>
+          This ensures users navigating via keyboard can cycle through
+          interactive elements without leaving the popup context.
+        </p>
+
+        <pre style={{ marginBottom: 20 }}>
+          {`useFocusTrap(containerRef, isOpen);`}
+        </pre>
+
+        <pre style={{ marginBottom: 20 }}>
+          {`const focusable = container.querySelectorAll(
+  'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+);`}
+        </pre>
+
+        <p>
+          The focus trap is implemented using a custom hook that manages
+          keyboard navigation and ensures focus loops between the first and last
+          focusable elements.
+        </p>
+
+        <h3>Escape Key</h3>
+
+        <p>
+          Pressing the Escape key closes the topmost popup in the stack,
+          ensuring consistent and expected behavior.
+        </p>
+
+        <h3 style={{ marginTop: 20 }}>Tab Navigation</h3>
+
         <ul>
           <li>
             <strong>
@@ -209,17 +251,19 @@ Trigger / Content / Close`}
             </strong>{' '}
             - closes the topmost popup
           </li>
+
           <li>
             <strong>
               <kbd>Tab</kbd>
             </strong>{' '}
-            - cycles forward through focusable elements
+            - moves focus forward
           </li>
+
           <li>
             <strong>
               <kbd>Shift</kbd> + <kbd>Tab</kbd>
             </strong>{' '}
-            - cycles backward
+            - moves focus backward
           </li>
         </ul>
       </DocsSection>
