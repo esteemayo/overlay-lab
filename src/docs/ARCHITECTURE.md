@@ -17,7 +17,7 @@ The system is composed of two main layers:
 
 ---
 
-### 1. Global Stack (PopupProvider)
+### 1️⃣ Global Stack (PopupProvider)
 
 The `PopupProvider` maintains a centralized stack of active popups.
 
@@ -34,9 +34,15 @@ type PopupStackItem = {
 - Ensure only the topmost popup is interactive
 - Porvide open and close operations
 
-### 2. Popup Instance (Context Boundary)
+---
+
+### 2️⃣ Popup Instance (Context Boundary)
 
 Each `<Popup>` creates an isolated context that connects its internal components.
+
+Popup
+├── Trigger
+└── Content
 
 #### Responsibilities
 
@@ -45,7 +51,9 @@ Each `<Popup>` creates an isolated context that connects its internal components
 - Avoid prop drilling
 - Prevent conflicts between multiple popups
 
-### 3. Stack Behavior
+---
+
+### 3️⃣ Stack Behavior
 
 The system uses a Last-In-First-Out (LIFO) stack model:
 
@@ -55,7 +63,9 @@ The system uses a Last-In-First-Out (LIFO) stack model:
 
 This ensures predictable interaction when multiple overlays are present.
 
-### 4. Rendering with Portals
+---
+
+### 4️⃣ Rendering with Portals
 
 Popups are rendered outside the normal DOM hierarchy using a portal.
 
@@ -65,7 +75,9 @@ Popups are rendered outside the normal DOM hierarchy using a portal.
 - Prevent layout issues
 - Allow overlays to exist independently of page structure
 
-### 5. Overlay Handling
+---
+
+### 5️⃣ Overlay Handling
 
 Overlay behavior is implemented using a custom hook:
 
@@ -83,7 +95,9 @@ useOverlay(containerRef, {
 - Handle Escape key events
 - Lock background scrolling
 
-### 6. Focus Management
+---
+
+### 6️⃣ Focus Management
 
 Focus is managed using a focus trap:
 
@@ -98,7 +112,9 @@ useFocusTrap(containerRef, isOpen);
 - Cycle focus using Tab and Shift+Tab
 - Prevent interaction with background elements
 
-### 7. Variants
+---
+
+### 7️⃣ Variants
 
 The system supports different overlay types:
 
@@ -108,7 +124,9 @@ The system supports different overlay types:
 
 Variants share the same logic but differ in presentation and animation.
 
-### 8. State Model
+---
+
+### 8️⃣ State Model
 
 Instead of using boolean flags, the system relies on a stack-based model.
 
@@ -118,11 +136,15 @@ Instead of using boolean flags, the system relies on a stack-based model.
 - Prevents conflicting states
 - Enables layered interactions
 
-### 9. Design Principles
+---
+
+### 9️⃣ Design Principles
 
 #### Headless Archictecture
 
 The system separates behavior from UI, allowing full control over styling.
+
+---
 
 #### Compound Components
 
@@ -135,11 +157,15 @@ The API is built using compound components
 </Popup>
 ```
 
-This enablesa clean and declarative usage pattern.
+This enables a clean and declarative usage pattern.
+
+---
 
 #### Context Isolation
 
 Each popup instance operates independently, ensuring predictable behavior.
+
+---
 
 #### Accessibility
 
@@ -149,6 +175,8 @@ Accessibility is built into the system:
 - Keyboard navigation
 - ARIA dialog semantics
 - Controlled interaction flow
+
+---
 
 ## Summary
 

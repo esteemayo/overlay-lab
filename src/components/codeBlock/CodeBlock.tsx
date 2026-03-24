@@ -1,6 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+
+import Clipboard from '../icons/Clipboard';
+import ClipboardOutlined from '../icons/ClipboardOutlined';
+
 import './CodeBlock.scss';
 
 const CodeBlock = ({ code }: { code: string }) => {
@@ -20,7 +24,7 @@ const CodeBlock = ({ code }: { code: string }) => {
         onClick={handleCopy}
         className={isCopied ? 'code-block__btn active' : 'code-block__btn'}
       >
-        {isCopied ? 'Copied' : 'Copy'}
+        {isCopied ? <Clipboard /> : <ClipboardOutlined />}
       </button>
 
       <pre>{code}</pre>

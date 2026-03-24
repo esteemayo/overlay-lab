@@ -5,7 +5,7 @@
   justify-content: center;
 
   &__container {
-    width: 80rem;
+    width: 70rem;
     padding: 10rem 0;
     text-align: center;
 
@@ -23,13 +23,16 @@
     font-weight: 600;
     font-size: clamp(2.5rem, 5vw, 3rem);
     line-height: 1.1;
+
+    @include text-heading();
   }
 
   &__desc {
     width: 80%;
+    font-weight: 500;
     font-size: 100%;
     color: var(--slate);
-    line-height: 1.3;
+    line-height: 1.6;
   }
 
   &__link {

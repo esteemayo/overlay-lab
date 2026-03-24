@@ -8,8 +8,9 @@ const Docs = () => {
         <h2 className='docs__heading'>Documentation</h2>
 
         <p className='docs__desc'>
-          A headless, composable popup system with stacking, variants, and
-          accessibility built from first principles.
+          Explore the architecture behind OverlayLab, including stack-based
+          state management, popup composition, accessibility patterns, and
+          overlay behavior.
         </p>
 
         <Link href='/docs' className='docs__link'>

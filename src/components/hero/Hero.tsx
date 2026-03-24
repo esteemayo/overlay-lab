@@ -7,23 +7,34 @@ const Hero = () => {
   return (
     <header className='hero'>
       <div className='hero__container'>
-        <h1 className='hero__heading'>OverlayLab</h1>
+        <h1 className='hero__heading'>
+          OverlayLab - Headless Popup System for React and Next.js
+        </h1>
 
         <div className='hero__wrapper'>
           <p className='hero__wrapper--desc'>
-            Accessible, production grade popup architecture built with{' '}
-            <a href='#' target='_blank'>
+            Accessible, production-grade popup architecture built with{' '}
+            <a
+              href='https://react.dev'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               React
             </a>{' '}
             and{' '}
-            <a href='#' rel='noopener noreferrer'>
+            <a
+              href='https://nextjs.org'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               Next.js
             </a>
           </p>
 
           <p className='hero__wrapper--subdesc'>
-            Engineered from first principles with focus trapping, scroll
-            locking, and ARIA-compliant dialog semantics.
+            A scalable overlay system supporting modals, drawers, and sidebars
+            using stack-based state, focus trapping, scroll locking, and
+            ARIA-compliant dialog semantics.
           </p>
         </div>
 
