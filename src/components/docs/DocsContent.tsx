@@ -273,7 +273,10 @@ Trigger / Content / Close`}
           title='Modal Example'
           code={`<Popup>
   <Popup.Trigger>Open</Popup.Trigger>
-  <Popup.Content variant='modal'>Modal</Popup.Content>
+
+  <Popup.Content variant='modal'>
+    Modal Content
+  </Popup.Content>
 </Popup>`}
         >
           <Popup>
@@ -301,7 +304,10 @@ Trigger / Content / Close`}
           title='Drawer Left Example'
           code={`<Popup>
   <Popup.Trigger>Open</Popup.Trigger>
-  <Popup.Content variant='drawer-left'>Sidebar Content</Popup.Content>
+
+  <Popup.Content variant='drawer-left'>
+    Sidebar Content
+  </Popup.Content>
 </Popup>`}
         >
           <Popup>
@@ -343,7 +349,10 @@ Trigger / Content / Close`}
           title='Drawer Right Example'
           code={`<Popup>
   <Popup.Trigger>Open</Popup.Trigger>
-  <Popup.Content variant='drawer-right'>Sidebar Content</Popup.Content>
+
+  <Popup.Content variant='drawer-right'>
+    Sidebar Content
+  </Popup.Content>
 </Popup>`}
         >
           <Popup>
@@ -385,9 +394,13 @@ Trigger / Content / Close`}
           title='Stacked Popup Example'
           code={`<Popup>
   <Popup.Trigger>Open First</Popup.Trigger>
+
   <Popup.Content variant='modal'>
     <Popup.Trigger>Open Second</Popup.Trigger>
-    <Popup.Content variant='modal'>Nested Popup</Popup.Content>
+
+    <Popup.Content variant='modal'>
+      Nested Popup
+    </Popup.Content>
   </Popup.Content>
 </Popup>`}
         >

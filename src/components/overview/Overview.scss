@@ -1,6 +1,6 @@
-@use '../../../styles/mixins' as *;
+@use '../../styles/mixins' as *;
 
-.docs {
+.overview {
   display: flex;
   justify-content: center;
 
@@ -13,41 +13,33 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
   }
 
   &__heading {
+    width: 70%;
     display: inline-block;
-    text-transform: capitalize;
-    text-rendering: optimizeLegibility;
     font-weight: 600;
     font-size: clamp(2.5rem, 5vw, 3rem);
     line-height: 1.1;
+    margin-bottom: 4rem;
 
     @include text-heading();
   }
 
-  &__desc {
-    width: 80%;
-    font-weight: 500;
-    font-size: 100%;
-    color: var(--slate);
+  &__desc,
+  &__subdesc {
+    width: 70%;
     line-height: 1.6;
   }
 
-  &__link {
-    &:link,
-    &:visited {
-      @include button($fontSize: 100%);
-      background-position: center;
-    }
+  &__desc {
+    font-weight: 500;
+    font-size: 100%;
+    margin-bottom: 1rem;
+  }
 
-    &:hover {
-      background-position: left !important;
-    }
-
-    &:focus-visible {
-      outline-color: #ec4899 !important;
-    }
+  &__subdesc {
+    font-size: var(--fz-sm);
+    color: var(--slate);
   }
 }

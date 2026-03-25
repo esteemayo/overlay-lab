@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import './Docs.scss';
 
 const Docs = () => {
@@ -12,10 +11,6 @@ const Docs = () => {
           state management, popup composition, accessibility patterns, and
           overlay behavior.
         </p>
-
-        <Link href='/docs' className='docs__link'>
-          Read full documentation →
-        </Link>
       </div>
     </section>
   );

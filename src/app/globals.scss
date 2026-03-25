@@ -1,4 +1,5 @@
 @use '../styles/animation' as *;
+@use '../styles/responsive' as bp;
 
 :root {
   --navy: #0f172a;
@@ -49,6 +50,8 @@ html {
   min-height: 100vh;
   font-size: 62.5%;
   scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--dark-slate) var(--dark-navy);
   scrollbar-gutter: stable;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -99,6 +102,14 @@ select {
 
   @media (max-width: 67.5em) {
     padding: 0 10rem;
+  }
+
+  @include bp.md {
+    padding: 0 5rem;
+  }
+
+  @include bp.sm {
+    padding: 0 2.5rem;
   }
 }
 

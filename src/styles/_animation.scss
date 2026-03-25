@@ -10,6 +10,13 @@
   }
 }
 
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes gradientMove {
   from {
     background-position: 0%;

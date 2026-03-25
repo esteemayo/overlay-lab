@@ -2,6 +2,10 @@ import Docs from './sections/docs/Docs';
 import Popup from './popup';
 import TransferFlow from './TransferFlow';
 import Hero from './hero/Hero';
+import Overview from './overview/Overview';
+import Features from './features/Features';
+import UseCases from './useCases/UseCases';
+import CTA from './CTA/CTA';
 
 const Home = () => {
   return (
@@ -29,12 +33,17 @@ const Home = () => {
       <Popup>
         <Hero />
 
+        <Overview />
+
         <Popup.Content>
           <TransferFlow />
         </Popup.Content>
       </Popup>
 
+      <Features />
+      <UseCases />
       <Docs />
+      <CTA />
     </div>
   );
 };
