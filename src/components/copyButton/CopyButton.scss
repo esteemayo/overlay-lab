@@ -1,0 +1,70 @@
+@use '../../styles/animation';
+
+.copy-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  width: 3.25rem;
+  height: 3.25rem;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-size: var(--fz-xxs);
+  background-color: transparent;
+  color: var(--slate);
+  border: 1px solid #1e293b;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+
+    background-image: linear-gradient(
+      90deg,
+      #6366f1,
+      #8b5cf6,
+      #ec4899,
+      #f59e0b,
+      #6366f1
+    );
+    background-size: 300% 300%;
+    border-radius: inherit;
+    opacity: 0;
+    animation: gradientMove 5s linear infinite;
+
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible {
+    border: none;
+  }
+
+  &:focus-visible::before {
+    opacity: 1;
+  }
+
+  svg {
+    width: 1.75rem;
+    height: 1.75rem;
+    color: currentColor;
+  }
+}

@@ -11,7 +11,6 @@ const ClipboardOutlined = () => {
       stroke='currentColor'
       className='size-6'
     >
-      <title>Copy</title>
       <path
         strokeLinecap='round'
         strokeLinejoin='round'

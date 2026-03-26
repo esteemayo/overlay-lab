@@ -11,10 +11,10 @@
   }
 
   &.cancel {
-    background-color: var(--red);
+    background-color: var(--dark-red);
 
     &:hover {
-      background-color: #e04545;
+      background-color: var(--light-red);
     }
 
     &:focus {
@@ -26,7 +26,7 @@
     }
 
     &:focus-visible {
-      outline: 2px solid var(--red);
+      outline: 2px solid var(--dark-red);
       outline-offset: 3px;
     }
   }

@@ -1,33 +1,20 @@
-'use client';
-
-import { useState } from 'react';
-
-import Clipboard from '../icons/Clipboard';
-import ClipboardOutlined from '../icons/ClipboardOutlined';
-
+import { highlightCode } from '@/lib/highlight';
 import './CodeBlock.scss';
 
-const CodeBlock = ({ code }: { code: string }) => {
-  const [isCopied, setIsCopied] = useState(false);
-
-  const handleCopy = async () => {
-    await navigator.clipboard.writeText(code);
-    setIsCopied(true);
-
-    setTimeout(() => setIsCopied(false), 1500);
-  };
+const CodeBlock = async ({ code }: { code: string }) => {
+  const { dark, light } = await highlightCode(code);
 
   return (
     <div className='code-block'>
-      <button
-        type='button'
-        onClick={handleCopy}
-        className={isCopied ? 'code-block__btn active' : 'code-block__btn'}
-      >
-        {isCopied ? <Clipboard /> : <ClipboardOutlined />}
-      </button>
+      <div
+        className='code-block__dark'
+        dangerouslySetInnerHTML={{ __html: dark }}
+      />
 
-      <pre>{code}</pre>
+      <div
+        className='code-block__light'
+        dangerouslySetInnerHTML={{ __html: light }}
+      />
     </div>
   );
 };

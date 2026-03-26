@@ -1,5 +1,17 @@
 import Link from 'next/link';
+import CodePreview from '../codePreview/CodePreview';
+
 import './CTA.scss';
+
+const code = `<Popup>
+  <Popup.Trigger>Open</Popup.Trigger>
+
+  <Popup.Content>
+    <Popup.Header>
+      <Popup.Title>Transfer</Popup.Title>
+    </Popup.Header>
+  </Popup.Content>
+</Popup>`;
 
 const CTA = () => {
   return (
@@ -14,19 +26,7 @@ const CTA = () => {
           used to build a scalable popup system from scratch.
         </p>
 
-        <div className='cta__code'>
-          <pre>
-            {`<Popup>
-  <Popup.Trigger>Open</Popup.Trigger>
-
-  <Popup.Content>
-    <Popup.Header>
-      <Popup.Title>Transfer</Popup.Title>
-    </Popup.Header>
-  </Popup.Content>
-</Popup>`}
-          </pre>
-        </div>
+        <CodePreview code={code} />
 
         <div className='cta__actions'>
           <Link href='/docs' className='cta__btn cta__btn--primary'>
