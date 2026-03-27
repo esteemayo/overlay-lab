@@ -1,0 +1,28 @@
+.code-preview-dots {
+  display: flex;
+  align-items: center;
+
+  &__dot {
+    width: 1rem;
+    height: 1rem;
+    display: inline-block;
+    border-radius: 100%;
+    margin-bottom: 0 !important;
+
+    &:not(:last-of-type) {
+      margin-right: 0.6rem;
+    }
+
+    &.red {
+      background-color: var(--lightest-red);
+    }
+
+    &.yellow {
+      background-color: var(--yellow);
+    }
+
+    &.green {
+      background-color: var(--green);
+    }
+  }
+}

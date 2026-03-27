@@ -42,30 +42,4 @@
     align-items: center;
     justify-content: center;
   }
-
-  &__item {
-    text-transform: initial;
-    font-size: 100%;
-    padding-left: 3rem;
-    color: var(--lightest-slate);
-    position: relative;
-    transition: var(--transition);
-
-    &:not(:last-child) {
-      margin-bottom: 1rem;
-    }
-
-    &:hover {
-      transform: translateX(-7rem);
-    }
-
-    &::before {
-      content: '▸';
-      position: absolute;
-      left: 0;
-      font-size: 100%;
-      color: var(--pink);
-      line-height: 1.2;
-    }
-  }
 }

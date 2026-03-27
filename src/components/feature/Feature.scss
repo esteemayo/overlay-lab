@@ -1,0 +1,22 @@
+@use '../../styles/mixins' as *;
+
+.feature {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    display: inline-block;
+    text-transform: initial;
+    text-rendering: optimizeLegibility;
+    font-weight: 600;
+    font-size: clamp(1.8rem, 5vw, 1.87rem);
+    margin-bottom: 1rem;
+
+    @include text-heading();
+  }
+
+  &__desc {
+    font-size: 100%;
+    color: var(--slate);
+  }
+}

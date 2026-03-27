@@ -1,22 +1,19 @@
-import CodeBlock from '../codeBlock/CodeBlock';
 import CopyButton from '../copyButton/CopyButton';
+import CodeBlock from '../codeBlock/CodeBlock';
+import CodePreviewDots from '../codePreviewDots/CodePreviewDots';
 
+import { CodePreviewProps } from '@/types/codePreviewType';
 import './CodePreview.scss';
 
-const CodePreview = ({ code }: { code: string}) => {
+const CodePreview = ({ code, highlighted }: CodePreviewProps) => {
   return (
     <div className='code-preview'>
       <div className='code-preview__header'>
-        <div className='code-preview__dots'>
-          <span className='code-preview__dot red' />
-          <span className='code-preview__dot yellow' />
-          <span className='code-preview__dot green' />
-        </div>
-
+        <CodePreviewDots />
         <CopyButton code={code} />
       </div>
 
-      <CodeBlock code={code} />
+      <CodeBlock highlighted={highlighted} />
     </div>
   );
 };

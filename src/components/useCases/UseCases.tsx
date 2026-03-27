@@ -1,12 +1,7 @@
-import './UseCases.scss';
+import { USE_CASES } from '@/data';
+import UseCaseItem from '../useCaseItem/UseCaseItem';
 
-const USE_CASES = [
-  { id: 1, text: 'Financial applications (transfer confirmations, receipts)' },
-  { id: 2, text: 'Dashboard interfaces (sidebars, filters, drawers)' },
-  { id: 3, text: 'Authentication flows (login, signup, OTP modals)' },
-  { id: 4, text: 'E-commerce interactions (cart, checkout, quick views)' },
-  { id: 5, text: 'Complex multi-step forms and workflows' },
-];
+import './UseCases.scss';
 
 const UseCases = () => {
   return (
@@ -21,9 +16,7 @@ const UseCases = () => {
 
         <ul className='use-cases__list' role='list'>
           {USE_CASES.map(({ id, text }) => (
-            <li key={id} className='use-cases__item' role='listitem'>
-              {text}
-            </li>
+            <UseCaseItem key={id} text={text} />
           ))}
         </ul>
       </div>

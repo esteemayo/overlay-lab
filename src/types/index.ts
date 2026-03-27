@@ -9,6 +9,17 @@ export type FormState = {
 
 export type ReceiptDataType = FormState;
 
+export type FeatureType = {
+  id: string;
+  title: string;
+  desc: string;
+};
+
+export type UseCaseType = {
+  id: number;
+  text: string;
+};
+
 // export type TransferState = {
 //   status: StatusType;
 //   data: ReceiptDataType | null;

@@ -4,8 +4,30 @@ import Button from '../button/Button';
 
 import DocsExample from './DocsExample';
 import DocsSection from './DocsSection';
+import CodePreview from '../codePreview/CodePreview';
 
-const DocsContent = () => {
+import { highlightCode } from '@/lib/highlight';
+
+const apiCode = `<Popup>
+  <Popup.Trigger asChild>
+   <button type='button'>Open</button>
+  </Popup.Trigger>
+
+  <Popup.Content variant='modal'>
+   <Popup.Header>
+    <Popup.Title>Title</Popup.Title>
+    <Popup.Close />
+   </Popup.Header>
+
+   <Popup.Body>
+    Content
+   </Popup.Body>
+  </Popup.Content>
+</Popup>`;
+
+const DocsContent = async () => {
+  const highlighted = await highlightCode(apiCode);
+
   return (
     <main className='docs-content'>
       <DocsSection id='introduction' title='Introduction'>
@@ -181,24 +203,7 @@ Trigger / Content / Close`}
       </DocsSection>
 
       <DocsSection id='api' title='API'>
-        <pre>
-          {`<Popup>
-  <Popup.Trigger asChild>
-   <button type='button'>Open</button>
-  </Popup.Trigger>
-
-  <Popup.Content variant='modal'>
-   <Popup.Header>
-    <Popup.Title>Title</Popup.Title>
-    <Popup.Close />
-   </Popup.Header>
-
-   <Popup.Body>
-    Content
-   </Popup.Body>
-  </Popup.Content>
-</Popup>`}
-        </pre>
+        <CodePreview code={apiCode} highlighted={highlighted} />
       </DocsSection>
 
       <DocsSection id='keyboard' title='Keyboard Interactions'>

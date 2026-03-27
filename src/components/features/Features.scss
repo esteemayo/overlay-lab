@@ -56,25 +56,4 @@
       transform: translateY(-0.7rem) scale(1.03);
     }
   }
-
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-
-    &--title {
-      display: inline-block;
-      text-transform: initial;
-      text-rendering: optimizeLegibility;
-      font-weight: 600;
-      font-size: clamp(1.8rem, 5vw, 1.87rem);
-      margin-bottom: 1rem;
-
-      @include text-heading();
-    }
-
-    &--desc {
-      font-size: 100%;
-      color: var(--slate);
-    }
-  }
 }

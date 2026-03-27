@@ -1,4 +1,6 @@
 import Link from 'next/link';
+
+import { highlightCode } from '@/lib/highlight';
 import CodePreview from '../codePreview/CodePreview';
 
 import './CTA.scss';
@@ -13,7 +15,9 @@ const code = `<Popup>
   </Popup.Content>
 </Popup>`;
 
-const CTA = () => {
+const CTA = async () => {
+  const highlighted = await highlightCode(code);
+
   return (
     <section className='cta'>
       <div className='cta__container'>
@@ -26,7 +30,7 @@ const CTA = () => {
           used to build a scalable popup system from scratch.
         </p>
 
-        <CodePreview code={code} />
+        <CodePreview code={code} highlighted={highlighted} />
 
         <div className='cta__actions'>
           <Link href='/docs' className='cta__btn cta__btn--primary'>

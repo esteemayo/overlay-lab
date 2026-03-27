@@ -119,14 +119,15 @@
       display: inline-block;
       text-transform: capitalize;
       font-weight: 500;
-      font-size: 100%;
-      padding: 2rem 3rem;
+      font-size: var(--fz-sm);
+      padding: 1.5rem 2.5rem;
     }
 
     &--primary {
       &:link,
       &:visited {
-        @include button($fontSize: 100%, $y: -2px);
+        @include button($fontSize: var(--fz-sm), $y: -2px);
+        padding: 1.5rem 2rem;
         background-position: center;
       }
 
