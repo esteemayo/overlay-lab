@@ -202,9 +202,9 @@ Trigger / Content / Close`}
         </p>
       </DocsSection>
 
-      <DocsSection id='api' title='API'>
+      {/* <DocsSection id='api' title='API'>
         <CodePreview code={apiCode} highlighted={highlighted} />
-      </DocsSection>
+      </DocsSection> */}
 
       <DocsSection id='keyboard' title='Keyboard Interactions'>
         <p>
@@ -276,13 +276,70 @@ Trigger / Content / Close`}
       <DocsSection id='examples' title='Live Examples'>
         <DocsExample
           title='Modal Example'
-          code={`<Popup>
-  <Popup.Trigger>Open</Popup.Trigger>
+          files={[
+            {
+              filename: 'index.tsx',
+              code: `<Popup>
+  <Popup.Trigger>Open Modal</Popup.Trigger>
 
   <Popup.Content variant='modal'>
+   <Popup.Header>
+    <Popup.Title>Modal</Popup.Title>
+    <Popup.Close />
+   </Popup.Header>
+
+   <Popup.Body>
     Modal Content
+   </Popup.Body>
   </Popup.Content>
-</Popup>`}
+</Popup>`,
+            },
+            {
+              filename: 'as-child.tsx',
+              code: `<Popup>
+  <Popup.Trigger asChild>
+    <button type='button'>Open Modal</button>
+  </Popup.Trigger>
+
+  <Popup.Content variant='modal'>
+   <Popup.Header>
+    <Popup.Title>Modal</Popup.Title>
+
+    <Popup.Close asChild>
+     <button type='button'>X</button>
+    </Popup.Close>
+   </Popup.Header>
+
+   <Popup.Body>
+    Modal Content
+   </Popup.Body>
+  </Popup.Content>
+</Popup>`,
+            },
+            {
+              filename: 'styles.scss',
+              code: `.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;              
+  padding: 1rem;
+  background-color: #0d1117;
+  border-radius: 0.8rem;
+               
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #11224090;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 300ms ease;
+
+    display: flex;
+  }
+}`,
+            },
+          ]}
         >
           <Popup>
             <Popup.Trigger asChild>
@@ -307,13 +364,70 @@ Trigger / Content / Close`}
 
         <DocsExample
           title='Drawer Left Example'
-          code={`<Popup>
+          files={[
+            {
+              filename: 'index.tsx',
+              code: `<Popup>
   <Popup.Trigger>Open</Popup.Trigger>
+  
+  <Popup.Header>
+    <Popup.Title>Open</Popup.Title>
+    <Popup.Close />
+    </Popup.Header>
+    
+    <Popup.Content variant='drawer-left'>
+      <Popup.Body>
+        Sidebar Content
+      </Popup.Body>
+  </Popup.Content>
+</Popup>`,
+            },
+            {
+              filename: 'as-child.tsx',
+              code: `<Popup>
+  <Popup.Trigger asChild>
+    <button type='button'>Open Sidebar</button>
+  </Popup.Trigger>
 
   <Popup.Content variant='drawer-left'>
+   <Popup.Header>
+    <Popup.Title>Menu</Popup.Title>
+
+    <Popup.Close asChild>
+     <button type='button'>X</button>
+    </Popup.Close>
+   </Popup.Header>
+
+   <Popup.Body>
     Sidebar Content
+   </Popup.Body>
   </Popup.Content>
-</Popup>`}
+</Popup>`,
+            },
+            {
+              filename: 'styles.scss',
+              code: `.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;              
+  padding: 1rem;
+  background-color: #0d1117;
+  border-radius: 0.8rem;
+               
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #11224090;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 300ms ease;
+
+    display: flex;
+  }
+}`,
+            },
+          ]}
         >
           <Popup>
             <Popup.Trigger asChild>
@@ -352,13 +466,70 @@ Trigger / Content / Close`}
 
         <DocsExample
           title='Drawer Right Example'
-          code={`<Popup>
+          files={[
+            {
+              filename: 'index.tsx',
+              code: `<Popup>
   <Popup.Trigger>Open</Popup.Trigger>
+  
+  <Popup.Header>
+    <Popup.Title>Open</Popup.Title>
+    <Popup.Close />
+    </Popup.Header>
+    
+    <Popup.Content variant='drawer-right'>
+      <Popup.Body>
+        Sidebar Content
+      </Popup.Body>
+  </Popup.Content>
+</Popup>`,
+            },
+            {
+              filename: 'as-child.tsx',
+              code: `<Popup>
+  <Popup.Trigger asChild>
+    <button type='button'>Open Sidebar</button>
+  </Popup.Trigger>
 
   <Popup.Content variant='drawer-right'>
+   <Popup.Header>
+    <Popup.Title>Menu</Popup.Title>
+
+    <Popup.Close asChild>
+     <button type='button'>X</button>
+    </Popup.Close>
+   </Popup.Header>
+
+   <Popup.Body>
     Sidebar Content
+   </Popup.Body>
   </Popup.Content>
-</Popup>`}
+</Popup>`,
+            },
+            {
+              filename: 'styles.scss',
+              code: `.popup {
+  position: fixed;
+  inset: 0;
+  z-index: 5000;              
+  padding: 1rem;
+  background-color: #0d1117;
+  border-radius: 0.8rem;
+               
+  &__overlay {
+    width: 100%;
+    height: 100%;
+    background-color: #11224090;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 300ms ease;
+
+    display: flex;
+  }
+}`,
+            },
+          ]}
         >
           <Popup>
             <Popup.Trigger asChild>
@@ -397,17 +568,85 @@ Trigger / Content / Close`}
 
         <DocsExample
           title='Stacked Popup Example'
-          code={`<Popup>
+          files={[
+            {
+              filename: 'index.tsx',
+              code: `<Popup>
   <Popup.Trigger>Open First</Popup.Trigger>
 
   <Popup.Content variant='modal'>
+    <Popup.Header>
+     <Popup.Title>First Modal</Popup.Title>
+     <Popup.Close />
+    </Popup.Header>
+
     <Popup.Trigger>Open Second</Popup.Trigger>
 
     <Popup.Content variant='modal'>
+     <Popup.Body>
       Nested Popup
+     </Popup.Body>
     </Popup.Content>
   </Popup.Content>
-</Popup>`}
+</Popup>`,
+            },
+            {
+              filename: 'as-child.tsx',
+              code: `<Popup>
+  <Popup.Trigger asChild>
+   <button type='button'>Open First</button>
+  </Popup.Trigger>
+   
+  <Popup.Content variant='modal'>
+    <Popup.Header>
+      <Popup.Title>First Modal</Popup.Title>
+
+      <Popup.Close asChild>
+        <button type='button'>X</button>
+      </Popup.Close>
+    </Popup.Header>
+
+    <Popup.Trigger asChild>
+      <button type='button'>Open Second</button>
+    </Popup.Trigger>
+
+    <Popup.Content variant='modal'>
+      <Popup.Header>
+        <Popup.Title>Second Modal</Popup.Title>
+
+        <Popup.Close asChild>
+          <button type='button'>X</button>
+        </Popup.Close>
+      </Popup.Header>
+
+      <Popup.Body>Nested Popup</Popup.Body>
+    </Popup.Content>
+  </Popup.Content>
+</Popup>`,
+            },
+            {
+              filename: 'notes.md',
+              code: `# Stack Behavior
+  ## How it works
+
+  - Each popup is pushed onto a global stack
+  - The stack follows a Last-In-First-Out (LIFO) model
+  - Only the topmost popup is interactive
+
+  ## Why this matters
+
+  - Prevents interaction conflicts between overlays
+  - Ensures predictablelayering behavior
+  - Keeps background popups mounted but inactive
+
+  ## Mental Model
+
+  Think of popups like a stack of cards
+
+  The last opened popup sits on top and controls user interaction.
+`,
+            },
+          ]}
         >
           <Popup>
             <Popup.Trigger asChild>

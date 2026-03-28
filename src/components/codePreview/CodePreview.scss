@@ -5,8 +5,12 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   box-shadow: 0 1rem 3rem -1.5rem var(--navy-shadow);
-  border-radius: 1rem;
+  // border-radius: 1rem;
   overflow-x: auto;
+
+  &.is-markdown {
+    border-left: 3px solid #60a5fa;
+  }
 
   pre {
     font-size: 100%;

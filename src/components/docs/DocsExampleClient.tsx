@@ -3,15 +3,19 @@
 import { useState } from 'react';
 
 import CodePreview from '../codePreview/CodePreview';
+import MarkdownPreview from '../markdownPreview/MarkdownPreview';
+
 import { DocsExampleClientProps } from '@/types/docsExampleClientType';
 
 const DocsExampleClient = ({
   title,
-  code,
-  highlighted,
+  files,
   children,
 }: DocsExampleClientProps) => {
+  const [activeFile, setActiveFile] = useState(0);
   const [tab, setTab] = useState<'preview' | 'code'>('preview');
+
+  const active = files[activeFile];
 
   return (
     <div className='docs-example'>
@@ -47,7 +51,30 @@ const DocsExampleClient = ({
         {tab === 'preview' ? (
           <div className='docs-example__preview'>{children}</div>
         ) : (
-          <CodePreview code={code} highlighted={highlighted} />
+          <div className='docs-example__code'>
+            <div className='docs-example__file-tabs'>
+              {files.map((file, index) => (
+                <button
+                  key={file.filename}
+                  type='button'
+                  onClick={() => setActiveFile(index)}
+                  className={activeFile === index ? 'active' : ''}
+                >
+                  {file.filename}
+                </button>
+              ))}
+            </div>
+
+            {active.filename.endsWith('.md') ? (
+              <MarkdownPreview content={active.code} />
+            ) : (
+              <CodePreview
+                code={active.code}
+                filename={active.filename}
+                highlighted={active.highlighted}
+              />
+            )}
+          </div>
         )}
       </div>
     </div>

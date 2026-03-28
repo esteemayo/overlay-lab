@@ -1,5 +1,10 @@
+type CodeFile = {
+  filename: string;
+  code: string;
+};
+
 export interface DocsExampleProps {
   title: string;
-  code: string;
+  files: CodeFile[];
   children: React.ReactNode;
 }
