@@ -1,11 +1,11 @@
+import Features from './features/Features';
+import CTA from './CTA/CTA';
 import Docs from './sections/docs/Docs';
 import Popup from './popup';
-import TransferFlow from './TransferFlow';
-import Hero from './hero/Hero';
 import Overview from './overview/Overview';
-import Features from './features/Features';
+import Hero from './hero/Hero';
 import UseCases from './useCases/UseCases';
-import CTA from './CTA/CTA';
+import TransferFlow from './TransferFlow';
 
 const Home = () => {
   return (

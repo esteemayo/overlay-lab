@@ -10,23 +10,32 @@ import { highlightCode } from '@/lib/highlight';
 
 const apiCode = `<Popup>
   <Popup.Trigger asChild>
-   <button type='button'>Open</button>
+    <button type='button'>Open</button>
   </Popup.Trigger>
 
   <Popup.Content variant='modal'>
-   <Popup.Header>
-    <Popup.Title>Title</Popup.Title>
-    <Popup.Close />
-   </Popup.Header>
+    <Popup.Header>
+      <Popup.Title>Title</Popup.Title>
+      <Popup.Close>X</Popup.Close>
+    </Popup.Header>
 
-   <Popup.Body>
-    Content
-   </Popup.Body>
+    <Popup.Body>Content</Popup.Body>
   </Popup.Content>
 </Popup>`;
 
+const typeCode = `type PopupStackItem = {
+  id: string;
+};`;
+
+const overlayCode = `useOverlay(containerRef, {
+  isOpen,
+  onClose,
+});`;
+
 const DocsContent = async () => {
-  const highlighted = await highlightCode(apiCode);
+  const highlightedType = await highlightCode(typeCode);
+  const highlightedApi = await highlightCode(apiCode);
+  const highlightedOverlay = await highlightCode(overlayCode);
 
   return (
     <main className='docs-content'>
@@ -78,7 +87,7 @@ const DocsContent = async () => {
           drilling or shared global state.
         </p>
 
-        <pre style={{ marginBottom: '2rem' }}>
+        <pre style={{ marginBottom: 20 }}>
           {`PopupProvider (global stack)
    ↓
 Popup (instance boundary)
@@ -125,15 +134,13 @@ Trigger / Content / Close`}
       </DocsSection>
 
       <DocsSection id='stack' title='Stack System'>
-        <p>Popups are managed using a Last-In-First-Out (LIFO) stack model.</p>
+        <p style={{ marginBottom: 20 }}>
+          Popups are managed using a Last-In-First-Out (LIFO) stack model.
+        </p>
 
-        <pre style={{ marginTop: '2rem' }}>
-          {`type PopupStackItem = {
-  id: string;
-};`}
-        </pre>
+        <CodePreview code={typeCode} highlighted={highlightedType} />
 
-        <ul style={{ marginTop: '2rem' }}>
+        <ul style={{ marginTop: 20 }}>
           <li>Opening a popup pushes it onto the stack.</li>
           <li>Closing removes it from the stack.</li>
           <li>The topmost popup is always the active one.</li>
@@ -147,7 +154,7 @@ Trigger / Content / Close`}
         </p>
 
         <pre
-          style={{ marginBottom: '2rem' }}
+          style={{ marginBottom: 20 }}
         >{`"modal" | "drawer-left" | "drawer-right"`}</pre>
 
         <p>
@@ -181,14 +188,9 @@ Trigger / Content / Close`}
           unintended closures when multiple overlays are present.
         </p>
 
-        <pre style={{ marginBottom: 20 }}>
-          {`useOverlay(containerRef, {
-  isOpen,
-  onClose,
-});`}
-        </pre>
+        <CodePreview code={overlayCode} highlighted={highlightedOverlay} />
 
-        <p>
+        <p style={{ marginTop: 20 }}>
           The overlay logic is encapsulated in a reusable hook, which handles
           outside clicks and escape key interactions while respecting the popup
           stack.
@@ -202,9 +204,9 @@ Trigger / Content / Close`}
         </p>
       </DocsSection>
 
-      {/* <DocsSection id='api' title='API'>
-        <CodePreview code={apiCode} highlighted={highlighted} />
-      </DocsSection> */}
+      <DocsSection id='api' title='API'>
+        <CodePreview code={apiCode} highlighted={highlightedApi} />
+      </DocsSection>
 
       <DocsSection id='keyboard' title='Keyboard Interactions'>
         <p>
@@ -283,14 +285,12 @@ Trigger / Content / Close`}
   <Popup.Trigger>Open Modal</Popup.Trigger>
 
   <Popup.Content variant='modal'>
-   <Popup.Header>
-    <Popup.Title>Modal</Popup.Title>
-    <Popup.Close />
-   </Popup.Header>
+    <Popup.Header>
+      <Popup.Title>Modal</Popup.Title>
+      <Popup.Close>X</Popup.Close>
+    </Popup.Header>
 
-   <Popup.Body>
-    Modal Content
-   </Popup.Body>
+    <Popup.Body>Modal Content</Popup.Body>
   </Popup.Content>
 </Popup>`,
             },
@@ -302,17 +302,15 @@ Trigger / Content / Close`}
   </Popup.Trigger>
 
   <Popup.Content variant='modal'>
-   <Popup.Header>
-    <Popup.Title>Modal</Popup.Title>
+    <Popup.Header>
+      <Popup.Title>Modal</Popup.Title>
 
-    <Popup.Close asChild>
-     <button type='button'>X</button>
-    </Popup.Close>
-   </Popup.Header>
+      <Popup.Close asChild>
+        <button type='button'>X</button>
+      </Popup.Close>
+    </Popup.Header>
 
-   <Popup.Body>
-    Modal Content
-   </Popup.Body>
+    <Popup.Body>Modal Content</Popup.Body>
   </Popup.Content>
 </Popup>`,
             },
@@ -372,13 +370,11 @@ Trigger / Content / Close`}
   
   <Popup.Header>
     <Popup.Title>Open</Popup.Title>
-    <Popup.Close />
-    </Popup.Header>
+    <Popup.Close>X</Popup.Close>
+  </Popup.Header>
     
-    <Popup.Content variant='drawer-left'>
-      <Popup.Body>
-        Sidebar Content
-      </Popup.Body>
+  <Popup.Content variant='drawer-left'>
+    <Popup.Body>Sidebar Content</Popup.Body>
   </Popup.Content>
 </Popup>`,
             },
@@ -390,17 +386,15 @@ Trigger / Content / Close`}
   </Popup.Trigger>
 
   <Popup.Content variant='drawer-left'>
-   <Popup.Header>
-    <Popup.Title>Menu</Popup.Title>
+    <Popup.Header>
+      <Popup.Title>Menu</Popup.Title>
 
-    <Popup.Close asChild>
-     <button type='button'>X</button>
-    </Popup.Close>
-   </Popup.Header>
+      <Popup.Close asChild>
+        <button type='button'>X</button>
+      </Popup.Close>
+    </Popup.Header>
 
-   <Popup.Body>
-    Sidebar Content
-   </Popup.Body>
+    <Popup.Body>Sidebar Content</Popup.Body>
   </Popup.Content>
 </Popup>`,
             },
@@ -474,13 +468,11 @@ Trigger / Content / Close`}
   
   <Popup.Header>
     <Popup.Title>Open</Popup.Title>
-    <Popup.Close />
-    </Popup.Header>
+    <Popup.Close>X</Popup.Close>
+  </Popup.Header>
     
-    <Popup.Content variant='drawer-right'>
-      <Popup.Body>
-        Sidebar Content
-      </Popup.Body>
+  <Popup.Content variant='drawer-right'>
+    <Popup.Body>Sidebar Content</Popup.Body>
   </Popup.Content>
 </Popup>`,
             },
@@ -492,17 +484,15 @@ Trigger / Content / Close`}
   </Popup.Trigger>
 
   <Popup.Content variant='drawer-right'>
-   <Popup.Header>
-    <Popup.Title>Menu</Popup.Title>
+    <Popup.Header>
+      <Popup.Title>Menu</Popup.Title>
 
-    <Popup.Close asChild>
-     <button type='button'>X</button>
-    </Popup.Close>
-   </Popup.Header>
+      <Popup.Close asChild>
+        <button type='button'>X</button>
+      </Popup.Close>
+    </Popup.Header>
 
-   <Popup.Body>
-    Sidebar Content
-   </Popup.Body>
+    <Popup.Body>Sidebar Content</Popup.Body>
   </Popup.Content>
 </Popup>`,
             },
@@ -577,15 +567,13 @@ Trigger / Content / Close`}
   <Popup.Content variant='modal'>
     <Popup.Header>
      <Popup.Title>First Modal</Popup.Title>
-     <Popup.Close />
+     <Popup.Close>X</Popup.Close>
     </Popup.Header>
 
     <Popup.Trigger>Open Second</Popup.Trigger>
 
     <Popup.Content variant='modal'>
-     <Popup.Body>
-      Nested Popup
-     </Popup.Body>
+     <Popup.Body>Nested Popup</Popup.Body>
     </Popup.Content>
   </Popup.Content>
 </Popup>`,
@@ -594,7 +582,7 @@ Trigger / Content / Close`}
               filename: 'as-child.tsx',
               code: `<Popup>
   <Popup.Trigger asChild>
-   <button type='button'>Open First</button>
+    <button type='button'>Open First</button>
   </Popup.Trigger>
    
   <Popup.Content variant='modal'>

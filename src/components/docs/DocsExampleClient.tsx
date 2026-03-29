@@ -17,6 +17,21 @@ const DocsExampleClient = ({
 
   const active = files[activeFile];
 
+  const getLabel = (filename: string) => {
+    if (filename.endsWith('.tsx')) return 'tsx';
+    if (filename.endsWith('.scss')) return 'scss';
+    if (filename.endsWith('.md')) return 'md';
+  };
+
+  const handlePreviewBtn = () => {
+    setTab('preview');
+    if (tab === 'code') setActiveFile(0);
+  };
+
+  const handleCodeBtn = () => {
+    setTab('code');
+  };
+
   return (
     <div className='docs-example'>
       <h4 className='docs-example__title'>{title}</h4>
@@ -24,7 +39,7 @@ const DocsExampleClient = ({
       <div className='docs-example__tabs'>
         <button
           type='button'
-          onClick={() => setTab('preview')}
+          onClick={handlePreviewBtn}
           className={
             tab === 'preview'
               ? 'docs-example__tabs--btn active'
@@ -36,7 +51,7 @@ const DocsExampleClient = ({
 
         <button
           type='button'
-          onClick={() => setTab('code')}
+          onClick={handleCodeBtn}
           className={
             tab === 'code'
               ? 'docs-example__tabs--btn active'
@@ -66,11 +81,14 @@ const DocsExampleClient = ({
             </div>
 
             {active.filename.endsWith('.md') ? (
-              <MarkdownPreview content={active.code} />
+              <MarkdownPreview
+                content={active.code}
+                label={getLabel(active.filename)}
+              />
             ) : (
               <CodePreview
                 code={active.code}
-                filename={active.filename}
+                label={getLabel(active.filename)}
                 highlighted={active.highlighted}
               />
             )}

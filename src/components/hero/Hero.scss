@@ -8,7 +8,8 @@
   height: calc(100vh - var(--nav-height));
   background-image: linear-gradient(120deg, var(--navy), var(--dark-navy));
   background-size: 50% 50%;
-  border-radius: var(--border-radius);
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
 
   &__container {
     width: 115rem;

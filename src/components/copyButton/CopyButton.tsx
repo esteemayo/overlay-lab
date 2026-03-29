@@ -18,9 +18,18 @@ const CopyButton = ({ code }: { code: string }) => {
   };
 
   return (
-    <button type='button' onClick={handleCopy} className='copy-button'>
-      {isCopied ? <Clipboard /> : <ClipboardOutlined />}
-    </button>
+    <div className='copy-button'>
+      {isCopied && <span className='copy-button__alert'>Copied</span>}
+
+      <button
+        type='button'
+        onClick={handleCopy}
+        className='copy-button__btn'
+        title={!isCopied ? 'Copy Code' : ''}
+      >
+        {isCopied ? <Clipboard /> : <ClipboardOutlined />}
+      </button>
+    </div>
   );
 };
 

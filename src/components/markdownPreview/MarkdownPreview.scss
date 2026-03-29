@@ -2,8 +2,43 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+
   padding: 2rem;
-  // background-color: crimson;
+  transition: var(--transition);
+
+  .copy-button {
+    display: none;
+  }
+
+  &:hover {
+    .copy-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .file-label {
+      display: none;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 3.25rem;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    padding: 2rem;
+    background-color: #011627;
+    border-radius: 1rem;
+  }
 
   h1 {
     margin-bottom: 1rem;
@@ -52,7 +87,7 @@
       margin-bottom: 1rem !important;
 
       &::before {
-        content: '▪' !important;
+        content: '◦' !important;
         position: absolute;
         left: 0;
         font-size: 100%;
@@ -65,7 +100,7 @@
   code {
     font-size: 0.85rem;
     padding: 2px 0.6rem;
-    background-color: #161b22;
+    background-color: #042036;
     border-radius: var(--border-radius);
   }
 }

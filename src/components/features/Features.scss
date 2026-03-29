@@ -4,6 +4,9 @@
   display: flex;
   justify-content: center;
 
+  background-image: linear-gradient(120deg, var(--navy), var(--dark-navy));
+  background-size: 50% 50%;
+
   &__container {
     width: 115rem;
     padding: 10rem 0;

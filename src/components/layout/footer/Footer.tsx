@@ -10,10 +10,17 @@ const Footer = () => {
         role='group'
         aria-label='Footer content'
       >
-        <p className='footer__text' role='paragraph'>
-          &copy; {year}{' '}
+        <p className='footer__text'>
+          Built and designed by{' '}
           <a href='#' target='_blank' rel='noopener noreferrer'>
             Emmanuel Adebayo.
+          </a>
+        </p>
+
+        <p className='footer__text'>
+          &copy; {year}{' '}
+          <a href='#' target='_blank' rel='noopener noreferrer'>
+            OverlayLab.
           </a>{' '}
           All rights reserved.
         </p>

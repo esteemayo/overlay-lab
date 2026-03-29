@@ -1,5 +1,5 @@
 export interface CodePreviewProps {
   code: string;
-  filename?: string;
+  label?: string;
   highlighted: string;
 }

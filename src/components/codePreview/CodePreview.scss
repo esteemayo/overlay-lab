@@ -5,11 +5,24 @@
   background-size: 100% 100%;
   background-repeat: no-repeat;
   box-shadow: 0 1rem 3rem -1.5rem var(--navy-shadow);
-  // border-radius: 1rem;
+  border-radius: 1rem;
   overflow-x: auto;
+  transition: var(--transition);
 
-  &.is-markdown {
-    border-left: 3px solid #60a5fa;
+  .copy-button {
+    display: none;
+  }
+
+  &:hover {
+    .copy-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .file-label {
+      display: none;
+    }
   }
 
   pre {
@@ -24,6 +37,7 @@
     align-items: center;
     justify-content: space-between;
 
+    height: 3.25rem;
     margin-bottom: 1rem;
   }
 }
