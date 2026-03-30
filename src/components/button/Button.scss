@@ -1,9 +1,14 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/responsive' as bp;
 
 .button {
   &.main {
     margin-top: 4rem;
     @include button($y: -0.7rem);
+
+    @include bp.sm {
+      margin-top: 2rem;
+    }
   }
 
   &.submit {

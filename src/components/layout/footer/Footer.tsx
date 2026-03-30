@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import './Footer.scss';
 
 const Footer = () => {
@@ -18,11 +19,7 @@ const Footer = () => {
         </p>
 
         <p className='footer__text'>
-          &copy; {year}{' '}
-          <a href='#' target='_blank' rel='noopener noreferrer'>
-            OverlayLab.
-          </a>{' '}
-          All rights reserved.
+          &copy; {year} <Link href='/'>OverlayLab.</Link> All rights reserved.
         </p>
       </div>
     </footer>

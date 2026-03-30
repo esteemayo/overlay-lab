@@ -32,10 +32,18 @@ const overlayCode = `useOverlay(containerRef, {
   onClose,
 });`;
 
+const focusTrapCode = `useFocusTrap(containerRef, isOpen);`;
+
+const focusableCode = `const focusable = container.querySelectorAll(
+  'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+);`;
+
 const DocsContent = async () => {
-  const highlightedType = await highlightCode(typeCode);
-  const highlightedApi = await highlightCode(apiCode);
   const highlightedOverlay = await highlightCode(overlayCode);
+  const highlightedApi = await highlightCode(apiCode);
+  const highlightedFocusTrapCode = await highlightCode(focusTrapCode);
+  const highlightedType = await highlightCode(typeCode);
+  const highlightedFocusableCode = await highlightCode(focusableCode);
 
   return (
     <main className='docs-content'>
@@ -226,15 +234,19 @@ Trigger / Content / Close`}
           interactive elements without leaving the popup context.
         </p>
 
-        <pre style={{ marginBottom: 20 }}>
-          {`useFocusTrap(containerRef, isOpen);`}
-        </pre>
+        <div style={{ marginBottom: 20 }}>
+          <CodePreview
+            code={focusTrapCode}
+            highlighted={highlightedFocusTrapCode}
+          />
+        </div>
 
-        <pre style={{ marginBottom: 20 }}>
-          {`const focusable = container.querySelectorAll(
-  'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-);`}
-        </pre>
+        <div style={{ marginBottom: 20 }}>
+          <CodePreview
+            code={focusableCode}
+            highlighted={highlightedFocusableCode}
+          />
+        </div>
 
         <p>
           The focus trap is implemented using a custom hook that manages

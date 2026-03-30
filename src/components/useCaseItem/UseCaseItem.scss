@@ -1,3 +1,5 @@
+@use '../../styles/responsive' as bp;
+
 .use-case-item {
   text-transform: initial;
   font-size: 100%;
@@ -5,6 +7,10 @@
   color: var(--lightest-slate);
   position: relative;
   transition: var(--transition);
+
+  @include bp.sm {
+    padding-left: 2rem;
+  }
 
   &:not(:last-child) {
     margin-bottom: 1rem;

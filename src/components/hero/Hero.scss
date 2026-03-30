@@ -1,4 +1,5 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/responsive' as bp;
 
 .hero {
   display: flex;
@@ -28,16 +29,25 @@
     text-transform: initial;
     text-rendering: optimizeLegibility;
     font-weight: 700;
-    font-size: var(--fz-heading);
+    font-size: clamp(2.8rem, 5vw, var(--fz-heading));
     margin-bottom: 4rem;
     line-height: 1.1;
 
     @include text-heading();
+
+    @include bp.sm {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
   }
 
   &__wrapper {
     width: 60%;
     text-align: center;
+
+    @include bp.sm {
+      width: 100%;
+    }
 
     &--desc,
     &--subdesc {
@@ -73,5 +83,9 @@
   &__btn {
     margin-top: 4rem;
     @include button($y: -0.7rem);
+
+    @include bp.sm {
+      margin-top: 2rem;
+    }
   }
 }

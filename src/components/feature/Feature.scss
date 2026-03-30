@@ -1,4 +1,5 @@
 @use '../../styles/mixins' as *;
+@use '../../styles/responsive' as bp;
 
 .feature {
   display: flex;

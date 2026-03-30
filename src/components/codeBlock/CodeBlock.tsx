@@ -4,7 +4,7 @@ const CodeBlock = ({ highlighted }: { highlighted: string }) => {
   return (
     <div className='code-block'>
       <div
-        className='code-block__dark'
+        className='code-block__container'
         dangerouslySetInnerHTML={{ __html: highlighted }}
       />
     </div>

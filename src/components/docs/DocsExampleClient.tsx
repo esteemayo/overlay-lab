@@ -32,6 +32,31 @@ const DocsExampleClient = ({
     setTab('code');
   };
 
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLButtonElement>,
+    index: number,
+  ) => {
+    let nextIndex = index;
+    const lastIndex = files.length - 1;
+
+    if (e.key === 'ArrowRight') {
+      nextIndex = index === lastIndex ? 0 : index + 1;
+    } else if (e.key === 'ArrowLeft') {
+      nextIndex = index === 0 ? lastIndex : index - 1;
+    } else if (e.key === 'Home') {
+      nextIndex = 0;
+    } else if (e.key === 'End') {
+      nextIndex = lastIndex;
+    } else {
+      return;
+    }
+
+    e.preventDefault();
+
+    // const nextFile = files[nextIndex];
+    setActiveFile(nextIndex);
+  };
+
   return (
     <div className='docs-example'>
       <h4 className='docs-example__title'>{title}</h4>
@@ -73,6 +98,7 @@ const DocsExampleClient = ({
                   key={file.filename}
                   type='button'
                   onClick={() => setActiveFile(index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
                   className={activeFile === index ? 'active' : ''}
                 >
                   {file.filename}
