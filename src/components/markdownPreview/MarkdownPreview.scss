@@ -1,3 +1,5 @@
+@use '../../styles/responsive' as bp;
+
 .markdown-preview {
   display: flex;
   flex-direction: column;

@@ -1,3 +1,5 @@
+@use '../../styles/responsive' as bp;
+
 .code-block {
   display: flex;
   flex-direction: column;
@@ -5,6 +7,11 @@
 
   &__container {
     pre {
+      @include bp.sm {
+        width: 35rem;
+        overflow-x: auto;
+      }
+
       &:focus {
         outline: none;
       }

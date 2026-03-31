@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import CodePreview from '../codePreview/CodePreview';
+import Tabs from '../ui/tabs/Tabs';
 import MarkdownPreview from '../markdownPreview/MarkdownPreview';
 
 import { DocsExampleClientProps } from '@/types/docsExampleClientType';
@@ -30,31 +31,6 @@ const DocsExampleClient = ({
 
   const handleCodeBtn = () => {
     setTab('code');
-  };
-
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLButtonElement>,
-    index: number,
-  ) => {
-    let nextIndex = index;
-    const lastIndex = files.length - 1;
-
-    if (e.key === 'ArrowRight') {
-      nextIndex = index === lastIndex ? 0 : index + 1;
-    } else if (e.key === 'ArrowLeft') {
-      nextIndex = index === 0 ? lastIndex : index - 1;
-    } else if (e.key === 'Home') {
-      nextIndex = 0;
-    } else if (e.key === 'End') {
-      nextIndex = lastIndex;
-    } else {
-      return;
-    }
-
-    e.preventDefault();
-
-    // const nextFile = files[nextIndex];
-    setActiveFile(nextIndex);
   };
 
   return (
@@ -92,19 +68,11 @@ const DocsExampleClient = ({
           <div className='docs-example__preview'>{children}</div>
         ) : (
           <div className='docs-example__code'>
-            <div className='docs-example__file-tabs'>
-              {files.map((file, index) => (
-                <button
-                  key={file.filename}
-                  type='button'
-                  onClick={() => setActiveFile(index)}
-                  onKeyDown={(e) => handleKeyDown(e, index)}
-                  className={activeFile === index ? 'active' : ''}
-                >
-                  {file.filename}
-                </button>
-              ))}
-            </div>
+            <Tabs
+              tabs={files}
+              activeIndex={activeFile}
+              setActiveIndex={setActiveFile}
+            />
 
             {active.filename.endsWith('.md') ? (
               <MarkdownPreview
