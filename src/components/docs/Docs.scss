@@ -2,15 +2,79 @@
 @use '../../styles/responsive' as bp;
 
 .docs {
+  &-menubar {
+    display: none;
+
+    @media (max-width: 67.5em) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--lightest-slate);
+    }
+
+    &__container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    &__toggle {
+      &--btn {
+        display: flex;
+        align-items: center;
+
+        border: none;
+        background-color: transparent;
+        color: var(--lightest-slate);
+        cursor: pointer;
+
+        svg {
+          width: 2rem;
+          height: 2rem;
+          color: currentColor;
+        }
+      }
+
+      &--text {
+        font-weight: 600;
+        font-size: var(--fz-sm);
+      }
+    }
+
+    &__text,
+    &__header {
+      font-weight: 600;
+      font-size: var(--fz-sm);
+    }
+
+    &__header {
+      text-transform: capitalize;
+      text-rendering: optimizeLegibility;
+      line-height: 1.1;
+    }
+  }
+
   &-layout {
     display: flex;
     justify-content: center;
     padding: 12rem 0 10rem;
     background-color: var(--navy);
-    background-image: linear-gradient(90deg, var(--navy), var(--dark-navy));
+    // background-image: linear-gradient(90deg, var(--navy), var(--dark-navy));
     background-size: 50% 50%;
     border-top-left-radius: var(--border-radius);
     border-top-right-radius: var(--border-radius);
+    background-color: crimson;
+
+    @media (max-width: 67.5em) {
+      flex-direction: column;
+      align-items: center;
+      padding: 6rem 0;
+    }
 
     @include bp.sm {
       padding: 8rem 0;
@@ -18,8 +82,13 @@
   }
 
   &-container {
-    width: 110rem;
+    width: 120rem;
     display: flex;
+    background-color: orangered;
+
+    @media (max-width: 67.5em) {
+      width: 88rem;
+    }
   }
 
   &-sidebar {
@@ -34,6 +103,17 @@
     background-size: 25% 25%;
     border: 1px solid #1e293b;
     border-radius: 1rem;
+
+    @media (max-width: 80em) {
+      width: 30%;
+    }
+
+    @media (max-width: 67.5em) {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      z-index: -1;
+    }
 
     h3 {
       display: inline-block;
@@ -96,7 +176,12 @@
     background-size: 50% 50%;
     transition: opacity 0.2s ease;
 
+    @media (max-width: 80em) {
+      width: 70%;
+    }
+
     @include bp.sm {
+      width: 30rem;
       padding: 0;
     }
   }
@@ -145,6 +230,12 @@
       font-size: 1.5rem;
       font-size: 100%;
       color: var(--blue);
+
+      @include bp.sm {
+        width: 30rem;
+        padding: 1rem;
+        overflow-x: auto;
+      }
     }
 
     p,
@@ -281,92 +372,6 @@
 
       .button {
         font-size: var(--fz-xs);
-      }
-    }
-
-    &__code {
-      border-radius: 1rem;
-      background-image: linear-gradient(270deg, var(--navy), var(--dark-navy));
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      overflow: hidden;
-      animation: fadeIn 0.2s ease;
-    }
-
-    &__file-tabs {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      padding: 1rem 0.5rem;
-      border-bottom: 1px solid var(--green-tint);
-
-      button {
-        display: inline-block;
-        text-transform: initial;
-        font-size: var(--fz-xxs);
-        padding: 3px 0.6rem;
-        background-color: transparent;
-        color: var(--light-green);
-        border: 1px solid transparent;
-        border-radius: var(--border-radius);
-        cursor: pointer;
-        position: relative;
-        transition: var(--transition);
-
-        &.active {
-          background-color: var(--green-tint);
-          border-color: var(--green-tint);
-        }
-
-        &:focus,
-        &:focus-visible {
-          outline: none;
-        }
-
-        &:focus-visible {
-          border: none;
-        }
-
-        &:disabled {
-          opacity: 0.75;
-          user-select: none;
-          pointer-events: none;
-        }
-
-        &::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          padding: 2px;
-
-          background-image: linear-gradient(
-            90deg,
-            #6366f1,
-            #8b5cf6,
-            #ec4899,
-            #f59e0b,
-            #6366f1
-          );
-          background-size: 300% 300%;
-          border-radius: inherit;
-          opacity: 0;
-          animation: gradientMove 5s linear infinite;
-
-          -webkit-mask:
-            linear-gradient(#000 0 0) content-box,
-            linear-gradient(#000 0 0);
-          mask:
-            linear-gradient(#000 0 0) content-box,
-            linear-gradient(#000 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-          pointer-events: none;
-        }
-
-        &:focus-visible::before {
-          opacity: 1;
-        }
       }
     }
   }

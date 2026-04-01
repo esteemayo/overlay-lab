@@ -655,7 +655,7 @@ Trigger / Content / Close`}
 
             <Popup.Content variant='modal'>
               <Popup.Header>
-                <Popup.Title>Second</Popup.Title>
+                <Popup.Title>First</Popup.Title>
 
                 <Popup.Close>
                   <Xmark />

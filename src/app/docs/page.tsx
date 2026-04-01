@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import DocsLayout from '@/components/docs/DocsLayout';
+import DocsClient from '@/components/docs/DocsClient';
 
 export const metadata: Metadata = {
   title: 'Documentation',
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const Docs = () => {
-  return <DocsLayout />;
+  return <DocsClient />;
 };
 
 export default Docs;

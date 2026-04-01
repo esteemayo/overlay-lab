@@ -13,10 +13,7 @@ const DocsExampleClient = ({
   files,
   children,
 }: DocsExampleClientProps) => {
-  const [activeFile, setActiveFile] = useState(0);
   const [tab, setTab] = useState<'preview' | 'code'>('preview');
-
-  const active = files[activeFile];
 
   const getLabel = (filename: string) => {
     if (filename.endsWith('.tsx')) return 'tsx';
@@ -26,12 +23,24 @@ const DocsExampleClient = ({
 
   const handlePreviewBtn = () => {
     setTab('preview');
-    if (tab === 'code') setActiveFile(0);
   };
 
   const handleCodeBtn = () => {
     setTab('code');
   };
+
+  const fileTabs = files.map((file) => ({
+    label: file.filename,
+    content: file.filename.endsWith('.md') ? (
+      <MarkdownPreview content={file.code} label={getLabel(file.filename)} />
+    ) : (
+      <CodePreview
+        code={file.code}
+        label={getLabel(file.filename)}
+        highlighted={file.highlighted}
+      />
+    ),
+  }));
 
   return (
     <div className='docs-example'>
@@ -67,26 +76,7 @@ const DocsExampleClient = ({
         {tab === 'preview' ? (
           <div className='docs-example__preview'>{children}</div>
         ) : (
-          <div className='docs-example__code'>
-            <Tabs
-              tabs={files}
-              activeIndex={activeFile}
-              setActiveIndex={setActiveFile}
-            />
-
-            {active.filename.endsWith('.md') ? (
-              <MarkdownPreview
-                content={active.code}
-                label={getLabel(active.filename)}
-              />
-            ) : (
-              <CodePreview
-                code={active.code}
-                label={getLabel(active.filename)}
-                highlighted={active.highlighted}
-              />
-            )}
-          </div>
+          <Tabs tabs={fileTabs} />
         )}
       </div>
     </div>

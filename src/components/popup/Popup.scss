@@ -1,5 +1,6 @@
-@use '../../styles/animation';
 @use '../../styles/mixins' as *;
+@use '../../styles/animation';
+@use '../../styles/responsive' as bp;
 
 .popup {
   position: fixed;
@@ -62,6 +63,94 @@
       z-index: 1000;
       overflow: hidden;
       transition: var(--transition);
+
+      @media only screen and (max-width: 56.25em) {
+        width: 53rem;
+      }
+
+      @media only screen and (max-width: 51.25em) {
+        width: 55rem;
+      }
+
+      @media only screen and (max-width: 34.375em) {
+        width: 50rem;
+      }
+
+      @include bp.sm {
+        width: 48rem;
+      }
+
+      @media only screen and (max-width: 28.125em) {
+        width: 45rem;
+      }
+
+      @media only screen and (max-width: 26.875em) {
+        width: 43rem;
+      }
+
+      @media only screen and (max-width: 25em) {
+        width: 40rem;
+      }
+
+      @media only screen and (max-width: 24.375em) {
+        width: 39rem;
+      }
+
+      @media only screen and (max-width: 23.75em) {
+        width: 38rem;
+      }
+
+      @media only screen and (max-width: 23.4375em) {
+        width: 37.5rem;
+      }
+
+      @media only screen and (max-width: 22.5em) {
+        width: 36rem;
+      }
+
+      @media only screen and (max-width: 21.5em) {
+        width: 34rem;
+      }
+
+      @media only screen and (max-width: 20em) {
+        width: 32rem;
+      }
+
+      @media only screen and (max-width: 18.75em) {
+        width: 30rem;
+      }
+
+      @media only screen and (max-width: 18.125em) {
+        width: 29rem;
+      }
+
+      @media only screen and (max-width: 17.5em) {
+        width: 28rem;
+        padding: 0.8rem;
+      }
+
+      @media only screen and (max-width: 16.875em) {
+        width: 31rem;
+      }
+
+      @media only screen and (max-width: 16.25em) {
+        width: 30rem;
+      }
+
+      @media screen and (min-width: 106.25em) {
+        width: 55rem;
+        padding: 3.5rem;
+      }
+
+      @media screen and (min-width: 112.5em) {
+        width: 60rem;
+        padding: 4rem;
+      }
+
+      @media screen and (min-width: 125em) {
+        width: 65rem;
+        padding: 4.5rem;
+      }
 
       &:hover {
         transform: translateY(-3px);

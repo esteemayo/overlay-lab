@@ -1,60 +1,62 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { useRovingFocus } from '@/hooks/useRovingFocus';
+
 import './Tabs.scss';
 
-const Tabs = ({ tabs, activeIndex, setActiveIndex }) => {
-  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+type TabItem = {
+  label: string;
+  content: React.ReactNode;
+};
 
-  // const [activeIndex, setActiveIndex] = useState(0);
+type TabsProps = {
+  tabs: TabItem[];
+  orientation?: 'horizontal' | 'vertical';
+  activationMode?: 'automatic' | 'manual';
+};
 
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLButtonElement>,
-    index: number,
-  ) => {
-    let newIndex = index;
-    const lastIndex = tabs.length - 1;
+const Tabs = ({
+  tabs,
+  orientation = 'horizontal',
+  activationMode = 'automatic',
+}: TabsProps) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-    if (e.key === 'ArrowRight') {
-      newIndex = index === lastIndex ? 0 : index + 1;
-    } else if (e.key === 'ArrowLeft') {
-      newIndex = index === 0 ? lastIndex : index - 1;
-    } else if (e.key === 'Home') {
-      newIndex = 0;
-    } else if (e.key === 'End') {
-      newIndex = lastIndex;
-    } else {
-      return;
-    }
-
-    e.preventDefault();
-
-    setActiveIndex(newIndex);
-
-    if (newIndex >= 0 && newIndex < tabRefs.current.length) {
-      const nextEl = tabRefs.current[newIndex];
-      if (nextEl) nextEl.focus();
-    }
-  };
+  const { getRovingProps } = useRovingFocus({
+    length: tabs.length,
+    orientation,
+    activationMode,
+    onChange: setActiveIndex,
+  });
 
   return (
-    <div className='tabs' role='tablist'>
-      {tabs.map((tab, index) => (
-        <button
-          key={tab.filename}
-          ref={(el) => {
-            tabRefs.current[index] = el;
-          }}
-          type='button'
-          onClick={() => setActiveIndex(index)}
-          onKeyDown={(e) => handleKeyDown(e, index)}
-          className={activeIndex === index ? 'active' : ''}
-          role='tab'
-          tabIndex={activeIndex === index ? 0 : -1}
-        >
-          {tab.filename}
-        </button>
-      ))}
+    <div className='tabs'>
+      <div
+        className={`tabs__list tabs__list--${orientation}`}
+        role='tablist'
+        aria-orientation={orientation}
+      >
+        {tabs.map((tab, index) => (
+          <button
+            key={tab.label}
+            type='button'
+            onClick={() => setActiveIndex(index)}
+            className={
+              activeIndex === index ? 'tabs__item active' : 'tabs__item'
+            }
+            {...getRovingProps(index, activeIndex)}
+            role='tab'
+            aria-selected={activeIndex === index}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      <div className='tabs__panel' role='tabpanel'>
+        {tabs[activeIndex].content}
+      </div>
     </div>
   );
 };
