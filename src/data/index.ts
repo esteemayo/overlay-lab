@@ -1,5 +1,18 @@
 import { FeatureType, UseCaseType } from '@/types';
 
+export const sections = [
+  { id: 'introduction', label: 'Introduction' },
+  { id: 'why', label: 'Why This Exists' },
+  { id: 'architecture', label: 'Architecture' },
+  { id: 'decisions', label: 'Design Decisions' },
+  { id: 'stack', label: 'Stack System' },
+  { id: 'variants', label: 'Variants' },
+  { id: 'overlay', label: 'Overlay Behavior' },
+  { id: 'api', label: 'API' },
+  { id: 'keyboard', label: 'Keyboard' },
+  { id: 'examples', label: 'Examples' },
+];
+
 export const features: FeatureType[] = [
   {
     id: 'stack-based-state-management',
