@@ -1,12 +1,14 @@
 @use '../../../styles/mixins' as *;
 @use '../../../styles/responsive' as bp;
 
-.docs {
+.documentation {
   display: flex;
   justify-content: center;
 
   background-image: linear-gradient(120deg, var(--navy), var(--dark-navy));
-  background-size: 70% 30%;
+  background-size: 100% 45%;
+  background-position: bottom center;
+  background-repeat: no-repeat;
 
   &__container {
     width: 80rem;

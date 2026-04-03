@@ -20,14 +20,14 @@ const Footer = () => {
         </nav>
 
         <p className='footer__text'>
+          &copy; {year} <Link href='/'>OverlayLab.</Link> All rights reserved.
+        </p>
+
+        <p className='footer__text'>
           Designed and built by{' '}
           <a href='#' target='_blank' rel='noopener noreferrer'>
             Emmanuel Adebayo.
           </a>
-        </p>
-
-        <p className='footer__text'>
-          &copy; {year} <Link href='/'>OverlayLab.</Link> All rights reserved.
         </p>
       </div>
     </footer>

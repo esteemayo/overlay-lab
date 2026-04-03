@@ -5,7 +5,7 @@
   &-menubar {
     display: none;
 
-    @media (max-width: 80em) {
+    @media (max-width: 81.25em) {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -164,15 +164,10 @@
   &-layout {
     display: flex;
     justify-content: center;
-    padding: 12rem 0 10rem;
-    background-color: var(--navy);
-    // background-image: linear-gradient(90deg, var(--navy), var(--dark-navy));
-    background-size: 50% 50%;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
+    padding: 10rem 0;
     // background-color: crimson;
 
-    @media (max-width: 80em) {
+    @media (max-width: 81.25em) {
       flex-direction: column;
       align-items: center;
       padding: 6rem 0;
@@ -184,84 +179,26 @@
   }
 
   &-container {
-    width: 120rem;
+    width: 100%;
     display: flex;
-    // background-color: orangered;
+  }
 
-    @media (max-width: 80em) {
-      width: 90rem;
-    }
+  &-sidebar,
+  &-content {
+    position: relative;
 
-    @media (max-width: 76.25em) {
-      width: 82rem;
-    }
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
 
-    @media (max-width: 68.75em) {
-      width: 100%;
-    }
+      background-image: radial-gradient(
+        circle at 20% 30%,
+        rgba(255, 255, 255, 0.04),
+        transparent 25%
+      );
 
-    @media (max-width: 53.3125em) {
-      width: 65rem;
-    }
-
-    @include bp.md {
-      width: 60rem;
-    }
-
-    @media (max-width: 40.625em) {
-      width: 55rem;
-    }
-
-    @media (max-width: 37.5em) {
-      width: 50rem;
-    }
-
-    @media (max-width: 34.375em) {
-      width: 45rem;
-    }
-
-    @media (max-width: 31.25em) {
-      width: 40rem;
-    }
-
-    @media (max-width: 26.875em) {
-      width: 100%;
-    }
-
-    @media (max-width: 25em) {
-      width: 35rem;
-    }
-
-    @media (max-width: 24.375em) {
-      width: 34rem;
-    }
-
-    @media (max-width: 23.75em) {
-      width: 33rem;
-    }
-
-    @media (max-width: 23.4375em) {
-      width: 32.5rem;
-    }
-
-    @media (max-width: 22.5em) {
-      width: 31rem;
-    }
-
-    @media (max-width: 21.5em) {
-      width: 30rem;
-    }
-
-    @media (max-width: 20em) {
-      width: 27rem;
-    }
-
-    @media (max-width: 18.75em) {
-      width: 25rem;
-    }
-
-    @media (max-width: 17.5em) {
-      width: 23rem;
+      pointer-events: none;
     }
   }
 
@@ -273,16 +210,15 @@
     top: 0;
     height: 100vh;
     background-color: var(--navy);
-    background-image: linear-gradient(90deg, var(--navy), var(--dark-navy));
-    background-size: 25% 25%;
+    background-image: linear-gradient(120deg, var(--navy), var(--dark-navy));
+    background-size: 60% 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
     border: 1px solid #1e293b;
-    border-radius: 1rem;
+    border-top-left-radius: var(--border-radius);
+    border-bottom-left-radius: var(--border-radius);
 
-    @media (max-width: 80em) {
-      width: 30%;
-    }
-
-    @media (max-width: 80em) {
+    @media (max-width: 81.25em) {
       display: none;
       visibility: hidden;
       opacity: 0;
@@ -340,9 +276,13 @@
     flex: 1;
 
     padding: 4rem;
-    max-width: 90rem;
-    background-image: linear-gradient(270deg, var(--navy), var(--dark-navy));
-    background-size: 50% 50%;
+    // max-width: 90rem;
+    background-image: linear-gradient(120deg, var(--navy), var(--dark-navy));
+    background-size: 100% 45%;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    border-top-right-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
     transition: opacity 0.2s ease;
 
     @media (max-width: 80em) {

@@ -11,7 +11,10 @@
   }
 
   &__btn {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border: none;
     padding: 0.5rem 1rem;
     background-color: transparent;
@@ -20,7 +23,12 @@
     cursor: pointer;
     position: relative;
 
-    &:focus {
+    @include bp.sm {
+      padding: 0 0.5rem;
+    }
+
+    &:focus,
+    &:focus-visible {
       outline: none;
     }
 

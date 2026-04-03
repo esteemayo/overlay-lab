@@ -1,15 +1,17 @@
-import Features from './features/Features';
-import CTA from './CTA/CTA';
-import Docs from './sections/docs/Docs';
-import Popup from './popup';
-import Overview from './overview/Overview';
-import Hero from './hero/Hero';
-import UseCases from './useCases/UseCases';
-import TransferFlow from './TransferFlow';
+import Features from '../features/Features';
+import CTA from '../CTA/CTA';
+import Documentation from '../sections/documentation/Documentation';
+import Popup from '../popup';
+import Overview from '../overview/Overview';
+import Hero from '../hero/Hero';
+import UseCases from '../useCases/UseCases';
+import TransferFlow from '../TransferFlow';
+
+import './Home.scss';
 
 const Home = () => {
   return (
-    <div>
+    <div className='home'>
       <script
         type='application/json'
         dangerouslySetInnerHTML={{
@@ -32,7 +34,6 @@ const Home = () => {
 
       <Popup>
         <Hero />
-
         <Overview />
 
         <Popup.Content>
@@ -42,7 +43,7 @@ const Home = () => {
 
       <Features />
       <UseCases />
-      <Docs />
+      <Documentation />
       <CTA />
     </div>
   );

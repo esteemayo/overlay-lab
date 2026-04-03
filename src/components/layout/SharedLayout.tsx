@@ -2,7 +2,7 @@
 
 import Footer from './footer/Footer';
 import Popup from '../popup';
-import Sidebar from './sidebar/Sidebar';
+import Sidebar from './Sidebar';
 import Navbar from './navbar/Navbar';
 
 import CursorGlow from '../ui/cursorGlow/CursorGlow';

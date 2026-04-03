@@ -16,7 +16,12 @@
 
   &.scrolled {
     background-color: rgba(10, 25, 47, 0.85);
+    backdrop-filter: blur(1rem);
     transform: translateY(0);
+
+    @include bp.sm {
+      backdrop-filter: blur(0.6rem);
+    }
   }
 
   &.hidden {
@@ -29,8 +34,10 @@
     height: var(--nav-height);
     padding: inherit;
     background-color: var(--dark-navy);
-    background-image: linear-gradient(270deg, var(--navy), var(--dark-navy));
-    background-size: 60% 40%;
+    background-image: linear-gradient(to bottom, var(--navy), var(--dark-navy));
+    // background-image: linear-gradient(180deg, var(--dark-navy), transparent);
+    background-size: 100% 100%;
+    background-position: top center;
     box-shadow: 0 1rem 3rem -1rem var(--navy-shadow);
     border-radius: 10rem;
 
@@ -40,6 +47,7 @@
 
     @include bp.sm {
       width: 100%;
+      height: 5rem;
     }
   }
 

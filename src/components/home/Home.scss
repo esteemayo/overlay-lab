@@ -1,0 +1,33 @@
+@use '../../styles/responsive' as bp;
+
+.home {
+  .hero,
+  .overview,
+  .features,
+  .use-cases,
+  .docs,
+  .cta {
+    @include bp.md {
+      background-size: 100% 100%;
+      background-position: center;
+    }
+  }
+
+  section {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+
+      background-image: radial-gradient(
+        circle at 20% 30%,
+        rgba(255, 255, 255, 0.04),
+        transparent 25%
+      );
+
+      pointer-events: none;
+    }
+  }
+}

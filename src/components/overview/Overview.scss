@@ -6,7 +6,9 @@
   justify-content: center;
 
   background-image: linear-gradient(120deg, var(--navy), var(--dark-navy));
-  background-size: 80% 20%;
+  background-size: 60% 100%;
+  background-position: left center;
+  background-repeat: no-repeat;
 
   &__container {
     width: 80rem;
