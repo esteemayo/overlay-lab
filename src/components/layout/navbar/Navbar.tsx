@@ -11,6 +11,7 @@ import './Navbar.scss';
 
 const Navbar = () => {
   const pathname = usePathname();
+  const isDocsPage = pathname.startsWith('/docs');
 
   return (
     <nav className='navbar' role='navigation' aria-label='Main navigation'>
@@ -21,7 +22,10 @@ const Navbar = () => {
       >
         <Logo />
 
-        <ul className='navbar__list' role='menubar'>
+        <ul
+          className={isDocsPage ? 'navbar__list hide' : 'navbar__list'}
+          role='menubar'
+        >
           <li className='navbar__list--item' role='menuitem'>
             {pathname === '/' ? (
               <a href='#docs'>Docs</a>
