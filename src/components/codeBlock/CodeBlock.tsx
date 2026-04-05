@@ -1,9 +1,17 @@
+import { CodeBlockProps } from '@/types/codeBlockType';
 import './CodeBlock.scss';
 
-const CodeBlock = ({ highlighted }: { highlighted: string }) => {
+const CodeBlock = ({ label, highlighted }: CodeBlockProps) => {
+  const language =
+    label === 'tsx' ? 'TypeScript' : label === 'scss' ? 'SCSS' : 'Md';
+
   return (
-    <div className='code-block'>
-      <div
+    <div
+      className='code-block'
+      aria-label={`${language} code example`}
+      tabIndex={0}
+    >
+      <code
         className='code-block__container'
         dangerouslySetInnerHTML={{ __html: highlighted }}
       />

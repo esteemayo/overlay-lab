@@ -15,7 +15,7 @@
 
   &__container {
     width: 80rem;
-    padding: 10rem 0;
+    padding: 10rem 3rem;
     text-align: center;
 
     display: flex;
@@ -42,7 +42,6 @@
 
     @include bp.sm {
       width: 100%;
-      margin-bottom: 2rem;
     }
   }
 
@@ -55,7 +54,28 @@
 
     @include bp.sm {
       width: 100%;
-      margin-bottom: 2rem;
+    }
+  }
+
+  .code-preview {
+    @include bp.sm {
+      width: 33rem;
+    }
+
+    @media (max-width: 25em) {
+      width: 32rem;
+    }
+
+    @media (max-width: 24.375em) {
+      width: 31rem;
+    }
+
+    @media (max-width: 23.4375em) {
+      width: 29rem;
+    }
+
+    @media (max-width: 22.5em) {
+      width: 27rem;
     }
   }
 
@@ -133,7 +153,6 @@
 
     @include bp.sm {
       flex-direction: column;
-      margin-top: 2rem;
     }
   }
 
@@ -234,9 +253,5 @@
     margin-top: 4rem;
     font-size: var(--fz-sm);
     color: var(--slate);
-
-    @include bp.sm {
-      margin-top: 2rem;
-    }
   }
 }

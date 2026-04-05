@@ -5,7 +5,11 @@
   flex-direction: column;
   justify-content: center;
 
+  overflow: auto;
+
   &__container {
+    white-space: pre;
+
     pre {
       @include bp.sm {
         width: 35rem;

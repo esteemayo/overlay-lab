@@ -14,31 +14,30 @@ const Navbar = () => {
   const isDocsPage = pathname.startsWith('/docs');
 
   return (
-    <nav className='navbar' role='navigation' aria-label='Main navigation'>
-      <div
-        className='navbar__container'
-        role='group'
-        aria-label='Navigation items'
-      >
+    <nav className='navbar' aria-label='Main navigation'>
+      <div className='navbar__container'>
         <Logo />
 
         <ul
           className={isDocsPage ? 'navbar__list hide' : 'navbar__list'}
-          role='menubar'
+          hidden={isDocsPage}
         >
-          <li className='navbar__list--item' role='menuitem'>
+          <li className='navbar__list--item'>
             {pathname === '/' ? (
-              <a href='#docs'>Docs</a>
+              <Link href='/#docs'>Docs</Link>
             ) : (
-              <Link href='/docs'>Docs</Link>
+              <Link href='/docs' aria-current={isDocsPage ? 'page' : undefined}>
+                Docs
+              </Link>
             )}
           </li>
 
-          <li className='navbar__list--item' role='menuitem'>
+          <li className='navbar__list--item'>
             <a
               href='https://github.com/esteemayo/overlay-lab.git'
               target='_blank'
               rel='noopener noreferrer'
+              aria-label='View OverlayLab on GitHub (opens in a new tab)'
             >
               GitHub
             </a>
@@ -46,7 +45,7 @@ const Navbar = () => {
         </ul>
 
         <Popup.Trigger asChild>
-          <MenuButton />
+          <MenuButton aria-haspopup='menu' aria-controls='mobile-menu' />
         </Popup.Trigger>
       </div>
     </nav>

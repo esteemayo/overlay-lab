@@ -5,9 +5,9 @@ import './Hero.scss';
 
 const Hero = () => {
   return (
-    <header className='hero'>
+    <header className='hero' aria-labelledby='hero-heading'>
       <div className='hero__container'>
-        <h1 className='hero__heading'>
+        <h1 id='hero-heading' className='hero__heading'>
           OverlayLab - Headless Popup System for React and Next.js
         </h1>
 
@@ -18,6 +18,7 @@ const Hero = () => {
               href='https://react.dev'
               target='_blank'
               rel='noopener noreferrer'
+              aria-label='React website (opens in a new tab)'
             >
               React
             </a>{' '}
@@ -26,6 +27,7 @@ const Hero = () => {
               href='https://nextjs.org'
               target='_blank'
               rel='noopener noreferrer'
+              aria-label='Next.js website (opens in a new tab)'
             >
               Next.js
             </a>
@@ -39,7 +41,13 @@ const Hero = () => {
         </div>
 
         <Popup.Trigger asChild>
-          <Button label='Simulate transfer' variant='main' />
+          <Button
+            label='Simulate transfer'
+            variant='main'
+            aria-haspopup='dialog'
+            aria-expanded={false}
+            aria-controls='transfer-dialog'
+          />
         </Popup.Trigger>
       </div>
     </header>

@@ -13,11 +13,15 @@
   }
 
   &:not(:last-child) {
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   &:hover {
     transform: translateX(-7rem);
+
+    @include bp.md {
+      transform: none;
+    }
   }
 
   &::before {

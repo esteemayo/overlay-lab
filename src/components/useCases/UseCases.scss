@@ -13,7 +13,7 @@
   &__container {
     width: 80rem;
     text-align: center;
-    padding: 10rem 0;
+    padding: 10rem 3rem;
 
     display: flex;
     flex-direction: column;
@@ -34,10 +34,6 @@
     margin-bottom: 4rem;
 
     @include text-heading();
-
-    @include bp.sm {
-      margin-bottom: 2rem;
-    }
   }
 
   &__desc {
@@ -49,7 +45,6 @@
 
     @include bp.sm {
       width: 100%;
-      margin-bottom: 2rem;
     }
   }
 

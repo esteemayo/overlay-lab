@@ -19,21 +19,39 @@ const CTA = async () => {
   const highlighted = await highlightCode(code);
 
   return (
-    <section className='cta'>
+    <section
+      className='cta'
+      aria-labelledby='cta-heading'
+      aria-describedby='cta-desc'
+    >
       <div className='cta__container'>
-        <h2 className='cta__heading'>
+        <h2 id='cta-heading' className='cta__heading'>
           Understand How OverlayLab Works Under the Hood
         </h2>
 
-        <p className='cta__desc'>
+        <p id='cta-desc' className='cta__desc'>
           Explore the architecture, stack system, and accessibility patterns
           used to build a scalable popup system from scratch.
         </p>
 
-        <CodePreview code={code} highlighted={highlighted} />
+        <div
+          className='cta__code'
+          role='region'
+          aria-labelledby='code-example-heading'
+        >
+          <h3 id='code-example-heading' className='visually-hidden'>
+            Popup usage example
+          </h3>
+
+          <CodePreview code={code} highlighted={highlighted} />
+        </div>
 
         <div className='cta__actions'>
-          <Link href='/docs' className='cta__btn cta__btn--primary'>
+          <Link
+            href='/docs'
+            className='cta__btn cta__btn--primary'
+            aria-label='Read OverlayLab documentation'
+          >
             Read documentation
           </Link>
 
@@ -42,6 +60,7 @@ const CTA = async () => {
             target='_blank'
             rel='noopener noreferrer'
             className='cta__btn cta__btn--secondary'
+            aria-label='View OverlayLab source code on GitHub (opens in a new tab)'
           >
             View source code
           </a>

@@ -2,23 +2,32 @@ import './Overview.scss';
 
 const Overview = () => {
   return (
-    <section className='overview'>
+    <section className='overview' aria-labelledby='overview-heading'>
       <div className='overview__container'>
-        <h2 className='overview__heading'>
-          Headless Popup System for React and Next.js
+        <h2 id='overview-heading' className='overview__heading'>
+          Headless Popup System
         </h2>
 
         <p className='overview__desc'>
-          OverlayLab is a headless popup system built with React and Next.js. It
-          provides a scalable way to manage modals, drawers, and overlays using
-          a stack-based architecture.
+          OverlayLab provides a scalable way to manage modals, drawers, and
+          overlays using a stack-based architecture.
         </p>
 
-        <p className='overview__subdesc'>
-          Unlike traditional modal implementations, OverlayLab supports multiple
-          overlays, built-in accessibility features like focus trapping, and a
-          composable API using compound components.
-        </p>
+        <ul className='overview__list'>
+          <li className='overview__list--item'>
+            Supports modals, drawers, and overlays
+          </li>
+
+          <li className='overview__list--item'>Stack-based state management</li>
+
+          <li className='overview__list--item'>
+            Focus trapping and accessiblity support
+          </li>
+
+          <li className='overview__list--item'>
+            Composable API with compound components
+          </li>
+        </ul>
       </div>
     </section>
   );
