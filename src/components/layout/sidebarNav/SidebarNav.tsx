@@ -9,26 +9,31 @@ const SidebarNav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className='sidebar-nav'>
-      <ul className='sidebar-nav__list' role='menubar'>
-        <li className='sidebar-nav__item' role='menuitem'>
+    <nav className='sidebar-nav' aria-label='Sidebar navigation'>
+      <ul className='sidebar-nav__list'>
+        <li className='sidebar-nav__item'>
           {pathname === '/' ? (
-            <a href='#docs' className='sidebar-nav__item--link'>
+            <Link href='/#docs' className='sidebar-nav__item--link'>
               Docs
-            </a>
+            </Link>
           ) : (
-            <Link href='/docs' className='sidebar-nav__item--link'>
+            <Link
+              href='/docs'
+              className='sidebar-nav__item--link'
+              aria-current={pathname.startsWith('/docs') ? 'page' : undefined}
+            >
               Docs
             </Link>
           )}
         </li>
 
-        <li className='sidebar-nav__item' role='menuitem'>
+        <li className='sidebar-nav__item'>
           <a
             href='https://github.com/esteemayo/overlay-lab.git'
             target='_blank'
             rel='noopener noreferrer'
             className='sidebar-nav__item--link'
+            aria-label='View OverlayLab on GitHub (opens in a new tab)'
           >
             GitHub
           </a>

@@ -636,7 +636,7 @@ Trigger / Content / Close`}
   ## Why this matters
 
   - Prevents interaction conflicts between overlays
-  - Ensures predictablelayering behavior
+  - Ensures predictable layering behavior
   - Keeps background popups mounted but inactive
 
   ## Mental Model

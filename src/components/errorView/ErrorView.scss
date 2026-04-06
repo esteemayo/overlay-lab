@@ -1,0 +1,83 @@
+@use '../../styles/responsive' as bp;
+
+.error-view {
+  display: flex;
+  justify-content: center;
+  padding: 10rem 0;
+
+  &__container {
+    width: 50rem;
+    text-align: center;
+    padding: 3rem;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include bp.sm {
+      padding: 1.5rem;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4rem;
+
+      background-image: radial-gradient(
+        circle,
+        rgba(59, 130, 246, 0.1),
+        transparent 70%
+      );
+
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
+
+  &__code {
+    display: block;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-size: clamp(6rem, 5vw, 10rem);
+    color: var(--blue);
+    opacity: 0.1;
+    line-height: 1.3;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  &__title {
+    display: inline-block;
+    text-transform: initial;
+    text-rendering: optimizeLegibility;
+    font-weight: 600;
+    font-size: clamp(2.8rem, 5vw, var(--fz-heading));
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  &__desc {
+    font-size: 100%;
+    color: var(--slate);
+    margin-bottom: 2rem;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    line-height: 1.3;
+  }
+
+  &__meta {
+    display: block;
+    font-size: var(--fz-xs);
+    opacity: 0.4;
+    margin-top: 2rem;
+  }
+}

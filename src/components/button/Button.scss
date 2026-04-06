@@ -7,6 +7,19 @@
     @include button($y: -0.7rem);
   }
 
+  &.secondary {
+    @include button($fontSize: var(--fz-sm), $y: -2px);
+    background-position: center;
+
+    &:hover {
+      background-position: left !important;
+    }
+
+    &:focus-visible {
+      outline-color: #ec4899 !important;
+    }
+  }
+
   &.submit {
     @include button($fontSize: var(--fz-sm), $y: 0px);
   }
@@ -28,6 +41,107 @@
 
     &:focus-visible {
       outline: 2px solid var(--dark-red);
+      outline-offset: 3px;
+    }
+  }
+
+  &.secondary,
+  &.ghost,
+  &.outlined {
+    padding: 1.5rem 2.5rem;
+
+    @include bp.sm {
+      padding: 1.25rem 2.25rem;
+    }
+  }
+
+  &.ghost,
+  &.outlined {
+    display: inline-block;
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: var(--fz-sm);
+    background-color: transparent;
+    border-radius: 10rem;
+    transition: var(--transition);
+    cursor: pointer;
+  }
+
+  &.outlined {
+    border: none;
+    color: var(--light-slate);
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      padding: 2px;
+
+      background-image: linear-gradient(
+        90deg,
+        #6366f1,
+        #8b5cf6,
+        #ec4899,
+        #f59e0b,
+        #6366f1
+      );
+      background-size: 300% 300%;
+      background-position: top;
+      border-radius: inherit;
+
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:hover::before {
+      background-position: left;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid #ec4899;
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      opacity: 0.75;
+      user-select: none;
+      pointer-events: none;
+    }
+  }
+
+  &.ghost {
+    color: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      color: var(--lightest-slate);
+      opacity: 0.85;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.2);
       outline-offset: 3px;
     }
   }

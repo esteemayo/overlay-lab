@@ -3,7 +3,7 @@ import './CodeBlock.scss';
 
 const CodeBlock = ({ label, highlighted }: CodeBlockProps) => {
   const language =
-    label === 'tsx' ? 'TypeScript' : label === 'scss' ? 'SCSS' : 'Md';
+    label === 'tsx' ? 'TypeScript' : label === 'scss' ? 'SCSS' : 'Markdown';
 
   return (
     <div

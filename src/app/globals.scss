@@ -61,18 +61,6 @@ html {
   scrollbar-gutter: stable;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-
-  &.light {
-    .code-block {
-      &__light {
-        display: block;
-      }
-
-      &__dark {
-        display: none;
-      }
-    }
-  }
 }
 
 body {
@@ -84,11 +72,18 @@ body {
   overflow-x: hidden;
 
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 4rem 4rem;
+    linear-gradient(rgba(87, 202, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(87, 202, 255, 0.05) 1px, transparent 1px);
+  background-size: 2rem 2.2rem;
   position: relative;
   z-index: 0;
+
+  @include bp.md {
+    background-image:
+      linear-gradient(rgba(87, 202, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(87, 202, 255, 0.02) 1px, transparent 1px);
+    background-size: 1.6rem 1.8rem;
+  }
 }
 
 a {
