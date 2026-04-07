@@ -35,7 +35,7 @@ const overlayCode = `useOverlay(containerRef, {
 const focusTrapCode = `useFocusTrap(containerRef, isOpen);`;
 
 const focusableCode = `const focusable = container.querySelectorAll(
-  'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+  'a, button, input, textarea, select, [tabindex]:not([tabindex='-1'])'
 );`;
 
 const DocsContent = async () => {
@@ -46,7 +46,15 @@ const DocsContent = async () => {
   const highlightedFocusableCode = await highlightCode(focusableCode);
 
   return (
-    <main className='docs-content'>
+    <main
+      id='docs-content'
+      className='docs-content'
+      aria-labelledby='docs-content-heading'
+    >
+      <h1 id='docs-content-heading' className='visually-hidden'>
+        Documentation
+      </h1>
+
       <DocsSection id='introduction' title='Introduction'>
         <p>
           A headless popup system designed for building accessible, composable
@@ -96,11 +104,13 @@ const DocsContent = async () => {
         </p>
 
         <pre style={{ marginBottom: 20 }}>
-          {`PopupProvider (global stack)
+          <code>
+            {`PopupProvider (global stack)
    ↓
 Popup (instance boundary)
    ↓         
 Trigger / Content / Close`}
+          </code>
         </pre>
 
         <p>
@@ -163,7 +173,7 @@ Trigger / Content / Close`}
 
         <pre
           style={{ marginBottom: 20 }}
-        >{`"modal" | "drawer-left" | "drawer-right"`}</pre>
+        >{`'modal' | 'drawer-left' | 'drawer-right'`}</pre>
 
         <p>
           Each variant applies different positioning and transitions using

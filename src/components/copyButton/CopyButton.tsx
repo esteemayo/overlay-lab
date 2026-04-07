@@ -49,7 +49,7 @@ const CopyButton = ({ code }: { code: string }) => {
       try {
         document.execCommand('copy');
         setStatus('success');
-      } catch (err) {
+      } catch {
         setStatus('error');
       }
 

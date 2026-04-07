@@ -1,6 +1,6 @@
-import { FeatureType, UseCaseType } from '@/types';
+import { FeatureType, SectionType, UseCaseType } from '@/types';
 
-export const sections = [
+export const sections: SectionType[] = [
   { id: 'introduction', label: 'Introduction' },
   { id: 'why', label: 'Why This Exists' },
   { id: 'architecture', label: 'Architecture' },

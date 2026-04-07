@@ -11,17 +11,38 @@ import { MarkdownPreviewProps } from '@/types/markdownPreviewType';
 import './MarkdownPreview.scss';
 
 const MarkdownPreview = ({ content, label }: MarkdownPreviewProps) => {
+  const titleId = 'markdown-preview-title'
+
   return (
-    <div className='markdown-preview'>
-      <div className='markdown-preview__header'>
+    <div
+      className='markdown-preview'
+      role='region'
+      aria-labelledby={titleId}
+    >
+      <div
+        className='markdown-preview__header'
+        role='group'
+        aria-label='Markdown preview controls'
+      >
         <CodePreviewDots />
-        {label && <FileLabel label={label} />}
+        {label ?
+          <FileLabel titleId={titleId} label={label} /> : (
+            <span id={titleId} className='visually-hidden'>
+              Markdown preview
+            </span>
+          )
+        }
+
+
         <CopyButton code={content} />
       </div>
 
-      <div className='markdown-preview__wrapper'>
+      <article
+        className='markdown-preview__wrapper'
+        aria-label='Rendered markdown content'
+      >
         <ReactMarkdown>{content}</ReactMarkdown>
-      </div>
+      </article>
     </div>
   );
 };

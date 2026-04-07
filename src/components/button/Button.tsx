@@ -1,4 +1,4 @@
-import { ButtonProps } from '@/context/transferContext/buttonType';
+import { ButtonProps } from '@/types/buttonType';
 import './Button.scss';
 
 const Button = ({ type = 'button', label, variant, ...props }: ButtonProps) => {

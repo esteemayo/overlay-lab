@@ -9,6 +9,11 @@ export type FormState = {
 
 export type ReceiptDataType = FormState;
 
+export type SectionType = {
+  id: string;
+  label: string;
+};
+
 export type FeatureType = {
   id: string;
   title: string;

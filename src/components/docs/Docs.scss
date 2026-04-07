@@ -107,7 +107,7 @@
     background-size: 60% 100%;
     background-position: left center;
     background-repeat: no-repeat;
-    border: 1px solid #1e293b;
+    border: 1px solid var(--blue-tint);
     border-top-left-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
 
@@ -128,38 +128,44 @@
       margin-bottom: 3rem;
     }
 
-    nav {
+    &__nav {
       display: flex;
       flex-direction: column;
+    }
 
-      ul {
-        list-style: none;
+    &__list {
+      list-style: none;
+    }
 
-        li {
+    &__item {
+      width: 100%;
+
+      &:not(:last-of-type) {
+        margin-bottom: 2rem;
+      }
+
+      &--link {
+        &:link,
+        &:visited {
           width: 100%;
+          display: block;
+          color: currentColor;
+          transition: var(--transition);
 
-          &:not(:last-of-type) {
-            margin-bottom: 2rem;
+          &.active {
+            font-weight: 600;
+            color: var(--blue);
           }
+        }
 
-          a {
-            &:link,
-            &:visited {
-              width: 100%;
-              display: block;
-              color: currentColor;
-              transition: var(--transition);
+        &:hover,
+        &:focus-visible {
+          color: var(--blue);
+        }
 
-              &.active {
-                font-weight: 600;
-                color: var(--blue);
-              }
-            }
-
-            &:hover {
-              font-weight: 700;
-            }
-          }
+        &:focus,
+        &:focus-visible {
+          outline: none;
         }
       }
     }
@@ -192,6 +198,10 @@
 
   &-section {
     margin-bottom: 6rem;
+
+    &:focus {
+      outline: none;
+    }
 
     @include bp.sm {
       padding: 1.5rem;

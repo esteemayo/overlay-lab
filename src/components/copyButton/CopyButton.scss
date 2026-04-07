@@ -15,9 +15,9 @@
     font-weight: 400;
     font-size: var(--fz-xs) !important;
     padding: 0 1rem;
-    background-color: var(--green-tint);
-    color: var(--light-green) !important;
-    border: 1px solid var(--green-tint);
+    background-color: var(--blue-tint);
+    color: var(--blue) !important;
+    border: 1px solid var(--blue-tint);
     border-top-left-radius: var(--border-radius);
     border-bottom-left-radius: var(--border-radius);
     cursor: pointer;
@@ -33,9 +33,9 @@
     text-transform: capitalize;
     font-weight: 400;
     font-size: var(--fz-xxs);
-    background-color: var(--green-tint);
-    color: var(--light-green);
-    border: 1px solid var(--green-tint);
+    background-color: var(--blue-tint);
+    color: var(--blue);
+    border: 1px solid var(--blue-tint);
     border-top-right-radius: var(--border-radius);
     border-bottom-right-radius: var(--border-radius);
     cursor: pointer;
@@ -88,7 +88,7 @@
     svg {
       width: 1.75rem;
       height: 1.75rem;
-      color: currentColor;
+      color: var(--blue);
     }
   }
 }

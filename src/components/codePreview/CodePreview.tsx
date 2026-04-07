@@ -12,7 +12,11 @@ const CodePreview = ({ code, label, highlighted }: CodePreviewProps) => {
 
   return (
     <div className='code-preview' role='region' aria-labelledby={titleId}>
-      <div className='code-preview__header'>
+      <div
+        className='code-preview__header'
+        role='group'
+        aria-label='Code preview controls'
+      >
         <CodePreviewDots />
 
         {label ? (
