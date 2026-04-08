@@ -21,14 +21,6 @@ const DocsExampleClient = ({
     if (filename.endsWith('.md')) return 'md';
   };
 
-  const handlePreviewBtn = () => {
-    setTab('preview');
-  };
-
-  const handleCodeBtn = () => {
-    setTab('code');
-  };
-
   const fileTabs = files.map((file) => ({
     label: file.filename,
     content: file.filename.endsWith('.md') ? (
@@ -42,31 +34,54 @@ const DocsExampleClient = ({
     ),
   }));
 
-  return (
-    <div className='docs-example'>
-      <h4 className='docs-example__title'>{title}</h4>
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      setTab(prev => prev === 'preview' ? 'code' : 'preview');
+    }
+  };
 
-      <div className='docs-example__tabs'>
+  return (
+    <div className='docs-example' role='region' aria-labelledby='example-title'>
+      <h3 id='example-title' className='docs-example__title'>
+        {title}
+      </h3>
+
+      <div
+        className='docs-example__tabs'
+        role='tablist'
+        aria-label='Example view options'
+      >
         <button
+          role='tab'
+          id='preview-tab'
           type='button'
-          onClick={handlePreviewBtn}
+          onClick={() => setTab('preview')}
+          onKeyDown={handleKeyDown}
           className={
             tab === 'preview'
               ? 'docs-example__tabs--btn active'
               : 'docs-example__tabs--btn'
           }
+          aria-selected={tab === 'preview'}
+          aria-controls='preview-panel'
         >
           Preview
         </button>
 
         <button
+          role='tab'
+          id='code-tab'
           type='button'
-          onClick={handleCodeBtn}
+          onClick={() => setTab('code')}
+          onKeyDown={handleKeyDown}
           className={
             tab === 'code'
               ? 'docs-example__tabs--btn active'
               : 'docs-example__tabs--btn'
           }
+          aria-selected={tab === 'code'}
+          aria-controls='code-panel'
         >
           Code
         </button>
@@ -74,9 +89,24 @@ const DocsExampleClient = ({
 
       <div className='docs-example__content'>
         {tab === 'preview' ? (
-          <div className='docs-example__preview'>{children}</div>
+          <div
+            id='preview-panel'
+            className='docs-example__preview'
+            role='tabpanel'
+            aria-labelledby='preview-tab'
+            tabIndex={0}
+          >
+            {children}
+          </div>
         ) : (
-          <Tabs tabs={fileTabs} />
+          <div
+            id='code-panel'
+            role='tabpanel'
+            aria-labelledby='code-tab'
+            tabIndex={0}
+          >
+            <Tabs tabs={fileTabs} />
+          </div>
         )}
       </div>
     </div>

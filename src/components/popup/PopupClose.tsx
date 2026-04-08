@@ -2,10 +2,9 @@
 
 import React from 'react';
 
-import { usePopupInstance } from './Popup';
-
-import { usePopup } from '@/hooks/usePopup';
 import { PopupCloseProps } from '@/types/popupClose';
+import { usePopup } from '@/hooks/usePopup';
+import { usePopupInstance } from '@/context/PopupInstanceContext';
 
 const PopupClose = ({ asChild = false, children }: PopupCloseProps) => {
   const popupId = usePopupInstance();

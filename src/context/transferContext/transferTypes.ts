@@ -6,7 +6,7 @@ export type TransferStatus =
   | 'error';
 
 export interface TransferData {
-  amount: number;
+  amount: string | number;
   accountNumber: string;
   bank: string;
   description?: string;

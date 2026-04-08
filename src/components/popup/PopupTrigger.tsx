@@ -2,8 +2,8 @@
 
 import React from 'react';
 
-import { usePopupInstance } from './Popup';
 import { usePopup } from '@/hooks/usePopup';
+import { usePopupInstance } from '@/context/PopupInstanceContext';
 
 const PopupTrigger = ({
   asChild = true,

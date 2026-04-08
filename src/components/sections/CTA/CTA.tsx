@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import { highlightCode } from '@/lib/highlight';
-import CodePreview from '../codePreview/CodePreview';
+import CodePreview from '../../codePreview/CodePreview';
 
 import './CTA.scss';
 

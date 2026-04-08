@@ -12,8 +12,10 @@ import TransferSuccess from './successScreen/SuccessScreen';
 import { useTransfer } from '@/hooks/useTransfer';
 
 const TransferFlow = () => {
-  const { data, dispatch, status, transactionId, handleSuccess } =
+  const { state, dispatch, handleSuccess } =
     useTransfer();
+
+  const { data, status, transactionId } = state;
 
   useEffect(() => {
     if (status === 'success') {

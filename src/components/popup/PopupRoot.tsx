@@ -2,10 +2,9 @@
 
 import { createPortal } from 'react-dom';
 
-import { usePopupInstance } from './Popup';
-
-import { usePopup } from '@/hooks/usePopup';
 import { usePortal } from '@/hooks/usePortal';
+import { usePopup } from '@/hooks/usePopup';
+import { usePopupInstance } from '@/context/PopupInstanceContext';
 
 const PopupRoot = ({ children }: { children: React.ReactNode }) => {
   const { isPopupOpen } = usePopup();

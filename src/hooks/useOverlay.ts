@@ -7,7 +7,7 @@ import { useFocusTrap } from './useFocusTrap';
 import { useScrollLock } from './useScrollLock';
 
 import { usePopup } from './usePopup';
-import { usePopupInstance } from '@/components/popup/Popup';
+import { usePopupInstance } from '@/context/PopupInstanceContext';
 
 interface UseOverlayOptions {
   isOpen: boolean;

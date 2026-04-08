@@ -1,4 +1,4 @@
-@use '../../../styles/mixins' as *;
+@use '../../../styles/mixins' as mixins;
 @use '../../../styles/responsive' as bp;
 
 .documentation {
@@ -34,7 +34,7 @@
     line-height: 1.1;
     margin-bottom: 4rem;
 
-    @include text-heading();
+    @include mixins.text-heading();
   }
 
   &__desc {

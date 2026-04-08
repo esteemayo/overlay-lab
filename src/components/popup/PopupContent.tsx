@@ -8,8 +8,8 @@ import PopupOverlay from './PopupOverlay';
 import { usePopup } from '@/hooks/usePopup';
 import { useOverlay } from '@/hooks/useOverlay';
 
-import { usePopupInstance } from './Popup';
 import { PopupContentProps } from '@/types/popupContentType';
+import { usePopupInstance } from '@/context/PopupInstanceContext';
 
 const PopupContent = ({ variant = 'modal', children }: PopupContentProps) => {
   const popupId = usePopupInstance();

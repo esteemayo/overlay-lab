@@ -8,10 +8,15 @@ const DocsSidebar = () => {
   const { isActiveId } = useActiveSection(sectionIds);
 
   return (
-    <aside className='docs-sidebar'>
-      <h3 className='docs-sidebar__heading'>Docs</h3>
+    <aside className='docs-sidebar' aria-label='Documentation sidebar'>
+      <h3
+        id='docs-sidebar-heading'
+        className='docs-sidebar__heading'
+      >
+        Docs
+      </h3>
 
-      <nav className='docs-sidebar__nav'>
+      <nav className='docs-sidebar__nav' aria-labelledby='docs-sidebar-heading'>
         <ul className='docs-sidebar__list'>
           {sections.map(({ id, label }) => (
             <li key={id} className='docs-sidebar__item'>
@@ -20,6 +25,7 @@ const DocsSidebar = () => {
                 className={
                   isActiveId === id ? 'docs-sidebar__item--link active' : 'docs-sidebar__item--link'
                 }
+                aria-current={isActiveId === id ? 'location' : undefined}
               >
                 {label}
               </a>

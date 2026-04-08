@@ -1,10 +1,10 @@
-import Features from '../features/Features';
-import CTA from '../CTA/CTA';
+import Features from '../sections/features/Features';
+import CTA from '../sections/CTA/CTA';
 import Documentation from '../sections/documentation/Documentation';
 import Popup from '../popup';
-import Overview from '../overview/Overview';
+import Overview from '../sections/overview/Overview';
 import Hero from '../hero/Hero';
-import UseCases from '../useCases/UseCases';
+import UseCases from '../sections/useCases/UseCases';
 import TransferFlow from '../TransferFlow';
 
 import './Home.scss';

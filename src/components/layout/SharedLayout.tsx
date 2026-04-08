@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation';
 
 import Footer from './footer/Footer';
-import Popup from '../popup';
+import Popup from '../popup/Popup';
 import Navbar from './navbar/Navbar';
 import Sidebar from './Sidebar';
 import DocsMenu from '../docs/DocsMenu';

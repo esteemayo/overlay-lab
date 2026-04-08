@@ -1,5 +1,5 @@
 import { USE_CASES } from '@/data';
-import UseCaseItem from '../useCaseItem/UseCaseItem';
+import UseCaseItem from '../../useCaseItem/UseCaseItem';
 
 import './UseCases.scss';
 

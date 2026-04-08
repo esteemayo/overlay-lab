@@ -1,9 +1,9 @@
 'use client';
 
-import { usePopupInstance } from '../popup/Popup';
+import { sections } from '@/data';
+import { usePopupInstance } from '@/context/PopupInstanceContext';
 
 import { usePopup } from '@/hooks/usePopup';
-import { sections } from '@/data';
 import { useActiveSection } from '@/hooks/useActiveSection';
 
 const DocsNav = () => {
@@ -19,15 +19,18 @@ const DocsNav = () => {
 
   return (
     <div className='docs-nav'>
-      <h3 className='docs-nav__heading'>Documentation</h3>
+      <h2 id='docs-nav-heading' className='docs-nav__heading'>
+        Documentation
+      </h2>
 
-      <nav className='docs-nav__nav'>
+      <nav className='docs-nav__nav' aria-labelledby='docs-nav-heading'>
         <ul className='docs-nav__list'>
           {sections.map(({ id, label }) => (
             <li key={id} onClick={handleClick} className='docs-nav__item'>
               <a
                 href={`#${id}`}
                 className={`docs-nav__item--link ${isActiveId === id ? 'active' : ''}`}
+                aria-current={isActiveId === id ? 'location' : undefined}
               >
                 {label}
               </a>

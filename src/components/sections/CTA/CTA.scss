@@ -1,6 +1,6 @@
-@use '../../styles/mixins' as *;
-@use '../../styles/animation';
-@use '../../styles/responsive' as bp;
+@use '../../../styles/responsive' as bp;
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/animation' as anim;
 
 .cta {
   display: flex;
@@ -38,7 +38,7 @@
     line-height: 1.1;
     margin-bottom: 4rem;
 
-    @include text-heading();
+    @include mixins.text-heading();
 
     @include bp.sm {
       width: 100%;
@@ -169,7 +169,7 @@
     &--primary {
       &:link,
       &:visited {
-        @include button($fontSize: var(--fz-sm), $y: -2px);
+        @include mixins.button($fontSize: var(--fz-sm), $y: -2px);
         padding: 1.5rem 2rem;
         background-position: center;
       }

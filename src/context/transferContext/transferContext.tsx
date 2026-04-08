@@ -37,7 +37,7 @@ export const TransferProvider = ({
   };
 
   return (
-    <TransferContext.Provider value={{ ...state, dispatch, handleSuccess }}>
+    <TransferContext.Provider value={{ state, dispatch, handleSuccess }}>
       {children}
     </TransferContext.Provider>
   );

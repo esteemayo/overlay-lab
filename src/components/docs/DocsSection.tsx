@@ -10,10 +10,7 @@ const DocsSection = ({ id, title, children }: DocsSectionProps) => {
       aria-labelledby={headingId}
       tabIndex={-1}
     >
-      <h2
-        id={headingId}
-        className='docs-section__title'
-      >
+      <h2 id={headingId} className='docs-section__title'>
         {title}
       </h2>
 
