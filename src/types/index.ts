@@ -1,7 +1,7 @@
 export type StatusType = 'idle' | 'loading' | 'success' | 'receipt';
 
 export type FormState = {
-  amount: string | number;
+  amount: string;
   accountNumber: string;
   bank: string;
   description?: string;

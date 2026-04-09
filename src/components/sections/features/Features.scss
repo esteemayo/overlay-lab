@@ -1,4 +1,4 @@
-@use '../../../styles/mixins' as mixins;
+@use '../../../styles/mixins' as *;
 @use '../../../styles/responsive' as bp;
 
 .features {
@@ -33,7 +33,7 @@
     line-height: 1.1;
     margin-bottom: 4rem;
 
-    @include mixins.text-heading();
+    @include text-heading();
   }
 
   &__grid {

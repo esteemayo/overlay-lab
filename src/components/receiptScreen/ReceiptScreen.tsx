@@ -1,3 +1,7 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+
 import Popup from '../popup';
 import Button from '../button/Button';
 
@@ -5,36 +9,64 @@ import { ReceiptScreenProps } from '@/types/receiptScreen';
 import './ReceiptScreen.scss';
 
 const ReceiptScreen = ({ data, transactionId }: ReceiptScreenProps) => {
+  const headingRef = useRef<HTMLHeadingElement | null>(null);
+
+  useEffect(() => {
+    headingRef.current?.focus()
+  }, [])
+
   return (
-    <div className='receipt-screen fade-in'>
-      <div className='receipt-screen__wrapper'>
-        <p>
-          <strong>Transaction ID:</strong> {transactionId}
-        </p>
+    <section
+      className='receipt-screen fade-in'
+      aria-labelledby='receipt-heading'
+      aria-live='polite'
+    >
+      <h2
+        ref={headingRef}
+        id='receipt-heading'
+        className='visually-hidden'
+        tabIndex={-1}
+      >
+        Transfer Successful Receipt
+      </h2>
+
+      <dl className='receipt-screen__wrapper'>
+        <div>
+          <dt>Transaction ID</dt>
+          <dd>{transactionId}</dd>
+        </div>
+
+        <div>
+          <dt>Amount</dt>
+          <dd>₦{Number(data?.amount).toLocaleString()}</dd>
+        </div>
 
         <p>
-          <strong>Amount:</strong> ₦{Number(data?.amount).toLocaleString()}
+          <dt>Recipient</dt>
+          <dd>{data?.accountNumber}</dd>
         </p>
 
-        <p>
-          <strong>Recipient:</strong> {data?.accountNumber}
-        </p>
+        <div className='bank'>
+          <dt>Bank</dt>
+          <dd>{data?.bank}</dd>
+        </div>
 
-        <p className='bank'>
-          <strong>Bank:</strong> {data?.bank}
-        </p>
+        <div>
+          <dt>Status</dt>
+          <dd>Successful</dd>
+        </div>
+      </dl>
 
-        <p>
-          <strong>Status:</strong> Successful
-        </p>
-      </div>
-
-      <div className='receipt-screen__action'>
+      <div
+        className='receipt-screen__action'
+        role='group'
+        aria-label='Receipt actions'
+      >
         <Popup.Close asChild>
           <Button label='Done' variant='submit' />
         </Popup.Close>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Button from '../button/Button';
 import Popup from '../popup';
@@ -30,6 +30,8 @@ const INITIAL_STATE = {
 const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
   const { dispatch } = useTransfer();
 
+  const formErrorRef = useRef<HTMLDivElement | null>(null)
+
   const [errors, setErrors] = useState<FormError>({});
   const [amountRaw, setAmountRaw] = useState('');
   const [form, setForm] = useState<FormState>(INITIAL_STATE);
@@ -53,14 +55,6 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
     setAmountRaw(digitOnly);
     setErrors((prev) => ({ ...prev, amount: '' }));
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false);
   };
 
   const validate = (): FormError => {
@@ -87,7 +81,10 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     const validationErrors = validate();
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length > 0) return;
+    if (Object.keys(validationErrors).length > 0) {
+      formErrorRef.current?.focus();
+      return;
+    }
   };
 
   const handleConfirm = async () => {
@@ -112,7 +109,6 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
     }
   };
 
-  const data = { ...form, amount: amountRaw };
   const displayValue = isFocused ? amountRaw : formatCurrency(amountRaw);
 
   return (
@@ -121,7 +117,20 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
         onSubmit={handleSubmit}
         id='transfer-form'
         className='transfer-form'
+        noValidate
+        aria-describedby='transfom-form-errors'
       >
+        <div
+          ref={formErrorRef}
+          id='transfom-form-errors'
+          className='visually-hidden'
+          tabIndex={-1}
+          role='alert'
+          aria-live='assertive'
+        >
+          {Object.keys(errors).length > 0 && 'Please correct the highlighted form errors.'}
+        </div>
+
         <FormField id='amount' label='Amount' error={errors.amount}>
           <Input
             id='amount'
@@ -130,8 +139,8 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
             autoComplete='off'
             value={displayValue}
             onChange={handleAmountChange}
-            onBlur={handleBlur}
-            onFocus={handleFocus}
+            onBlur={() => setIsFocused(false)}
+            onFocus={() => setIsFocused(true)}
             placeholder='₦0.00'
           />
         </FormField>
@@ -183,7 +192,11 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
         </FormField>
 
         <Popup>
-          <div className='transfer-form__actions'>
+          <div
+            className='transfer-form__actions'
+            role='group'
+            aria-label='Transfer form actions'
+          >
             <Popup.Close asChild>
               <Button label='Cancel' variant='cancel' />
             </Popup.Close>
@@ -195,7 +208,7 @@ const TransferForm = ({ status, onSuccess }: TransferFormProps) => {
 
           <Popup.Content>
             <ConfirmTransferModal
-              data={data}
+              data={{ ...form, amount: amountRaw }}
               status={status}
               onConfirm={handleConfirm}
             />
