@@ -35,7 +35,7 @@ const ConfirmTransfer = ({ data, status, onConfirm }: ConfirmTransferProps) => {
         </div>
 
         {data.description && (
-          <div className='confirm-transfer__summary'>
+          <div className='confirm-transfer__summary desc'>
             <dt>Note</dt>
             <dd>{data.description}</dd>
           </div>

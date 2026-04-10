@@ -31,29 +31,29 @@ const ReceiptScreen = ({ data, transactionId }: ReceiptScreenProps) => {
       </h2>
 
       <dl className='receipt-screen__wrapper'>
-        <div>
+        <div className='receipt-screen__summary'>
           <dt>Transaction ID</dt>
           <dd>{transactionId}</dd>
         </div>
 
-        <div>
+        <div className='receipt-screen__summary'>
           <dt>Amount</dt>
           <dd>₦{Number(data?.amount).toLocaleString()}</dd>
         </div>
 
-        <p>
+        <div className='receipt-screen__summary'>
           <dt>Recipient</dt>
           <dd>{data?.accountNumber}</dd>
-        </p>
+        </div>
 
-        <div className='bank'>
+        <div className='receipt-screen__summary bank'>
           <dt>Bank</dt>
           <dd>{data?.bank}</dd>
         </div>
 
-        <div>
+        <div className='receipt-screen__summary'>
           <dt>Status</dt>
-          <dd>Successful</dd>
+          <dd aria-label='Transfer successful'>Successful</dd>
         </div>
       </dl>
 
