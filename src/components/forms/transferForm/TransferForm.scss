@@ -1,0 +1,45 @@
+@use '../../../styles/mixins' as *;
+@use '../../../styles/responsive' as bp;
+
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  padding: 2rem;
+  background-image: linear-gradient(
+    180deg,
+    rgba(12, 31, 65, 0.1),
+    rgba(7, 22, 48, 0.95)
+  );
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(87, 202, 255, 0.05);
+  box-shadow:
+    0 1rem 3rem rgba(12, 31, 65, 0.25),
+    inset 0 1px 0 rgba(6, 16, 34, 0.04);
+  border-radius: 0.8rem;
+
+  @media (max-width: 40em) {
+    padding: 1.25rem;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.25rem;
+
+    @media (max-width: 40em) {
+      flex-direction: column-reverse;
+    }
+
+    button {
+      &.cancel,
+      &.submit {
+        @media (max-width: 40em) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

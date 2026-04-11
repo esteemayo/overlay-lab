@@ -2,12 +2,12 @@
 
 import { useEffect } from 'react';
 
-import Popup from './popup';
+import Popup from './popup/Popup';
 import Xmark from '@/components/icons/Xmark';
 
-import ReceiptScreen from './receiptScreen/ReceiptScreen';
-import TransferForm from './transferForm/TransferForm';
 import TransferSuccess from './successScreen/SuccessScreen';
+import ReceiptScreen from './receiptScreen/ReceiptScreen';
+import TransferForm from './forms/transferForm/TransferForm';
 
 import { useTransfer } from '@/hooks/useTransfer';
 

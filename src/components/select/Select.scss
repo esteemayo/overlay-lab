@@ -5,18 +5,22 @@
   font-weight: 600;
   font-size: var(--fz-md);
   padding: 1rem;
-  background-color: var(--light-navy);
+  background-color: rgba(14, 30, 59, 0.5);
   color: var(--lightest-slate);
-  border: 2px solid var(--slate);
+  border: 2px solid rgba(87, 202, 255, 0.08);
   border-radius: var(--border-radius);
 
   option {
     font-weight: 500;
     font-size: var(--fz-sm);
     color: var(--light-slate);
+    background-color: var(--light-navy);
   }
 
-  &:focus,
+  &:focus {
+    outline: none;
+  }
+
   &:focus-visible {
     outline: 2px solid var(--lightest-navy);
     outline-offset: 3px;

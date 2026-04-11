@@ -1,5 +1,5 @@
 import ArrowLeft from '@/components/icons/ArrowLeft';
-import Popup from './popup';
+import Popup from './popup/Popup';
 import ConfirmTransfer from './confirmTransfer/ConfirmTransfer';
 
 import { ConfirmTransferModalProps } from '@/types/confirmTransferModalType';
